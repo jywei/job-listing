@@ -12,9 +12,8 @@
   <tbody>
     <% @jobs.each do |job| %>
       <tr>
-        <td><%= job.start_day %></td>
-        <td><%= job.title %></td>
-        <td><%= link_to 'Show', job %></td>
+        <td><p><%= job.start_day %></p></td>
+        <td><h2><%= link_to job.title, job %><h2></td>
         <td><%= link_to 'Edit', edit_job_path(job) %></td>
         <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -3,7 +3,7 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-    @jobs = Job.all
+    @jobs = Job.all.order("created_at DESC")
   end
 
   # GET /jobs/1

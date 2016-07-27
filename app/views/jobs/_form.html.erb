@@ -13,16 +13,15 @@
 
   <div class="actions">
     <%= f.input :title %>
-    <%#= f.input :password, hint: 'No special characters.' %>
     <%= f.input :description, as: :text %>
     <%= f.input :requirement, as: :text %>
     <%= f.input :apply_instruction, as: :text %>
     <%= f.input :start_day, as: :date, start_date: Date.today.year,
-                                       end_date: Date.today.year - 12 %>
+                                       end_date: Date.today.year + 5 %>
     <%= f.input :professional_skill, as: :text %>
-    <%= f.input :is_published %>
-    <%#= f.input :email, placeholder: 'user@domain.com' %>
-    <%#= f.input :remember_me, inline_label: 'Yes, remember me' %>
+    <%= f.input :is_published, as: :boolean,
+                               checked_value: true,
+                               unchecked_value: false %>
     <%= f.button :submit %>
   </div>
 <% end %>
