@@ -13,7 +13,9 @@
 
   <div class="actions">
     <%= f.input :title, label: 'Your username please', error: 'Username is mandatory, please specify one' %>
-    <%= f.input :password, hint: 'No special characters.' %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :requirement, as: :text %>
+    <%= f.input :apply_instruction, as: :text %>
     <%= f.input :email, placeholder: 'user@domain.com' %>
     <%= f.input :remember_me, inline_label: 'Yes, remember me' %>
     <%= f.button :submit %>

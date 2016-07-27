@@ -2,13 +2,11 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   # GET /jobs
-  # GET /jobs.json
   def index
     @jobs = Job.all
   end
 
   # GET /jobs/1
-  # GET /jobs/1.json
   def show
   end
 
@@ -21,38 +19,24 @@ class JobsController < ApplicationController
   def edit
   end
 
-  # POST /jobs
-  # POST /jobs.json
   def create
     @job = Job.new(job_params)
 
-    respond_to do |format|
-      if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
-        format.json { render :show, status: :created, location: @job }
-      else
-        format.html { render :new }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
-      end
+    if @job.save
+      redirect_to @job, notice: 'Job was successfully created.'
+    else
+      html render :new
     end
   end
 
-  # PATCH/PUT /jobs/1
-  # PATCH/PUT /jobs/1.json
   def update
-    respond_to do |format|
       if @job.update(job_params)
-        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
-        format.json { render :show, status: :ok, location: @job }
+        redirect_to @job, notice: 'Job was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
-  # DELETE /jobs/1
-  # DELETE /jobs/1.json
   def destroy
     @job.destroy
     respond_to do |format|
@@ -71,4 +55,5 @@ class JobsController < ApplicationController
     def job_params
       params.fetch(:job, {})
     end
+
 end
