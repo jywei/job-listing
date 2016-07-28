@@ -3,7 +3,7 @@
 <% Category.all.each do |category| %>
   <%= link_to category.name, jobs_path(category: category.name) %>
 <% end %>
-
+<hr>
 <% Industry.all.each do |industry| %>
   <%= link_to industry.name, jobs_path(industry: industry.name) %>
 <% end %>

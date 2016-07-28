@@ -10,12 +10,13 @@ class JobsController < ApplicationController
     #   @jobs = Job.where(category_id: @category_id).published.order("created_at DESC")
     # end
 
-    if params[:category].blank?
+    if params[:category].blank? && params[:industry].blank?
       @jobs = Job.all.published.order("created_at DESC")
     else
-      @category_id = Category.find_by(name: params[:category]).id
-      @industry_id = Industry.find_by(name: params[:industry]).id
-      @jobs = Job.by_category_and_industry(@category_id, @industry_id).published.order("created_at DESC")
+      @category = Category.find_by(name: params[:category]) ? Category.find_by(name: params[:category]) : nil
+      @industry = Industry.find_by(name: params[:industry]) ? Industry.find_by(name: params[:industry]) : nil
+      # binding.pry
+      @jobs = Job.by_category_and_industry(@category, @industry).published.order("created_at DESC")
     end
   end
 
