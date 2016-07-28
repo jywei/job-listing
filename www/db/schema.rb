@@ -14,29 +14,29 @@
 ActiveRecord::Schema.define(version: 20160727152353) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.string   "title"
-    t.string   "status"
-    t.text     "description"
-    t.text     "requirement"
-    t.text     "apply_instruction"
-    t.string   "url"
-    t.string   "email"
+    t.string   "title",              limit: 255
+    t.string   "status",             limit: 255
+    t.text     "description",        limit: 65535
+    t.text     "requirement",        limit: 65535
+    t.text     "apply_instruction",  limit: 65535
+    t.string   "url",                limit: 255
+    t.string   "email",              limit: 255
     t.date     "start_day"
-    t.integer  "views_count",        default: 0
-    t.integer  "applied_count",      default: 0
-    t.text     "professional_skill"
-    t.string   "salary_range"
-    t.string   "year_salary_range"
-    t.boolean  "is_published",       default: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.integer  "category_id"
+    t.integer  "views_count",        limit: 4,     default: 0
+    t.integer  "applied_count",      limit: 4,     default: 0
+    t.text     "professional_skill", limit: 65535
+    t.string   "salary_range",       limit: 255
+    t.string   "year_salary_range",  limit: 255
+    t.boolean  "is_published",                     default: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.integer  "category_id",        limit: 4
   end
 
 end
