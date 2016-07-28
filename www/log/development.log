@@ -7347,6 +7347,7 @@ NoMethodError (undefined method `id' for nil:NilClass):
   Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
   Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (13.7ms)
   Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (95.6ms)
+<<<<<<< HEAD
 
 
 Started GET "/jobs" for ::1 at 2016-07-28 16:21:03 +0800
@@ -9571,3 +9572,10 @@ Processing by JobsController#index as HTML
   Rendered jobs/index.html.erb within layouts/application (172.7ms)
   Rendered layouts/_navbar.html.erb (0.6ms)
 Completed 200 OK in 354ms (Views: 72.4ms | ActiveRecord: 277.4ms)
+=======
+  [1m[36mIndustry Load (52.1ms)[0m  [1mSELECT `industries`.* FROM `industries`[0m
+  [1m[36mIndustry Load (51.9ms)[0m  [1mSELECT `industries`.* FROM `industries`[0m
+  [1m[35mCategory Load (54.0ms)[0m  SELECT `categories`.* FROM `categories`
+  [1m[36mJob Load (55.4ms)[0m  [1mSELECT `jobs`.* FROM `jobs`[0m
+  [1m[35mJob Load (60.1ms)[0m  SELECT  `jobs`.* FROM `jobs`  ORDER BY `jobs`.`id` ASC LIMIT 1
+>>>>>>> 9bfc13cda28ba65808a766b4ca5aa4be2741a373
