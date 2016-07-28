@@ -3294,3 +3294,56 @@ Started GET "/assets/pages.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde45
 Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-28 12:17:53 +0800
   [1m[36mCategory Load (53.6ms)[0m  [1mSELECT `categories`.* FROM `categories`[0m
 >>>>>>> eb53e146f1e96124bf8ede04d4bdaeebf439f85e
+  [1m[36mJob Load (57.4ms)[0m  [1mSELECT `jobs`.* FROM `jobs`[0m
+  [1m[35mCategory Load (55.9ms)[0m  SELECT `categories`.* FROM `categories`
+  [1m[36mJob Load (57.2ms)[0m  [1mSELECT `jobs`.* FROM `jobs`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (52.8ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (52.4ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (53.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'jobs-board-dev'
+  AND fk.table_name = 'categories'
+[0m
+  [1m[35m (52.7ms)[0m  SHOW CREATE TABLE `categories`
+  [1m[36m (52.7ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'jobs-board-dev'
+  AND fk.table_name = 'jobs'
+[0m
+  [1m[35m (64.7ms)[0m  SHOW CREATE TABLE `jobs`
+  [1m[36mActiveRecord::SchemaMigration Load (57.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (56.3ms)[0m  BEGIN
+  [1m[36mSQL (55.4ms)[0m  [1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`) VALUES ('Accounting / Finance', '2016-07-28 04:34:48', '2016-07-28 04:34:48')[0m
+  [1m[35m (66.2ms)[0m  COMMIT
+  [1m[36m (55.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (55.8ms)[0m  INSERT INTO `categories` (`name`, `created_at`, `updated_at`) VALUES ('Sales', '2016-07-28 04:34:48', '2016-07-28 04:34:48')
+  [1m[36m (58.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (55.4ms)[0m  BEGIN
+  [1m[36mSQL (55.7ms)[0m  [1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`) VALUES ('Marketing', '2016-07-28 04:34:48', '2016-07-28 04:34:48')[0m
+  [1m[35m (58.6ms)[0m  COMMIT
+  [1m[36mJob Load (52.5ms)[0m  [1mSELECT `jobs`.* FROM `jobs`[0m
+  [1m[35mCategory Load (54.9ms)[0m  SELECT `categories`.* FROM `categories`
+
+
+Started GET "/" for ::1 at 2016-07-28 12:38:32 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (52.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by PagesController#index as HTML
+  Rendered pages/index.html.erb within layouts/application (1.9ms)
+Completed 500 Internal Server Error in 4714ms (ActiveRecord: 0.0ms)
+
+LoadError (cannot load such file -- coffee_script):
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__1369471040744494700_70350388753200'
+
+
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (14.2ms)
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.7ms)
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (14.1ms)
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (104.2ms)
