@@ -33,7 +33,7 @@ class JobsController < ApplicationController
     if @job.save
       redirect_to @job, notice: 'Job was successfully created.'
     else
-      html render :new
+      render :new
     end
   end
 
