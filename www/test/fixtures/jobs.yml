@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  status: MyString
+  description: MyText
+  requirement: MyText
+  apply_instruction: MyText
+  url: MyString
+  email: MyString
+  start_day: 2016-07-27
+  views_count: 1
+  applied_count: 1
+  professional_skill: MyText
+  salary_range: MyString
+  year_salary_range: MyString
+  is_published: false
+
+two:
+  title: MyString
+  status: MyString
+  description: MyText
+  requirement: MyText
+  apply_instruction: MyText
+  url: MyString
+  email: MyString
+  start_day: 2016-07-27
+  views_count: 1
+  applied_count: 1
+  professional_skill: MyText
+  salary_range: MyString
+  year_salary_range: MyString
+  is_published: false

@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @job.title %></h2>
+<p><%= @job.description %></p>
+<p><%= @job.requirement %></p>
+<p><%= @job.apply_instruction %></p>
+<p><%= @job.professional_skill %></p>
+<p><%= @job.start_day %></p>
+
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %> |
+<%= link_to 'Home', root_path %>
