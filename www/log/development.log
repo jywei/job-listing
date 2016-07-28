@@ -3065,3 +3065,186 @@ Started GET "/assets/pages.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde45
 
 Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-28 12:17:53 +0800
   [1m[36mCategory Load (53.6ms)[0m  [1mSELECT `categories`.* FROM `categories`[0m
+
+
+Started GET "/jobs/new" for ::1 at 2016-07-28 12:35:29 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (60.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by JobsController#new as HTML
+  [1m[35mCategory Load (56.9ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered jobs/_form.html.erb (277.3ms)
+  Rendered jobs/new.html.erb within layouts/application (283.2ms)
+Completed 500 Internal Server Error in 2407ms (ActiveRecord: 345.7ms)
+
+LoadError (cannot load such file -- coffee_script):
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__2152080350584201222_70144283319820'
+
+
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.8ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (46.0ms)
+
+
+Started GET "/jobs/new" for ::1 at 2016-07-28 12:36:27 +0800
+Processing by JobsController#new as HTML
+  [1m[36mCategory Load (58.4ms)[0m  [1mSELECT `categories`.* FROM `categories`[0m
+  Rendered jobs/_form.html.erb (71.8ms)
+  Rendered jobs/new.html.erb within layouts/application (72.8ms)
+Completed 500 Internal Server Error in 86ms (ActiveRecord: 58.4ms)
+
+LoadError (cannot load such file -- coffee_script):
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__2152080350584201222_70144283319820'
+
+
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.6ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.4ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (42.8ms)
+
+
+Started GET "/jobs/new" for ::1 at 2016-07-28 12:36:44 +0800
+Processing by JobsController#new as HTML
+  [1m[35mCategory Load (55.4ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered jobs/_form.html.erb (71.7ms)
+  Rendered jobs/new.html.erb within layouts/application (72.7ms)
+Completed 500 Internal Server Error in 89ms (ActiveRecord: 55.4ms)
+
+LoadError (cannot load such file -- coffee_script):
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__2152080350584201222_70144283319820'
+
+
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.3ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.9ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (43.7ms)
+
+
+Started GET "/jobs/new" for ::1 at 2016-07-28 12:36:53 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (51.8ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by JobsController#new as HTML
+  [1m[35mCategory Load (55.0ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered jobs/_form.html.erb (230.4ms)
+  Rendered jobs/new.html.erb within layouts/application (234.0ms)
+Completed 500 Internal Server Error in 623ms (ActiveRecord: 322.4ms)
+
+LoadError (cannot load such file -- coffee_script):
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__3803253813302614969_70212390254500'
+
+
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.7ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (38.2ms)
+
+
+Started GET "/jobs/new" for ::1 at 2016-07-28 12:38:01 +0800
+Processing by JobsController#new as HTML
+  [1m[36mCategory Load (53.5ms)[0m  [1mSELECT `categories`.* FROM `categories`[0m
+  Rendered jobs/_form.html.erb (67.0ms)
+  Rendered jobs/new.html.erb within layouts/application (68.1ms)
+Completed 200 OK in 73ms (Views: 19.0ms | ActiveRecord: 53.5ms)
+
+
+Started GET "/jobs/new" for ::1 at 2016-07-28 12:38:10 +0800
+Processing by JobsController#new as HTML
+  [1m[35mCategory Load (53.8ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered jobs/_form.html.erb (66.8ms)
+  Rendered jobs/new.html.erb within layouts/application (67.9ms)
+Completed 500 Internal Server Error in 82ms (ActiveRecord: 53.8ms)
+
+LoadError (cannot load such file -- coffee_script):
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__3803253813302614969_70212448156300'
+
+
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.9ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.4ms)
+
+
+Started GET "/jobs/new" for ::1 at 2016-07-28 12:39:05 +0800
+Processing by JobsController#new as HTML
+  [1m[36mCategory Load (55.4ms)[0m  [1mSELECT `categories`.* FROM `categories`[0m
+  Rendered jobs/_form.html.erb (68.0ms)
+  Rendered jobs/new.html.erb within layouts/application (69.1ms)
+Completed 200 OK in 2951ms (Views: 2895.3ms | ActiveRecord: 55.4ms)
+
+
+Started GET "/assets/custom.self-6637c43b8c517fb1e4d39233cccd75457bdac09d5dcbcc5284ac7da86d31a62e.css?body=1" for ::1 at 2016-07-28 12:39:08 +0800
+
+
+Started GET "/assets/application.self-af2db644fb8971f31a485a0033f50298d20394510f77b8d02d908a73f7d6243f.css?body=1" for ::1 at 2016-07-28 12:39:08 +0800
+
+
+Started GET "/assets/pages.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-28 12:39:08 +0800
+
+
+Started GET "/assets/jobs.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-28 12:39:09 +0800
+
+
+Started GET "/jobs/new" for ::1 at 2016-07-28 12:39:20 +0800
+Processing by JobsController#new as HTML
+  [1m[35mCategory Load (56.6ms)[0m  SELECT `categories`.* FROM `categories`
+  Rendered jobs/_form.html.erb (72.5ms)
+  Rendered jobs/new.html.erb within layouts/application (73.7ms)
+Completed 200 OK in 218ms (Views: 160.7ms | ActiveRecord: 56.6ms)
+
+
+Started GET "/assets/jobs.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/custom.self-6637c43b8c517fb1e4d39233cccd75457bdac09d5dcbcc5284ac7da86d31a62e.css?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/pages.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/application.self-af2db644fb8971f31a485a0033f50298d20394510f77b8d02d908a73f7d6243f.css?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/bootstrap/affix.self-3555752f8a930795ee9e56751a52e6871104ae85d01b3ab8363da3802a5ecc78.js?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/bootstrap/button.self-e74d33ba39500940a78d6fa4d2d64f6ca7fd86d60a2149641f7fde7ba711d8a1.js?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/bootstrap/modal.self-62463080dba6b9d024ff0a3192da0e76eacbc683194f3395047c6f5cfa0acb59.js?body=1" for ::1 at 2016-07-28 12:39:21 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2016-07-28 12:39:22 +0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2016-07-28 12:39:22 +0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2016-07-28 12:39:22 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.self-facdc69246a072acb927ded77ff655f7c27a518b9357fddd45d119fbc8a0ab9f.js?body=1" for ::1 at 2016-07-28 12:39:22 +0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2016-07-28 12:39:22 +0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-07-28 12:39:22 +0800
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-28 12:39:22 +0800
