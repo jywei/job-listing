@@ -3,12 +3,16 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-    if params[:category].blank?
-      @jobs = Job.all.order("created_at DESC")
-    else
-      @category_id = Category.find_by(name: params[:category]).id
-      @jobs = Job.where(category_id: @category_id).order("created_at DESC")
-    end
+    # if params[:category].blank?
+    #   @jobs = Job.all.published.order("created_at DESC")
+    # else
+    #   @category_id = Category.find_by(name: params[:category]).id
+    #   @jobs = Job.where(category_id: @category_id).published.order("created_at DESC")
+    # end
+
+    @category_id = Category.find_by(name: params[:category]).id
+    @industry_id = Industry.find_by(name: params[:industry]).id
+    @jobs = Job.by_category_and_industry(@category_id, @industry_id).published.order("created_at DESC")
   end
 
   # GET /jobs/1
@@ -26,28 +30,24 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
-
     if @job.save
       redirect_to @job, notice: 'Job was successfully created.'
     else
-      html render :new
+      render :new
     end
   end
 
   def update
-      if @job.update(job_params)
-        redirect_to @job, notice: 'Job was successfully updated.'
-      else
-        render :edit
-      end
+    if @job.update(job_params)
+      redirect_to @job, notice: 'Job was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
     @job.destroy
-    respond_to do |format|
-      format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to jobs_url, notice: 'Job was successfully destroyed.'
   end
 
   private
@@ -66,7 +66,8 @@ class JobsController < ApplicationController
                                   :start_day,
                                   :professional_skill ,
                                   :is_published,
-                                  :category_id)
+                                  :category_id,
+                                  :industry_id)
     end
 
 end

@@ -4,6 +4,10 @@
   <%= link_to category.name, jobs_path(category: category.name) %>
 <% end %>
 
+<% Industry.all.each do |industry| %>
+  <%= link_to industry.name, jobs_path(industry: industry.name) %>
+<% end %>
+
 <h1>Listing Jobs</h1>
 
 <table>
