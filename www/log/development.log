@@ -7197,3 +7197,153 @@ NoMethodError (undefined method `id' for nil:NilClass):
   Rendered /Users/JYWei/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (38.0ms)
   [1m[36mJob Load (56.3ms)[0m  [1mSELECT `jobs`.* FROM `jobs`[0m
 >>>>>>> bd601242c49f0f587cf40f514fa4ee06dc90bd43
+  [1m[36mActiveRecord::SchemaMigration Load (52.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (53.4ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (53.0ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'jobs-board-dev'
+  AND fk.table_name = 'categories'
+[0m
+  [1m[35m (56.5ms)[0m  SHOW CREATE TABLE `categories`
+  [1m[36m (55.9ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'jobs-board-dev'
+  AND fk.table_name = 'industries'
+[0m
+  [1m[35m (59.2ms)[0m  SHOW CREATE TABLE `industries`
+  [1m[36m (52.6ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'jobs-board-dev'
+  AND fk.table_name = 'jobs'
+[0m
+  [1m[35m (53.2ms)[0m  SHOW CREATE TABLE `jobs`
+
+
+Started GET "/" for ::1 at 2016-07-28 16:09:13 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (58.8ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by PagesController#index as HTML
+  Rendered pages/index.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_navbar.html.erb (0.9ms)
+Completed 200 OK in 672ms (Views: 672.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-904f6a9fd550f2ca4813a3dfb0787fa58ca9e7c776f5aefa7838ffacb90ad8b9.css?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/jobs.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/pages.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/application.self-7c69cb428e543b4eb2763ad6a97e0c2e6632d3cf282e9394fdc48f07ac622e85.css?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/bootstrap/affix.self-3555752f8a930795ee9e56751a52e6871104ae85d01b3ab8363da3802a5ecc78.js?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/bootstrap/button.self-e74d33ba39500940a78d6fa4d2d64f6ca7fd86d60a2149641f7fde7ba711d8a1.js?body=1" for ::1 at 2016-07-28 16:09:15 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2016-07-28 16:09:16 +0800
+
+
+Started GET "/assets/bootstrap/modal.self-62463080dba6b9d024ff0a3192da0e76eacbc683194f3395047c6f5cfa0acb59.js?body=1" for ::1 at 2016-07-28 16:09:16 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2016-07-28 16:09:16 +0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2016-07-28 16:09:16 +0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2016-07-28 16:09:16 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.self-facdc69246a072acb927ded77ff655f7c27a518b9357fddd45d119fbc8a0ab9f.js?body=1" for ::1 at 2016-07-28 16:09:16 +0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2016-07-28 16:09:16 +0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-07-28 16:09:16 +0800
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-28 16:09:16 +0800
+
+
+Started GET "/jobs" for ::1 at 2016-07-28 16:09:18 +0800
+Processing by JobsController#index as HTML
+  [1m[35mCategory Load (57.6ms)[0m  SELECT  `categories`.* FROM `categories` WHERE `categories`.`name` IS NULL LIMIT 1
+Completed 500 Internal Server Error in 139ms (ActiveRecord: 117.5ms)
+
+NoMethodError (undefined method `id' for nil:NilClass):
+  app/controllers/jobs_controller.rb:13:in `index'
+
+
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.0ms)
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (85.6ms)
+  [1m[36mActiveRecord::SchemaMigration Load (51.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (48.3ms)[0m  BEGIN
+  [1m[36mSQL (48.5ms)[0m  [1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`) VALUES ('Accounting / Finance', '2016-07-28 08:09:33', '2016-07-28 08:09:33')[0m
+  [1m[35m (53.0ms)[0m  COMMIT
+  [1m[36m (49.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (49.3ms)[0m  INSERT INTO `categories` (`name`, `created_at`, `updated_at`) VALUES ('Sales', '2016-07-28 08:09:33', '2016-07-28 08:09:33')
+  [1m[36m (51.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (48.0ms)[0m  BEGIN
+  [1m[36mSQL (49.5ms)[0m  [1mINSERT INTO `categories` (`name`, `created_at`, `updated_at`) VALUES ('Marketing', '2016-07-28 08:09:33', '2016-07-28 08:09:33')[0m
+  [1m[35m (53.1ms)[0m  COMMIT
+  [1m[36m (52.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (57.2ms)[0m  INSERT INTO `industries` (`name`, `created_at`, `updated_at`) VALUES ('Telecommunications Services', '2016-07-28 08:09:34', '2016-07-28 08:09:34')
+  [1m[36m (59.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (51.3ms)[0m  BEGIN
+  [1m[36mSQL (49.6ms)[0m  [1mINSERT INTO `industries` (`name`, `created_at`, `updated_at`) VALUES ('Construction', '2016-07-28 08:09:34', '2016-07-28 08:09:34')[0m
+  [1m[35m (53.5ms)[0m  COMMIT
+  [1m[36m (49.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (51.3ms)[0m  INSERT INTO `industries` (`name`, `created_at`, `updated_at`) VALUES ('Distribution / Logistics', '2016-07-28 08:09:34', '2016-07-28 08:09:34')
+  [1m[36m (56.9ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/jobs" for ::1 at 2016-07-28 16:09:44 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (52.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by JobsController#index as HTML
+  [1m[35mCategory Load (53.8ms)[0m  SELECT  `categories`.* FROM `categories` WHERE `categories`.`name` IS NULL LIMIT 1
+Completed 500 Internal Server Error in 122ms (ActiveRecord: 106.5ms)
+
+NoMethodError (undefined method `id' for nil:NilClass):
+  app/controllers/jobs_controller.rb:13:in `index'
+
+
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.8ms)
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (13.7ms)
+  Rendered /Users/Mac/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (95.6ms)
