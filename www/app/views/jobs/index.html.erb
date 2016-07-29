@@ -10,25 +10,59 @@
 
 <h1>Listing Jobs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= link_to 'Create a new job', new_job_path %>
 
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><p><%= job.start_day %></p></td>
-        <td><h2><%= link_to job.title, job %><h2></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%#
+  Filterrific adds the `form_for_filterrific` view helper:
+  * adds dom id 'filterrific_filter'
+  * applies javascript behaviors:
+      * AJAX form submission on change
+      * AJAX spinner while AJAX request is being processed
+  * sets form_for options like :url, :method and input name prefix
+%>
+<%= form_for_filterrific @filterrific do |f| %>
+  <div>
+    Search
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed'
+    ) %>
+  </div>
+  <div>
+    Industry
+    <%= f.select(
+      :with_industry_id,
+      @filterrific.select_options[:with_industry_id],
+      { include_blank: '- Any -' }
+    ) %>
+  </div>
+  <div>
+    Category
+    <%= f.select(
+      :with_category_id,
+      @filterrific.select_options[:with_category_id],
+      { include_blank: '- Any -' }
+    ) %>
+  </div>
+<!--   <div>
+    Created after
+    <%#= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
+  </div> -->
+  <div>
+    Sorted by
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+  </div>
+  <div>
+    <%= link_to(
+      'Reset filters',
+      reset_filterrific_url,
+    ) %>
+  </div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+  <%= render_filterrific_spinner %>
+<% end %>
+
+<%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
 
 <br>
-
-<%= link_to 'Create a new job', new_job_path %>
