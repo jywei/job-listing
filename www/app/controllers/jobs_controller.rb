@@ -13,9 +13,8 @@ class JobsController < ApplicationController
     if params[:category].blank? && params[:industry].blank?
       @jobs = Job.all.published.order("created_at DESC")
     else
-      @category = Category.find_by(name: params[:category]) ? Category.find_by(name: params[:category]) : nil
-      @industry = Industry.find_by(name: params[:industry]) ? Industry.find_by(name: params[:industry]) : nil
-      # binding.pry
+      @category = Category.find_by(name: params[:category])
+      @industry = Industry.find_by(name: params[:industry])
       @jobs = Job.by_category_and_industry(@category, @industry).published.order("created_at DESC")
     end
   end
@@ -53,6 +52,15 @@ class JobsController < ApplicationController
   def destroy
     @job.destroy
     redirect_to jobs_url, notice: 'Job was successfully destroyed.'
+  end
+
+  def select_jobs
+    @jobs = Job.find_by(category_id: params[:category])
+    # binding.pry
+
+    respond_to do |format|
+      format.json { render :json => @jobs }
+    end
   end
 
   private

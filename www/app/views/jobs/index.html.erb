@@ -1,34 +1,126 @@
 <p id="notice"><%= notice %></p>
 
-<% Category.all.each do |category| %>
-  <%= link_to category.name, jobs_path(category: category.name) %>
-<% end %>
+<%= link_to 'Create a new job', new_job_path %>
+
 <hr>
-<% Industry.all.each do |industry| %>
-  <%= link_to industry.name, jobs_path(industry: industry.name) %>
-<% end %>
 
-<h1>Listing Jobs</h1>
+<div class="row">
+  <div class="col-md-4">
+    <ul>
+      <% Category.all.each do |category| %>
+        <li><%= link_to category.name, "#", class: "select_botton", :'data-id' => category.id, remote: true %></li>
+      <% end %>
+    </ul>
+    <ul>
+      <% Industry.all.each do |industry| %>
+        <li><%= link_to industry.name, "#", class: "select_botton", remote: true %></li>
+      <% end %>
+    </ul>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Listing Jobs</h1>
 
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><p><%= job.start_day %></p></td>
-        <td><h2><%= link_to job.title, job %><h2></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="col-md-8">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody id="job_list">
+        <% @jobs.each do |job| %>
+          <tr>
+            <td><p><%= job.start_day %></p></td>
+            <td><h2><%= link_to job.title, job %></h2></td>
+            <td><%= link_to 'Edit', edit_job_path(job) %></td>
+            <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br>
 
-<%= link_to 'Create a new job', new_job_path %>
+<script>
+  $('.select_botton').click(function(){
+    $.getJSON("/select_jobs?category=" + $(this).data('id'), function(data){
+      $('tr').remove();
+      var jsonString = JSON.stringify(data);
+      // alert(jsonString)
+      // $("<tr/>").appendTo("#job_list").html(data)
+      drawTable(jsonString);
+      // $.each( data, function( i, item){
+      // })
+      // if(result != false){
+      // }
+    })
+
+    function drawTable(data) {
+      for (var i = 0; i < data.length; i++){
+        drawRow(data[i]);
+      }
+    }
+
+    function drawRow(rowData) {
+      var row = $("<tr />")
+      $("#job_list").append(row);
+
+      row.append($("<td>" + rowData + "</td>"));
+      row.append($("<td>" + rowData.title + "</td>"));
+      row.append($("<td>" + rowData.requirement + "</td>"));
+    }
+
+    // $.ajax({
+    //   url: "/select_jobs?category=" + $(this).data('id'),
+    //   type: "GET",
+    //   dataType: "json",
+    //   data: {
+    //     json: JSON.stringify([
+    //     {
+    //       id: 1,
+    //     }])
+    //   }
+    // })
+  })
+
+  $.ajax({
+    url: '/echo/json/',
+    type: "post",
+    dataType: "json",
+    data: {
+      json: JSON.stringify([
+          {
+          id: 1,
+          firstName: "Peter",
+          lastName: "Jhons"},
+      {
+          id: 2,
+          firstName: "David",
+          lastName: "Bowie"}
+      ]),
+      delay: 3
+    },
+    success: function(data, textStatus, jqXHR) {
+        // since we are using jQuery, you don't need to parse response
+        drawTable(data);
+    }
+  });
+
+  function drawTable(data) {
+      for (var i = 0; i < data.length; i++) {
+          drawRow(data[i]);
+      }
+  }
+
+  function drawRow(rowData) {
+      var row = $("<tr />")
+      $("#personDataTable").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+      row.append($("<td>" + rowData.id + "</td>"));
+      row.append($("<td>" + rowData.firstName + "</td>"));
+      row.append($("<td>" + rowData.lastName + "</td>"));
+  }
+
+</script>
