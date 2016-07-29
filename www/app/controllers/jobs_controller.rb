@@ -17,6 +17,28 @@ class JobsController < ApplicationController
       @industry = Industry.find_by(name: params[:industry])
       @jobs = Job.by_category_and_industry(@category, @industry).published.order("created_at DESC")
     end
+
+    @filterrific = initialize_filterrific(
+      Job,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Job.options_for_sorted_by,
+        with_industry_id: Industry.options_for_select,
+        with_category_id: Category.options_for_select
+      }
+    ) or return
+    @filtered_jobs = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+    # rescue ActiveRecord::RecordNotFound => e
+    #   # There is an issue with the persisted param_set. Reset it.
+    #   puts "Had to reset filterrific params: #{ e.message }"
+    #   redirect_to(reset_filterrific_url(format: :html)) and return
+    # end
   end
 
   # GET /jobs/1

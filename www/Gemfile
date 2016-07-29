@@ -20,7 +20,23 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'mysql2'
 
+<<<<<<< HEAD
 gem 'jbuilder', '~> 2.0'
+=======
+gem 'filterrific'
+
+gem "coffee-rails", '~> 4.2.1'
+
+gem 'will_paginate', '~> 3.1.0'
+
+gem 'will_paginate-bootstrap'
+
+gem 'chardinjs-rails'
+
+gem 'momentjs-rails', '>= 2.9.0'
+
+gem 'bootstrap-datepicker-rails'
+>>>>>>> 4ea1e440851bf5c3ba706e7e81c2554713300ef3
 
 group :development, :test do
   gem 'pry-byebug'
