@@ -83,12 +83,9 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
-<<<<<<< HEAD
-    multi_json (1.12.1)
-=======
     momentjs-rails (2.11.1)
       railties (>= 3.1)
->>>>>>> 4ea1e440851bf5c3ba706e7e81c2554713300ef3
+    multi_json (1.12.1)
     mysql2 (0.4.4)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -169,13 +166,10 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-sass (~> 3.3.6)
-<<<<<<< HEAD
-  jbuilder (~> 2.0)
-=======
   chardinjs-rails
   coffee-rails (~> 4.2.1)
   filterrific
->>>>>>> 4ea1e440851bf5c3ba706e7e81c2554713300ef3
+  jbuilder (~> 2.0)
   jquery-rails
   momentjs-rails (>= 2.9.0)
   mysql2
