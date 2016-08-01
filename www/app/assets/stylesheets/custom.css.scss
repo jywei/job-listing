@@ -41,6 +41,13 @@
   /*}*/
 }
 
+.job {
+  .search-bar {
+    width: 90vw;
+    margin: 20px 0;
+  }
+}
+
 /* general object */
 
 .center {
@@ -53,4 +60,12 @@
 
 .max-width {
   max-width: 400px;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
 }
