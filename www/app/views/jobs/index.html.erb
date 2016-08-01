@@ -3,7 +3,6 @@
 <%= link_to 'Create a new job', new_job_path %>
 
 <hr>
-<<<<<<< HEAD
 
 <div class="row">
   <div class="col-md-4">
@@ -20,36 +19,6 @@
   </div>
 
   <h1>Listing Jobs</h1>
-
-  <div class="col-md-8">
-    <table>
-      <thead>
-        <tr>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody id="job_list">
-        <% @jobs.each do |job| %>
-          <tr>
-            <td><p><%= job.start_day %></p></td>
-            <td><h2><%= link_to job.title, job %></h2></td>
-            <td><%= link_to 'Edit', edit_job_path(job) %></td>
-            <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
-=======
-<% Industry.all.each do |industry| %>
-  <%= link_to industry.name, jobs_path(industry: industry.name) %>
-<% end %>
-
-<h1>Listing Jobs</h1>
-
-<%= link_to 'Create a new job', new_job_path %>
 
 <%#
   Filterrific adds the `form_for_filterrific` view helper:
@@ -101,11 +70,9 @@
   <%# add an automated spinner to your form when the list is refreshed %>
   <%= render_filterrific_spinner %>
 <% end %>
->>>>>>> 4ea1e440851bf5c3ba706e7e81c2554713300ef3
 
 <%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
 
-<<<<<<< HEAD
 <script>
   $('.select_botton').click(function(){
     $.getJSON("/select_jobs?category=" + $(this).data('id'), function(data){
@@ -186,6 +153,4 @@
   }
 
 </script>
-=======
 <br>
->>>>>>> 4ea1e440851bf5c3ba706e7e81c2554713300ef3
