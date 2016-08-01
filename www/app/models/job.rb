@@ -69,11 +69,17 @@ class Job < ActiveRecord::Base
   }
 
   scope :with_industry_id, -> (industry_ids) {
-    where(industry_id: [*industry_ids])
+    industry_ids.select! {|ele| ele != ""}
+    unless industry_ids.empty?
+      where(industry_id: [*industry_ids])
+    end
   }
 
   scope :with_category_id, -> (category_ids) {
-    where(category_id: [*category_ids])
+    category_ids.select! {|ele| ele != ""}
+    unless category_ids.empty?
+      where(category_id: [*category_ids])
+    end
   }
 
   scope :with_created_at_gte, -> (ref_date) {
