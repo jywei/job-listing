@@ -24,7 +24,8 @@ class JobsController < ApplicationController
       select_options: {
         sorted_by: Job.options_for_sorted_by,
         with_industry_id: Industry.options_for_select,
-        with_category_id: Category.options_for_select
+        with_category_id: Category.options_for_select,
+        with_contract_type_id: ContractType.options_for_select
       }
     ) or return
     @filtered_jobs = @filterrific.find.page(params[:page])
@@ -102,7 +103,8 @@ class JobsController < ApplicationController
                                   :professional_skill ,
                                   :is_published,
                                   :category_id,
-                                  :industry_id)
+                                  :industry_id,
+                                  :contract_type_id)
     end
 
 end

@@ -1,7 +1,7 @@
 <div id="filterrific_results">
 
   <div>
-    <%#= page_entries_info jobs, entry_name: "Jobs", model: 'job'  %>
+    <%= page_entries_info jobs, entry_name: "Jobs", model: 'job'  %>
   </div>
 
   <table class="table table-hover">
@@ -11,6 +11,7 @@
         <th><p><%= filterrific_sorting_link(@filterrific, :title) %></p></th>
         <th><p><%= filterrific_sorting_link(@filterrific, :industry) %></p></th>
         <th><p><%= filterrific_sorting_link(@filterrific, :category) %></p></th>
+        <th><p><%= filterrific_sorting_link(@filterrific, :contract_type) %></p></th>
         <th colspan="2"><p>Actions</p></th>
       </tr>
     </thead>
@@ -22,6 +23,7 @@
           <td><h2><%= link_to job.title, job %><h2></td>
           <td><p><%= job.industry.name %></p></td>
           <td><p><%= job.category.name %></p></td>
+          <td><p><%= job.contract_type.name %></p></td>
           <td><%= link_to 'Edit', edit_job_path(job) %></td>
           <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

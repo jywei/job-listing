@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801032932) do
+ActiveRecord::Schema.define(version: 20160801075504) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "jobs_count", limit: 4
+  end
+
+  create_table "contract_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "jobs_count", limit: 4,   default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "industries", force: :cascade do |t|
@@ -42,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160801032932) do
     t.datetime "updated_at",                                       null: false
     t.integer  "category_id",        limit: 4
     t.integer  "industry_id",        limit: 4
+    t.integer  "contract_type_id",   limit: 4
   end
 
 end

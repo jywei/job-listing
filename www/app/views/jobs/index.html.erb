@@ -41,8 +41,11 @@
   </div>
   <div>
     Category
-    <%#= f.select(:with_category_id, @filterrific.select_options[:with_category_id], { include_blank: '- Any -' }) %>
     <%= f.collection_check_boxes(:with_category_id, Category.all, :id, :name) %>
+  </div>
+  <div>
+    Contract Type
+    <%= f.collection_check_boxes(:with_contract_type_id, ContractType.all, :id, :name) %>
   </div>
 <!--   <div>
     Created after

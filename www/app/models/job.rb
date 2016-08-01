@@ -1,6 +1,7 @@
 class Job < ActiveRecord::Base
   belongs_to :category
   belongs_to :industry
+  belongs_to :contract_type
 
   scope :published, -> { where(is_published: true) }
 
@@ -18,6 +19,7 @@ class Job < ActiveRecord::Base
       :search_query,
       :with_category_id,
       :with_industry_id,
+      :with_contract_type_id,
       :with_created_at_gte
     ]
   )
@@ -63,6 +65,8 @@ class Job < ActiveRecord::Base
       order("LOWER(industries.name) #{ direction }").includes(:industry)
     when /^category_name_/
       order("LOWER(categories.name) #{ direction }").includes(:category)
+    when /^contract_type_name_/
+      order("LOWER(contract_types.name) #{ direction }").includes(:contract_type)
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
@@ -70,16 +74,17 @@ class Job < ActiveRecord::Base
 
   scope :with_industry_id, -> (industry_ids) {
     industry_ids.select! {|ele| ele != ""}
-    unless industry_ids.empty?
-      where(industry_id: [*industry_ids])
-    end
+    where(industry_id: [*industry_ids]) if industry_ids.present?
   }
 
   scope :with_category_id, -> (category_ids) {
     category_ids.select! {|ele| ele != ""}
-    unless category_ids.empty?
-      where(category_id: [*category_ids])
-    end
+    where(category_id: [*category_ids]) if category_ids.present?
+  }
+
+  scope :with_contract_type_id, -> (contract_type_ids) {
+    contract_type_ids.select! {|ele| ele != ""}
+    where(contract_type_id: [*contract_type_ids]) if contract_type_ids.present?
   }
 
   scope :with_created_at_gte, -> (ref_date) {
@@ -90,13 +95,13 @@ class Job < ActiveRecord::Base
 
   delegate :name, to: :category, prefix: true
 
+  delegate :name, to: :contract_type, prefix: true
+
   def self.options_for_sorted_by
     [
       ['Title (a-z)', 'title_asc'],
       ['Creation date (newest first)', 'created_at_desc'],
-      ['Creation date (oldest first)', 'created_at_asc'],
-      ['Industry (a-z)', 'industry_name_asc'],
-      ['Category (a-z)', 'category_name_asc']
+      ['Creation date (oldest first)', 'created_at_asc']
     ]
   end
 

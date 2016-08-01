@@ -6,8 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
-Job.create([{ title: "wrestler", category_id: 2, industry_id: 1, is_published: true }, { title: "pornstar", category_id: 1, industry_id: 2, is_published: true }])
+Job.create([{ title: "wrestler", category_id: 2, industry_id: 1, contract_type_id: 1, is_published: true },
+            { title: "pornstar", category_id: 1, industry_id: 2, contract_type_id: 2, is_published: true },
+            { title: "Actor", category_id: 1, industry_id: 2, contract_type_id: 3, is_published: true }])
 
 Category.create([{ name: 'Accounting / Finance' }, { name: 'Sales' }, { name: 'Marketing' }])
 
 Industry.create([{ name: 'Telecommunications Services' }, { name: 'Construction' }, { name: 'Distribution / Logistics' }])
+
+ContractType.create([ { name: 'Full Time'}, { name: 'Part Time'}, { name: 'Internship'}])
