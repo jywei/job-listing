@@ -4,70 +4,122 @@
 
 <hr>
 
-<div class="row">
-  <div class="col-md-4">
-    <ul>
-      <% Category.all.each do |category| %>
-        <li><%= link_to category.name, "#", class: "select_botton", 'data-id': category.id, remote: true %></li>
-      <% end %>
-    </ul>
-    <ul>
-      <% Industry.all.each do |industry| %>
-        <li><%= link_to industry.name, "#", class: "select_botton", remote: true %></li>
-      <% end %>
-    </ul>
-  </div>
+<div class="job">
+  <h2>Listing Jobs</h2>
 
-  <h1>Listing Jobs</h1>
+  <%#
+    Filterrific adds the `form_for_filterrific` view helper:
+    * adds dom id 'filterrific_filter'
+    * applies javascript behaviors:
+        * AJAX form submission on change
+        * AJAX spinner while AJAX request is being processed
+    * sets form_for options like :url, :method and input name prefix
+  %>
+  <%= form_for_filterrific @filterrific do |f| %>
+    <div class="center">
+      <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+      <%= f.text_field(:search_query, class: 'filterrific-periodically-observed search-bar') %>
+    </div>
+    <div class="col-md-4">
+      <div class="panel-group max-width" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                  Industry
+              </h4>
+            </div>
+          </a>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+          <%#= f.select(:with_industry_id, @filterrific.select_options[:with_industry_id], { include_blank: '- Any -' }) %>
+            <%= f.collection_check_boxes(:with_industry_id, Industry.all, :id, :name) do |b| %>
+              <div class="block">
+                <div class="inline">
+                  <%= b.check_box %>
+                  <%= b.object.name %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-<%#
-  Filterrific adds the `form_for_filterrific` view helper:
-  * adds dom id 'filterrific_filter'
-  * applies javascript behaviors:
-      * AJAX form submission on change
-      * AJAX spinner while AJAX request is being processed
-  * sets form_for options like :url, :method and input name prefix
-%>
-<%= form_for_filterrific @filterrific do |f| %>
-  <div>
-    Search
-    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-    <%= f.text_field(:search_query, class: 'filterrific-periodically-observed') %>
-  </div>
-  <div>
-    Industry
-    <%#= f.select(:with_industry_id, @filterrific.select_options[:with_industry_id], { include_blank: '- Any -' }) %>
-    <%= f.collection_check_boxes(:with_industry_id, Industry.all, :id, :name) %>
-  </div>
-  <div>
-    Category
-    <%= f.collection_check_boxes(:with_category_id, Category.all, :id, :name) %>
-  </div>
-  <div>
-    Contract Type
-    <%= f.collection_check_boxes(:with_contract_type_id, ContractType.all, :id, :name) %>
-  </div>
-   <div>
-    Job Posted Before
+      <div class="panel-group max-width" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                Category
+              </h4>
+            </div>
+          </a>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_category_id, Category.all, :id, :name) do |b| %>
+              <div class="block">
+                <div class="inline">
+                  <%= b.check_box %>
+                  <%= b.object.name %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-group max-width" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+            <div class="panel-heading" role="tab" id="headingThree">
+              <h4 class="panel-title">
+                Contract Type
+              </h4>
+            </div>
+          </a>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_contract_type_id, ContractType.all, :id, :name) do |b| %>
+              <div class="block">
+                <div class="inline">
+                  <%= b.check_box %>
+                  <%= b.object.name %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+    Job Posted After
     <%= f.text_field(:with_posted_at_gte, class: 'js-datepicker') %>
   </div>
-  <div>
-    Sorted by
-    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
-  </div>
-  <div>
-    <%= link_to('Reset Filters', reset_filterrific_url) %>
-  </div>
-  <%= render_filterrific_spinner %>
-<% end %>
+  <!--   <div>
+      Created after
+      <%#= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
+    </div> -->
+    <div>
+      Sorted by
+      <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+    </div>
+    <div>
+      <%= link_to('Reset filters', reset_filterrific_url) %>
+    </div>
+    <%= render_filterrific_spinner %>
+  <% end %>
 
-<%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
+    <div class="col-md-8">
+  <%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
+  </div>
+</div>
 
 <script>
   $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
-  $('.js-datepicker').datepicker({
-    startDate: '-3d'
-  });
+  $('.js-datepicker').datepicker();
 </script>
 
 

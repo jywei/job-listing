@@ -84,7 +84,7 @@ class Job < ActiveRecord::Base
   }
 
   scope :with_posted_at_gte, -> (date) {
-    where('start_day <= ?', date)
+    where('start_day >= ?', date)
   }
 
   delegate :name, to: :industry, prefix: true
