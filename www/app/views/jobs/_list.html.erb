@@ -7,7 +7,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th><p><%= filterrific_sorting_link(@filterrific, :created_at) %></p></th>
+        <th><p><%= filterrific_sorting_link(@filterrific, :start_day, label: "Posted Date") %></p></th>
         <th><p><%= filterrific_sorting_link(@filterrific, :title) %></p></th>
         <th><p><%= filterrific_sorting_link(@filterrific, :industry) %></p></th>
         <th><p><%= filterrific_sorting_link(@filterrific, :category) %></p></th>
@@ -18,7 +18,7 @@
     <tbody>
       <% jobs.each do |job| %>
         <tr>
-          <td><p><%= job.decorated_created_at %></p></td>
+          <td><p><%= job.decorated_start_day %></p></td>
           <td><h2><%= link_to job.title, job %></h2><p><%= job.contract_type.name %></p></td>
           <td><p><%= job.industry.name %></p></td>
           <td><p><%= job.category.name %></p></td>

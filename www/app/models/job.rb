@@ -13,14 +13,14 @@ class Job < ActiveRecord::Base
   end
 
   filterrific(
-    default_filter_params: { sorted_by: 'created_at_desc' },
+    default_filter_params: { sorted_by: 'start_day_desc' },
     available_filters: [
       :sorted_by,
       :search_query,
       :with_category_id,
       :with_industry_id,
       :with_contract_type_id,
-      :with_created_at_gte
+      :with_posted_at_gte
     ]
   )
 
@@ -57,16 +57,12 @@ class Job < ActiveRecord::Base
     # extract the sort direction from the param value.
     direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
     case sort_option.to_s
-    when /^created_at_/
-      order("jobs.created_at #{ direction }")
+    when /^start_day_/
+      order("jobs.start_day #{ direction }")
     when /^title_/
       order("LOWER(jobs.title) #{ direction }")
-    when /^industry_name_/
-      order("LOWER(industries.name) #{ direction }").includes(:industry)
-    when /^category_name_/
-      order("LOWER(categories.name) #{ direction }").includes(:category)
-    when /^contract_type_name_/
-      order("LOWER(contract_types.name) #{ direction }").includes(:contract_type)
+    # when /^industry_name_/
+    #   order("LOWER(industries.name) #{ direction }").includes(:industry)
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
@@ -87,8 +83,8 @@ class Job < ActiveRecord::Base
     where(contract_type_id: [*contract_type_ids]) if contract_type_ids.present?
   }
 
-  scope :with_created_at_gte, -> (ref_date) {
-    where('jobs.created_at >= ?', ref_date)
+  scope :with_posted_at_gte, -> (date) {
+    where('start_day <= ?', date)
   }
 
   delegate :name, to: :industry, prefix: true
@@ -100,13 +96,17 @@ class Job < ActiveRecord::Base
   def self.options_for_sorted_by
     [
       ['Title (a-z)', 'title_asc'],
-      ['Creation date (newest first)', 'created_at_desc'],
-      ['Creation date (oldest first)', 'created_at_asc']
+      ['Job Posted Date (newest first)', 'start_day_desc'],
+      ['Job Posted Date (oldest first)', 'start_day_asc']
     ]
   end
 
   def decorated_created_at
     created_at.to_date.to_s(:long)
+  end
+
+  def decorated_start_day
+    start_day.to_s(:long)
   end
 
 end
