@@ -3,5 +3,4 @@
 ) %>
 $("#filterrific_results").html("<%= js %>");
 
-<%# FJ = escape_javascript(render(jobs: @filtered_jobs)) %>
-// $("#filtered_jobs").html("<%#= FJ %>");
+$('#filtered_job').html("<%= escape_javascript(render(partial: 'jobs/filter', locals: { jobs: @filtered_jobs }) ) %>");
