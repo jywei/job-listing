@@ -1,7 +1,7 @@
 class Job < ActiveRecord::Base
-  belongs_to :category
-  belongs_to :industry
-  belongs_to :contract_type
+  belongs_to :category, counter_cache: :jobs_count
+  belongs_to :industry, counter_cache: :jobs_count
+  belongs_to :contract_type, counter_cache: :jobs_count
 
   scope :published, -> { where(is_published: true) }
 

@@ -2,3 +2,6 @@
   render(partial: 'jobs/list', locals: { jobs: @filtered_jobs })
 ) %>
 $("#filterrific_results").html("<%= js %>");
+
+<%# FJ = escape_javascript(render(jobs: @filtered_jobs)) %>
+// $("#filtered_jobs").html("<%#= FJ %>");

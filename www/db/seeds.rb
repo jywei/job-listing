@@ -15,3 +15,9 @@ Category.create([{ name: 'Accounting / Finance' }, { name: 'Sales' }, { name: 'M
 Industry.create([{ name: 'Telecommunications Services' }, { name: 'Construction' }, { name: 'Distribution / Logistics' }])
 
 ContractType.create([ { name: 'Full Time'}, { name: 'Part Time'}, { name: 'Internship'}])
+
+Category.find_each { |category| Category.reset_counters(category.id, :jobs) }
+
+Industry.find_each { |industry| Industry.reset_counters(industry.id, :jobs) }
+
+ContractType.find_each { |contract_type| ContractType.reset_counters(contract_type.id, :jobs) }

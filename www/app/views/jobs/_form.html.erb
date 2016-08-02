@@ -22,6 +22,11 @@
                       priority: @job.industry,
                       label: "Company Industry",
                       prompt: "Choose an industry of the job" %>
+    <%= f.association :contract_type,
+                      collection: ContractType.all,
+                      priority: @job.contract_type,
+                      label: "Contract Type",
+                      prompt: "Choose a contract type of the job" %>
     <%= f.input :title %>
     <%= f.input :description, as: :text %>
     <%= f.input :requirement, as: :text %>

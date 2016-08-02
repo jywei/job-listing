@@ -39,6 +39,7 @@
                 <div class="inline">
                   <%= b.check_box %>
                   <%= b.object.name %>
+                  ((<%= @filtered_jobs.where(industry_id: b.object.id).size %>))
                 </div>
               </div>
             <% end %>
@@ -63,6 +64,7 @@
                 <div class="inline">
                   <%= b.check_box %>
                   <%= b.object.name %>
+                  (<%= b.object.jobs_count %>)
                 </div>
               </div>
             <% end %>
@@ -86,6 +88,7 @@
                 <div class="inline">
                   <%= b.check_box %>
                   <%= b.object.name %>
+                  (<%= b.object.jobs_count %>)
                 </div>
               </div>
             <% end %>
