@@ -1,6 +1,16 @@
-<% js = escape_javascript(
-  render(partial: 'jobs/list', locals: { jobs: @filtered_jobs })
-) %>
+<% js = escape_javascript(render(partial: 'jobs/list', locals: { jobs: @filtered_jobs })) %>
 $("#filterrific_results").html("<%= js %>");
-
 $('#filtered_job').html("<%= escape_javascript(render(partial: 'jobs/filter', locals: { jobs: @filtered_jobs }) ) %>");
+
+$('#filterrific_filter').on(
+  "change",
+  ":input",
+  Filterrific.submitFilterForm
+);
+
+// Add periodic observer to selected inputs.
+// Use this for text fields you want to observe for change, e.g., a search input.
+$(".filterrific-periodically-observed").filterrific_observe_field(
+  0.5,
+  Filterrific.submitFilterForm
+);
