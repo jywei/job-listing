@@ -25,7 +25,7 @@ class Job < ActiveRecord::Base
   )
 
   # default for will_paginate
-  self.per_page = 10
+  self.per_page = 2
 
   scope :search_query, -> (query) {
     return nil if query.blank?
@@ -96,8 +96,8 @@ class Job < ActiveRecord::Base
   def self.options_for_sorted_by
     [
       ['Title (a-z)', 'title_asc'],
-      ['Job Posted Date (newest first)', 'start_day_desc'],
-      ['Job Posted Date (oldest first)', 'start_day_asc']
+      ['Recently Published (newest first)', 'start_day_desc'],
+      ['Recently Published (oldest first)', 'start_day_asc']
     ]
   end
 
