@@ -42,9 +42,25 @@
 }
 
 .job {
+  margin: 0 auto;
+  max-width: 1300px;
+
   .search-bar {
     width: 90vw;
     margin: 20px 0;
+  }
+
+  .panel-default {
+    border-radius: 0 !important;
+
+    .arrow-down {
+      float: right;
+      margin-top: -15px;
+    }
+  }
+
+  tr {
+    border: 1px solid #ddd;
   }
 }
 
