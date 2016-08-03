@@ -1,10 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <div class="job">
-  <%= link_to 'Create a new job', new_job_path %>
-
-  <hr>
-
   <%#
     Filterrific adds the `form_for_filterrific` view helper:
     * adds dom id 'filterrific_filter'
@@ -17,6 +13,10 @@
   <div id="filtered_job">
     <%= render( partial: "jobs/filter", locals: { jobs: @filtered_jobs } ) %>
   </div>
+  <br>
+  <%= link_to 'Create a new job', new_job_path %>
+
+  <hr>
   <div class="col-sm-8">
     <%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
   </div>

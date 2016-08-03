@@ -1,11 +1,13 @@
 <%#= render( partial: "jobs/filter", locals: { jobs: @filtered_jobs } ) %>
 
 <%= form_for_filterrific @filterrific do |f| %>
-  <div class="search">
-    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-    <%= f.text_field(:search_query, class: 'filterrific-periodically-observed search-bar') %>
+  <div class="col-md-12">
+    <div class="search">
+      <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+      <%= f.text_field(:search_query, class: 'filterrific-periodically-observed search-bar') %>
+    </div>
+    <h1>We found <%= @filterrific.find.size %> jobs</h1>
   </div>
-  <h2>We found <%= @filterrific.find.size %> jobs</h2>
   <div class="col-md-4">
     <p>Filter by:</p>
     <div>
