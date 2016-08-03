@@ -15,6 +15,7 @@
         * AJAX spinner while AJAX request is being processed
     * sets form_for options like :url, :method and input name prefix
   %>
+<<<<<<< HEAD
   <%= form_for_filterrific @filterrific do |f| %>
     <div class="center">
       <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
@@ -111,6 +112,13 @@
     <div class="col-md-8">
       <%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
     </div>
+=======
+  <div id="filtered_job">
+    <%= render( partial: "jobs/filter", locals: { jobs: @filtered_jobs } ) %>
+  </div>
+  <div class="col-md-8">
+    <%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
+>>>>>>> 5bc1296495964c9d1aed6eb43628fbc6d136109a
   </div>
 </div>
 
@@ -123,9 +131,7 @@
 
 
 
-
-
-<script>
+<!-- <script>
   $('.select_botton').click(function(){
     $.getJSON("/select_jobs?category=" + $(this).data('id'), function(data){
       $('tr').remove();
@@ -206,3 +212,4 @@
 
 </script>
 <br>
+ -->
