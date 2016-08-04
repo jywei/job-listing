@@ -2,6 +2,7 @@ class Job < ActiveRecord::Base
   belongs_to :category, counter_cache: :jobs_count
   belongs_to :industry, counter_cache: :jobs_count
   belongs_to :contract_type, counter_cache: :jobs_count
+  belongs_to :location, counter_cache: :jobs_count
 
   scope :published, -> { where(is_published: true) }
 
@@ -20,12 +21,13 @@ class Job < ActiveRecord::Base
       :with_category_id,
       :with_industry_id,
       :with_contract_type_id,
+      :with_location_id,
       :with_posted_at_gte
     ]
   )
 
   # default for will_paginate
-  self.per_page = 2
+  self.per_page = 10
 
   scope :search_query, -> (query) {
     return nil if query.blank?
@@ -83,6 +85,11 @@ class Job < ActiveRecord::Base
     where(contract_type_id: [*contract_type_ids]) if contract_type_ids.present?
   }
 
+  scope :with_location_id, -> (location_ids) {
+    location_ids.select! {|ele| ele != ""}
+    where(location_id: [*location_ids]) if location_ids.present?
+  }
+
   scope :with_posted_at_gte, -> (date) {
     where('start_day >= ?', date)
   }
@@ -92,6 +99,8 @@ class Job < ActiveRecord::Base
   delegate :name, to: :category, prefix: true
 
   delegate :name, to: :contract_type, prefix: true
+
+  delegate :name, to: :location, prefix: true
 
   def self.options_for_sorted_by
     [

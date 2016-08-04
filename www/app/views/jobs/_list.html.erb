@@ -16,7 +16,7 @@
                   <td><p>(<%= job.contract_type.name %>)</p></td>
                   <hr>
                   <td><p><%= job.industry.name %></p></td>
-                  <td><p><%= "Taiwan" %></p></td>
+                  <td><p><%= job.location.name %></p></td>
                   <td><p><%= job.category.name %></p></td>
                   <td><%= link_to 'Edit', edit_job_path(job) %></td>
                   <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
