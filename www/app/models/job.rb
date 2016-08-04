@@ -3,6 +3,9 @@ class Job < ActiveRecord::Base
   belongs_to :industry, counter_cache: :jobs_count
   belongs_to :contract_type, counter_cache: :jobs_count
   belongs_to :location, counter_cache: :jobs_count
+  belongs_to :salary_range, counter_cache: :jobs_count
+
+  has_many :impressions, as: :impressionable
 
   scope :published, -> { where(is_published: true) }
 
@@ -11,6 +14,10 @@ class Job < ActiveRecord::Base
     return where(category_id: category_id) if category_id
     return where(industry_id: industry_id) if industry_id
     all
+  end
+
+  def impression_count
+    impressions.size
   end
 
   filterrific(
@@ -22,6 +29,7 @@ class Job < ActiveRecord::Base
       :with_industry_id,
       :with_contract_type_id,
       :with_location_id,
+      :with_salary_range_id,
       :with_posted_at_gte
     ]
   )
@@ -90,6 +98,11 @@ class Job < ActiveRecord::Base
     where(location_id: [*location_ids]) if location_ids.present?
   }
 
+  scope :with_salary_range_id, -> (salary_range_ids) {
+    salary_range_ids.select! {|ele| ele != ""}
+    where(salary_range_id: [*salary_range_ids]) if salary_range_ids.present?
+  }
+
   scope :with_posted_at_gte, -> (date) {
     where('start_day >= ?', date)
   }
@@ -101,6 +114,8 @@ class Job < ActiveRecord::Base
   delegate :name, to: :contract_type, prefix: true
 
   delegate :name, to: :location, prefix: true
+
+  delegate :range, to: :salary_range, prefix: true
 
   def self.options_for_sorted_by
     [

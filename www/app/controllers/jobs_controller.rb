@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action :log_impression, only: [:show], unique: [:session_hash]
 
   # GET /jobs
   def index
@@ -20,7 +21,8 @@ class JobsController < ApplicationController
         with_industry_id: Industry.options_for_select,
         with_category_id: Category.options_for_select,
         with_contract_type_id: ContractType.options_for_select,
-        with_location_id: Location.options_for_select
+        with_location_id: Location.options_for_select,
+        with_salary_range_id: SalaryRange.options_for_select
       }
     ) or return
     @filtered_jobs = @filterrific.find.page(params[:page])
@@ -77,7 +79,7 @@ class JobsController < ApplicationController
     # binding.pry
 
     respond_to do |format|
-      format.json { render :json => @jobs }
+      format.json { render json: @jobs }
     end
   end
 
@@ -95,12 +97,18 @@ class JobsController < ApplicationController
                                   :apply_instruction,
                                   :location,
                                   :start_day,
-                                  :professional_skill ,
+                                  :professional_skill,
                                   :is_published,
                                   :category_id,
                                   :industry_id,
                                   :contract_type_id,
-                                  :location_id)
+                                  :location_id,
+                                  :salary_range_id)
+    end
+
+    def log_impression
+      @job = Job.find(params[:id])
+      impressionist(@job)
     end
 
 end

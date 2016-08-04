@@ -35,7 +35,7 @@
             <div class="inline">
               <%= b.check_box %>
               <%= b.object.name %>
-              ((<%= @filtered_jobs.where(industry_id: b.object.id).size %>))
+              (<%= @filtered_jobs.where(industry_id: b.object.id).size %>)
             </div>
           </div>
           <% end %>
@@ -60,7 +60,7 @@
             <div class="inline">
               <%= b.check_box %>
               <%= b.object.name %>
-              ((<%= @filtered_jobs.where(category_id: b.object.id).size %>))
+              (<%= @filtered_jobs.where(category_id: b.object.id).size %>)
             </div>
           </div>
           <% end %>
@@ -84,7 +84,7 @@
             <div class="inline">
               <%= b.check_box %>
               <%= b.object.name %>
-              ((<%= @filtered_jobs.where(contract_type_id: b.object.id).size %>))
+              (<%= @filtered_jobs.where(contract_type_id: b.object.id).size %>)
             </div>
           </div>
           <% end %>
@@ -108,7 +108,31 @@
             <div class="inline">
               <%= b.check_box %>
               <%= b.object.name %>
-              ((<%= @filtered_jobs.where(location_id: b.object.id).size %>))
+              (<%= @filtered_jobs.where(location_id: b.object.id).size %>)
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="panel-group max-width" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+          <div class="panel-heading" role="tab" id="headingFive">
+            <h4 class="panel-title">
+              Salary Range
+            </h4>
+          </div>
+        </a>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+        <div class="panel-body">
+          <%= f.collection_check_boxes(:with_salary_range_id, SalaryRange.all, :id, :range) do |b| %>
+          <div class="block">
+            <div class="inline">
+              <%= b.check_box %>
+              <%= b.object.range %>
+              (<%= @filtered_jobs.where(salary_range_id: b.object.id).size %>)
             </div>
           </div>
           <% end %>
@@ -116,10 +140,6 @@
       </div>
     </div>
   </div>
-<!--   <div>
-    Created after
-    <%#= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
-  </div> -->
   <div>
     Sorted by
     <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
