@@ -1,11 +1,23 @@
 <%#= render( partial: "jobs/filter", locals: { jobs: @filtered_jobs } ) %>
 
 <%= form_for_filterrific @filterrific do |f| %>
-  <div class="center">
-    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-    <%= f.text_field(:search_query, class: 'filterrific-periodically-observed search-bar') %>
+  <div class="col-md-12">
+    <div class="search">
+      <h1 class="center">Let us find you a job!</h1>
+      <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+      <%= f.text_field(:search_query, class: 'filterrific-periodically-observed search-bar') %>
+    </div>
+    <h1>We found <%= @filterrific.find.size %> jobs</h1>
   </div>
   <div class="col-md-4">
+    <p>Filter by:</p>
+    <div>
+      <%= link_to('Reset filters', reset_filterrific_url) %>
+    </div>
+    <div>
+      Job Posted After
+      <%= f.text_field(:with_posted_at_gte, class: 'js-datepicker') %>
+    </div>
     <div class="panel-group max-width" id="" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -22,13 +34,14 @@
               <div class="inline">
                 <%= b.check_box %>
                 <%= b.object.name %>
-                ((<%= @filtered_jobs.where(industry_id: b.object.id).size %>))
+                (<%= @filtered_jobs.where(industry_id: b.object.id).size %>)
               </div>
             </div>
             <% end %>
           </div>
         </div>
       </div>
+
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <h4 class="panel-title">
@@ -43,13 +56,14 @@
               <div class="inline">
                 <%= b.check_box %>
                 <%= b.object.name %>
-                ((<%= @filtered_jobs.where(category_id: b.object.id).size %>))
+                (<%= @filtered_jobs.where(category_id: b.object.id).size %>)
               </div>
             </div>
             <% end %>
           </div>
         </div>
       </div>
+
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
           <h4 class="panel-title">
@@ -64,7 +78,51 @@
               <div class="inline">
                 <%= b.check_box %>
                 <%= b.object.name %>
-                ((<%= @filtered_jobs.where(contract_type_id: b.object.id).size %>))
+                (<%= @filtered_jobs.where(contract_type_id: b.object.id).size %>)
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFour" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+          <h4 class="panel-title">
+            Job Location
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_location_id, Location.all, :id, :name) do |b| %>
+            <div class="block filter-list">
+              <div class="inline">
+                <%= b.check_box %>
+                <%= b.object.name %>
+                (<%= @filtered_jobs.where(location_id: b.object.id).size %>)
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFive" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+          <h4 class="panel-title">
+            Salary Range
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_salary_range_id, SalaryRange.all, :id, :range) do |b| %>
+            <div class="block filter-list">
+              <div class="inline">
+                <%= b.check_box %>
+                <%= b.object.range %>
+                (<%= @filtered_jobs.where(salary_range_id: b.object.id).size %>)
               </div>
             </div>
             <% end %>
@@ -73,20 +131,9 @@
       </div>
     </div>
   </div>
-<div>
-  Job Posted After
-  <%= f.text_field(:with_posted_at_gte, class: 'js-datepicker') %>
-</div>
-<!--   <div>
-    Created after
-    <%#= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
-  </div> -->
   <div>
     Sorted by
     <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
-  </div>
-  <div>
-    <%= link_to('Reset filters', reset_filterrific_url) %>
   </div>
   <%= render_filterrific_spinner %>
 <% end %>

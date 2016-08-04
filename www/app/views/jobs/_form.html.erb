@@ -27,6 +27,16 @@
                       priority: @job.contract_type,
                       label: "Contract Type",
                       prompt: "Choose a contract type of the job" %>
+    <%= f.association :location,
+                      collection: Location.all,
+                      priority: @job.location,
+                      label: "Job Location",
+                      prompt: "Choose a job location of the job" %>
+    <%= f.association :salary_range,
+                      collection: SalaryRange.all,
+                      priority: @job.salary_range,
+                      label: "Salary Range",
+                      prompt: "Choose a salary range for this job" %>
     <%= f.input :title %>
     <%= f.input :description, as: :text %>
     <%= f.input :requirement, as: :text %>

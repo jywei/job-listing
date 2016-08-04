@@ -22,10 +22,9 @@
 
 
 <script>
-
   $.getJSON("/admin/getData", function(data){
     for(var i = 0; i < data.length; i++){
-      $('<tr><td>' + data[i].name + '</td> <td><a herf="#" class="deleCate btn btn-danger" data-remote="true" data-id="' + data[i].id + '" data-name="' + data[i].name + '" onclick="deleCate()">Delete</a></td> </tr>').appendTo($('#cate_table'))
+      $('<tr><td>' + data[i].name + '</td> <td><a herf="#" class="deleCate btn btn-danger" data-remote="true" data-id="' + data[i].id + '">Delete</a></td> </tr>').appendTo($('#cate_table'))
     }
     deleCate()
   })

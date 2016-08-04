@@ -2,6 +2,10 @@ class Job < ActiveRecord::Base
   belongs_to :category, counter_cache: :jobs_count
   belongs_to :industry, counter_cache: :jobs_count
   belongs_to :contract_type, counter_cache: :jobs_count
+  belongs_to :location, counter_cache: :jobs_count
+  belongs_to :salary_range, counter_cache: :jobs_count
+
+  has_many :impressions, as: :impressionable
 
   scope :published, -> { where(is_published: true) }
 
@@ -12,6 +16,10 @@ class Job < ActiveRecord::Base
     all
   end
 
+  def impression_count
+    impressions.size
+  end
+
   filterrific(
     default_filter_params: { sorted_by: 'start_day_desc' },
     available_filters: [
@@ -20,6 +28,8 @@ class Job < ActiveRecord::Base
       :with_category_id,
       :with_industry_id,
       :with_contract_type_id,
+      :with_location_id,
+      :with_salary_range_id,
       :with_posted_at_gte
     ]
   )
@@ -83,6 +93,16 @@ class Job < ActiveRecord::Base
     where(contract_type_id: [*contract_type_ids]) if contract_type_ids.present?
   }
 
+  scope :with_location_id, -> (location_ids) {
+    location_ids.select! {|ele| ele != ""}
+    where(location_id: [*location_ids]) if location_ids.present?
+  }
+
+  scope :with_salary_range_id, -> (salary_range_ids) {
+    salary_range_ids.select! {|ele| ele != ""}
+    where(salary_range_id: [*salary_range_ids]) if salary_range_ids.present?
+  }
+
   scope :with_posted_at_gte, -> (date) {
     where('start_day >= ?', date)
   }
@@ -93,11 +113,15 @@ class Job < ActiveRecord::Base
 
   delegate :name, to: :contract_type, prefix: true
 
+  delegate :name, to: :location, prefix: true
+
+  delegate :range, to: :salary_range, prefix: true
+
   def self.options_for_sorted_by
     [
       ['Title (a-z)', 'title_asc'],
-      ['Job Posted Date (newest first)', 'start_day_desc'],
-      ['Job Posted Date (oldest first)', 'start_day_asc']
+      ['Recently Published (newest first)', 'start_day_desc'],
+      ['Recently Published (oldest first)', 'start_day_asc']
     ]
   end
 

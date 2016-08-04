@@ -2,32 +2,27 @@
 
   <div>
     <%= page_entries_info jobs, entry_name: "Jobs", model: 'job'  %>
+    <%= will_paginate jobs %>
   </div>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th><p><%= filterrific_sorting_link(@filterrific, :start_day, label: "Posted Date") %></p></th>
-        <th><p><%= filterrific_sorting_link(@filterrific, :title) %></p></th>
-        <th><p><%= filterrific_sorting_link(@filterrific, :industry) %></p></th>
-        <th><p><%= filterrific_sorting_link(@filterrific, :category) %></p></th>
-        <th colspan="2"><p>Actions</p></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% jobs.each do |job| %>
-        <tr>
-          <td><p><%= job.decorated_start_day %></p></td>
-          <td><h2><%= link_to job.title, job %></h2><p><%= job.contract_type.name %></p></td>
-          <td><p><%= job.industry.name %></p></td>
-          <td><p><%= job.category.name %></p></td>
-          <td><%= link_to 'Edit', edit_job_path(job) %></td>
-          <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+      <div class="table">
+        <% jobs.each do |job| %>
+          <div class="job-list" style="border: 1px solid #111111;">
+            <tr>
+              <td><p><%= job.decorated_start_day %></p></td>
+              <td><h2><%= link_to job.title, job %></h2></td>
+              <td><p>(<%= job.contract_type.name %>)</p></td>
+              <td><i class="fa fa-eye"></i><p><%= "#{ job.impressionist_count } views" %></p></td>
+              <hr>
+              <td><i class="fa fa-building"></i><p><%= job.industry.name %></p></td>
+              <td><i class="fa fa-map-marker"></i><p><%= job.location.name %>, Myanmar</p></td>
+              <td><i class="fa fa-laptop"></i><p><%= job.category.name %></p></td>
+              <td><%= link_to 'Edit', edit_job_path(job) %></td>
+              <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          </div>
+        <br>
+        <% end %>
+      </div>
 
 </div>
 

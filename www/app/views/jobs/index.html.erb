@@ -1,12 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Create a new job', new_job_path %>
-
-<hr>
-
 <div class="job">
-  <h2>Listing Jobs</h2>
-
   <%#
     Filterrific adds the `form_for_filterrific` view helper:
     * adds dom id 'filterrific_filter'
@@ -16,13 +10,15 @@
     * sets form_for options like :url, :method and input name prefix
   %>
 
-  <div class="row">
-    <div id="filtered_job">
-      <%= render( partial: "jobs/filter", locals: { jobs: @filtered_jobs } ) %>
-    </div>
-    <div class="col-md-8">
-      <%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
-    </div>
+  <div id="filtered_job">
+    <%= render( partial: "jobs/filter", locals: { jobs: @filtered_jobs } ) %>
+  </div>
+  <br>
+  <%= link_to 'Create a new job', new_job_path %>
+
+  <hr>
+  <div class="col-sm-8">
+    <%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
   </div>
 </div>
 
@@ -30,90 +26,3 @@
   $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
   $('.js-datepicker').datepicker();
 </script>
-
-
-
-
-
-<!-- <script>
-  $('.select_botton').click(function(){
-    $.getJSON("/select_jobs?category=" + $(this).data('id'), function(data){
-      $('tr').remove();
-      var jsonString = JSON.stringify(data);
-      // alert(jsonString)
-      // $("<tr/>").appendTo("#job_list").html(data)
-      drawTable(jsonString);
-      // $.each( data, function( i, item){
-      // })
-      // if(result != false){
-      // }
-    })
-
-    function drawTable(data) {
-      for (var i = 0; i < data.length; i++){
-        drawRow(data[i]);
-      }
-    }
-
-    function drawRow(rowData) {
-      var row = $("<tr />")
-      $("#job_list").append(row);
-
-      row.append($("<td>" + rowData + "</td>"));
-      row.append($("<td>" + rowData.title + "</td>"));
-      row.append($("<td>" + rowData.requirement + "</td>"));
-    }
-
-    // $.ajax({
-    //   url: "/select_jobs?category=" + $(this).data('id'),
-    //   type: "GET",
-    //   dataType: "json",
-    //   data: {
-    //     json: JSON.stringify([
-    //     {
-    //       id: 1,
-    //     }])
-    //   }
-    // })
-  })
-
-  $.ajax({
-    url: '/echo/json/',
-    type: "post",
-    dataType: "json",
-    data: {
-      json: JSON.stringify([
-          {
-          id: 1,
-          firstName: "Peter",
-          lastName: "Jhons"},
-      {
-          id: 2,
-          firstName: "David",
-          lastName: "Bowie"}
-      ]),
-      delay: 3
-    },
-    success: function(data, textStatus, jqXHR) {
-        // since we are using jQuery, you don't need to parse response
-        drawTable(data);
-    }
-  });
-
-  function drawTable(data) {
-      for (var i = 0; i < data.length; i++) {
-          drawRow(data[i]);
-      }
-  }
-
-  function drawRow(rowData) {
-      var row = $("<tr />")
-      $("#personDataTable").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
-      row.append($("<td>" + rowData.id + "</td>"));
-      row.append($("<td>" + rowData.firstName + "</td>"));
-      row.append($("<td>" + rowData.lastName + "</td>"));
-  }
-
-</script>
-<br>
- -->

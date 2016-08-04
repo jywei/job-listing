@@ -25,7 +25,5 @@ class Admin::JobFilterController < Admin::ApplicationController
     respond_to do |format|
       format.json { render :json => boolean }
     end
-    # redirect_to admin_categories_path
-    # flash[:success] = "Delete category success"
   end
 end
