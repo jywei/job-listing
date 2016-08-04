@@ -16,11 +16,13 @@
     * sets form_for options like :url, :method and input name prefix
   %>
 
-  <div id="filtered_job">
-    <%= render( partial: "jobs/filter", locals: { jobs: @filtered_jobs } ) %>
-  </div>
-  <div class="col-md-8">
-    <%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
+  <div class="row">
+    <div id="filtered_job">
+      <%= render( partial: "jobs/filter", locals: { jobs: @filtered_jobs } ) %>
+    </div>
+    <div class="col-md-8">
+      <%= render( partial: 'jobs/list', locals: { jobs: @filtered_jobs } ) %>
+    </div>
   </div>
 </div>
 
