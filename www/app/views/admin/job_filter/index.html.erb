@@ -1,0 +1,52 @@
+<h2>JobFilter</h2>
+
+<h3>Category</h3>
+
+<%= form_tag "#", method: :get, remote: true, id:"cate_form" do %>
+  <%= text_field_tag :name %>
+  <%= submit_tag :submit %>
+<% end %>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="cate_table">
+    </tbody>
+  </table>
+</div>
+
+
+<script>
+  $.getJSON("/admin/getData", function(data){
+    for(var i = 0; i < data.length; i++){
+      $('<tr><td>' + data[i].name + '</td> <td><a herf="#" class="deleCate btn btn-danger" data-remote="true" data-id="' + data[i].id + '">Delete</a></td> </tr>').appendTo($('#cate_table'))
+    }
+    deleCate()
+  })
+
+  $('#cate_form').submit(function(){
+    $.getJSON("/admin/addCate?name=" + $(this).children('#name').val(), function(data){
+      $('<tr> <td>' + data.name + '</td><td><a herf="#" class="btn btn-danger deleCate" data-remote="true" data-id="' + data.id + '">Delete</a></td></tr>').appendTo($('#cate_table'))
+      $('#cate_form').children('#name').val('')
+      deleCate()
+    })
+  })
+
+  function deleCate() {
+    var ff
+    $('.deleCate').click(function(){
+      ff = $(this)
+      $.getJSON("/admin/deleCate?id=" + $(this).data('id'),function(data){
+        if(data != false) {
+          ff.parent().parent().remove()
+        }
+      })
+    })
+  }
+</script>
+
