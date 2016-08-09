@@ -1,17 +1,10 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show], unique: [:session_hash]
+  authorize_resource
 
   # GET /jobs
   def index
-
-    if params[:category].blank? && params[:industry].blank?
-      @jobs = Job.all.published.order("created_at DESC")
-    else
-      @category = Category.find_by(name: params[:category])
-      @industry = Industry.find_by(name: params[:industry])
-      @jobs = Job.by_category_and_industry(@category, @industry).published.order("created_at DESC")
-    end
 
     @filterrific = initialize_filterrific(
       Job,
@@ -25,7 +18,7 @@ class JobsController < ApplicationController
         with_salary_range_id: SalaryRange.options_for_select
       }
     ) or return
-    @filtered_jobs = @filterrific.find.page(params[:page])
+    @jobs = @filterrific.find.page(params[:page])
 
     respond_to do |format|
       format.html

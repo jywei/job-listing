@@ -1,4 +1,4 @@
-<%#= render( partial: "jobs/filter", locals: { jobs: @filtered_jobs } ) %>
+<%#= render( partial: "jobs/filter", locals: { jobs: @jobs } ) %>
 
 <%= form_for_filterrific @filterrific do |f| %>
   <div class="col-md-12">
@@ -34,7 +34,7 @@
               <div class="inline">
                 <%= b.check_box %>
                 <%= b.object.name %>
-                (<%= @filtered_jobs.where(industry_id: b.object.id).size %>)
+                (<%= @jobs.where(industry_id: b.object.id).size %>)
               </div>
             </div>
             <% end %>
@@ -56,7 +56,7 @@
               <div class="inline">
                 <%= b.check_box %>
                 <%= b.object.name %>
-                (<%= @filtered_jobs.where(category_id: b.object.id).size %>)
+                (<%= @jobs.where(category_id: b.object.id).size %>)
               </div>
             </div>
             <% end %>
@@ -78,7 +78,7 @@
               <div class="inline">
                 <%= b.check_box %>
                 <%= b.object.name %>
-                (<%= @filtered_jobs.where(contract_type_id: b.object.id).size %>)
+                (<%= @jobs.where(contract_type_id: b.object.id).size %>)
               </div>
             </div>
             <% end %>
@@ -100,7 +100,7 @@
               <div class="inline">
                 <%= b.check_box %>
                 <%= b.object.name %>
-                (<%= @filtered_jobs.where(location_id: b.object.id).size %>)
+                (<%= @jobs.where(location_id: b.object.id).size %>)
               </div>
             </div>
             <% end %>
@@ -122,7 +122,7 @@
               <div class="inline">
                 <%= b.check_box %>
                 <%= b.object.range %>
-                (<%= @filtered_jobs.where(salary_range_id: b.object.id).size %>)
+                (<%= @jobs.where(salary_range_id: b.object.id).size %>)
               </div>
             </div>
             <% end %>

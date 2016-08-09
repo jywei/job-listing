@@ -38,10 +38,17 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'impressionist'
 
+gem 'devise'
+
+gem 'rolify'
+
+gem 'cancancan'
+
 group :development, :test do
   gem 'pry-byebug'
 end
 
 group :development do
+  gem 'awesome_print'
 end
 
