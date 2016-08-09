@@ -7,6 +7,13 @@ class Job < ActiveRecord::Base
   belongs_to :location, counter_cache: :jobs_count
   belongs_to :salary_range, counter_cache: :jobs_count
 
+  validates :title,               presence: true
+  validates :description,         presence: true
+  validates :requirement,         presence: true
+  validates :apply_instruction,   presence: true
+  validates :start_day,           presence: true
+  validates :professional_skill,  presence: true
+
   has_many :impressions, as: :impressionable
 
   scope :published, -> { where(is_published: true) }

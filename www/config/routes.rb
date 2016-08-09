@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     # get 'categories' => 'categories#index'
     get 'job_filter' => 'job_filter#index'
     get 'getData' => 'job_filter#getData'
-    get 'addCate' => 'job_filter#addCate'
-    get 'deleCate' => 'job_filter#deleCate'
+    get 'addFilter' => 'job_filter#addFilter'
+    get 'deleFilter' => 'job_filter#deleFilter'
     resources :categories
     resources :industries
   end

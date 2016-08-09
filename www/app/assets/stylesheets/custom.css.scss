@@ -55,6 +55,14 @@
 
     .panel-heading {
       cursor: pointer;
+
+      i {
+        transition: .5s;
+      }
+
+      .rotate180 {
+        transform: rotateX(180deg);
+      }
     }
 
     .arrow-down {
@@ -69,6 +77,16 @@
 
   tr {
     border: 1px solid #dddddd;
+  }
+}
+
+.job_filter {
+  tbody {
+    tr {
+      td {
+        width: 50%;
+      }
+    }
   }
 }
 
