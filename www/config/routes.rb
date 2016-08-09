@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   devise_for :users
   namespace :admin do
     root 'home#index'
@@ -18,5 +17,5 @@ Rails.application.routes.draw do
   get 'pages/index'
   get 'select_jobs' => 'jobs#select_jobs', defaults: { format: 'json' }
   resources :jobs
-
+  resources :companies
 end

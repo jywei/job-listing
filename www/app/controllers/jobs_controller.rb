@@ -5,7 +5,6 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-
     @filterrific = initialize_filterrific(
       Job,
       params[:filterrific],
