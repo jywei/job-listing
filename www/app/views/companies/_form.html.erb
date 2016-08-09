@@ -29,6 +29,14 @@
     <%= f.input :is_hiring, as: :boolean,
                             checked_value: true,
                             unchecked_value: false %>
+    <%= f.input :cover, as: :file %>
+    <%= image_tag @company.cover.url(:preview),
+        class: "img-rounded text-center",
+        size: '230x100' %>
+    <%= f.input :image, as: :file %>
+    <%= image_tag @company.image.url(:thumb),
+        class: "img-rounded text-center",
+        size: '100x100' %>
     <%= f.button :submit %>
   </div>
 <% end %>

@@ -57,6 +57,8 @@ class CompaniesController < ApplicationController
                                       :twitter,
                                       :ios,
                                       :android,
-                                      :is_hiring)
+                                      :is_hiring,
+                                      :image,
+                                      :cover)
     end
 end
