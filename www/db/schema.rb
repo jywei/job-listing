@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809100457) do
+ActiveRecord::Schema.define(version: 20160810033135) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20160809100457) do
     t.string   "cover_content_type", limit: 255
     t.integer  "cover_file_size",    limit: 4
     t.datetime "cover_updated_at"
+    t.integer  "jobs_count",         limit: 4
+    t.integer  "views_count",        limit: 4
   end
 
   create_table "contract_types", force: :cascade do |t|

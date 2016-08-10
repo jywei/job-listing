@@ -9,4 +9,12 @@ class Company < ActiveRecord::Base
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :cover, content_type: /\Acover\/.*\Z/
+
+  has_many :jobs
+  has_many :impressions, as: :impressionable
+
+  def impression_count
+    impressions.size
+  end
+
 end

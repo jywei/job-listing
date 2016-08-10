@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :log_impression, only: [:show], unique: [:session_hash]
 
   def index
     @companies = Company.all
@@ -60,5 +61,10 @@ class CompaniesController < ApplicationController
                                       :is_hiring,
                                       :image,
                                       :cover)
+    end
+
+    def log_impression
+      @company = Company.find(params[:id])
+      impressionist(@company)
     end
 end

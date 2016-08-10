@@ -1,6 +1,7 @@
 class Job < ActiveRecord::Base
   resourcify
 
+  belongs_to :company, counter_cache: :jobs_count
   belongs_to :category, counter_cache: :jobs_count
   belongs_to :industry, counter_cache: :jobs_count
   belongs_to :contract_type, counter_cache: :jobs_count
