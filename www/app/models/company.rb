@@ -13,8 +13,17 @@ class Company < ActiveRecord::Base
   has_many :jobs
   has_many :impressions, as: :impressionable
 
+  belongs_to :industry
+  belongs_to :employee_range
+
+  scope :hiring, -> { where(is_hiring: true) }
+
   def impression_count
     impressions.size
+  end
+
+  def self.options_for_select
+    order('LOWER(name)').map { |e| [e.name, e.id] }
   end
 
 end

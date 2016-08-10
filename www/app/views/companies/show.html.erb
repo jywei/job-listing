@@ -7,22 +7,49 @@
             class: "img-rounded text-center",
             size: '100x100' %>
 
-<h2><%= @company.name %></h2>
-<p><%= @company.tagline %></p>
-<p><%= @company.phone %></p>
-<p><%= @company.email %></p>
-<p><%= @company.about %></p>
-<p><%= @company.story %></p>
-<p><%= @company.welfare %></p>
-<p><%= @company.demand %></p>
-<p><%= @company.idea %></p>
-<p><%= @company.website %></p>
-<p><%= @company.facebook %></p>
-<p><%= @company.twitter %></p>
-<p><%= @company.ios %></p>
-<p><%= @company.android %></p>
-<p><%= @company.impression_count %></p>
+<h2>Company Name: <%= @company.name %></h2>
+<p>Tagline: <%= @company.tagline %></p>
+<p>Employee Numbers: <%= @company.employee_range.range %></p>
+<p>Industry: <%= @company.industry.name %></p>
+<p>Phone: <%= @company.phone %></p>
+<p>Email: <%= @company.email %></p>
+<p>About Us: <%= @company.about %></p>
+<p>Our History: <%= @company.story %></p>
+<p>Why are we awesome? <%= @company.welfare %></p>
+<p>Who we are looking for? <%= @company.demand %></p>
+<p>Idea: <%= @company.idea %></p>
+<p>Our Site: <%= link_to @company.website %></p>
+<p>Our Facebook: <%= link_to @company.facebook %></p>
+<p>Our Twitter: <%= link_to @company.twitter %></p>
+<p>ios: <%= link_to @company.ios %></p>
+<p>android: <%= link_to @company.android %></p>
+<p>Total Views: <%= @company.impression_count %></p>
 
+<p>Current Opportunity <%= @company.jobs_count %>: </p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Type</th>
+      <th>Salary</th>
+      <th>City</th>
+      <th>Starting Date</th>
+      <th>Application</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @company.jobs.each do |job| %>
+    <tr>
+      <td><%= job.title %></td>
+      <td><%= job.contract_type.name %></td>
+      <td><%= job.salary_range.range %></td>
+      <td><%= job.location.name %></td>
+      <td><%= job.start_day %></td>
+      <td><%= link_to "Job", "#" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 
 
 <%= link_to 'Edit', edit_company_path(@company) %> |

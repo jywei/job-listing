@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810033135) do
+ActiveRecord::Schema.define(version: 20160810080153) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20160810033135) do
     t.datetime "cover_updated_at"
     t.integer  "jobs_count",         limit: 4
     t.integer  "views_count",        limit: 4
+    t.integer  "industry_id",        limit: 4
+    t.integer  "employee_range_id",  limit: 4
   end
 
   create_table "contract_types", force: :cascade do |t|
@@ -55,6 +57,12 @@ ActiveRecord::Schema.define(version: 20160810033135) do
     t.integer  "jobs_count", limit: 4,   default: 0
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+  end
+
+  create_table "employee_ranges", force: :cascade do |t|
+    t.string   "range",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -107,6 +115,7 @@ ActiveRecord::Schema.define(version: 20160810033135) do
     t.integer  "contract_type_id",   limit: 4
     t.integer  "location_id",        limit: 4
     t.integer  "salary_range_id",    limit: 4
+    t.integer  "company_id",         limit: 4
   end
 
   create_table "locations", force: :cascade do |t|
