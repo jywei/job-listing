@@ -11,6 +11,7 @@ require 'csv'
 
 Job.create([{ title: "wrestler", category_id: 2, industry_id: 1, contract_type_id: 1, is_published: true, start_day: "2016-08-01", location_id: 1, salary_range_id: 5 },
             { title: "pornstar", category_id: 1, industry_id: 2, contract_type_id: 2, is_published: true, start_day: "2016-05-01", location_id: 3, salary_range_id: 4 },
+            { title: "unicorn", category_id: 3, industry_id: 3, contract_type_id: 1, is_published: true, start_day: "2016-07-01", location_id: 5, salary_range_id: 2 },
             { title: "Actor", category_id: 1, industry_id: 2, contract_type_id: 3, is_published: true, start_day: "2016-01-01", location_id: 2, salary_range_id: 3 }])
 
 Category.create([{ name: 'Accounting / Finance' }, { name: 'Sales' }, { name: 'Marketing' }])
@@ -40,3 +41,12 @@ CSV.foreach(Rails.root.join("myanmar_city.csv"), headers: false) do |row|
 end
 
 Location.find_each { |location| Location.reset_counters(location.id, :jobs) }
+
+user1 = User.create([ { email: "admin@example.com", password: "12345678"} ])
+user1.add_role :admin
+user2 = User.create([ { email: "employer@example.com", password: "12345678"} ])
+user2.add_role :employer
+user3 = User.create([ { email: "seeker@example.com", password: "12345678"} ])
+user3.add_role :seeker
+
+

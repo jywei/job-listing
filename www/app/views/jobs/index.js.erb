@@ -1,6 +1,6 @@
-<% js = escape_javascript(render(partial: 'jobs/list', locals: { jobs: @filtered_jobs })) %>
+<% js = escape_javascript(render(partial: 'jobs/list', locals: { jobs: @jobs })) %>
 $("#filterrific_results").html("<%= js %>");
-$('#filtered_job').html("<%= escape_javascript(render(partial: 'jobs/filter', locals: { jobs: @filtered_jobs }) ) %>");
+$('#filtered_job').html("<%= escape_javascript(render(partial: 'jobs/filter', locals: { jobs: @jobs }) ) %>");
 
 $('#filterrific_filter').on(
   "change",

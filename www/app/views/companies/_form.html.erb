@@ -1,0 +1,42 @@
+<%= simple_form_for(@company, html: { class: 'form-horizontal center max-width' }) do |f| %>
+  <% if @company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% @company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.input :name %>
+    <%= f.input :tagline %>
+    <%= f.input :phone %>
+    <%= f.input :email %>
+    <%= f.input :about, as: :text %>
+    <%= f.input :story, as: :text %>
+    <%= f.input :welfare, as: :text %>
+    <%= f.input :demand, as: :text %>
+    <%= f.input :idea, as: :text %>
+    <%= f.input :website %>
+    <%= f.input :facebook %>
+    <%= f.input :twitter %>
+    <%= f.input :ios %>
+    <%= f.input :android %>
+    <%= f.input :is_hiring, as: :boolean,
+                            checked_value: true,
+                            unchecked_value: false %>
+    <%= f.input :cover, as: :file %>
+    <%= image_tag @company.cover.url(:preview),
+        class: "img-rounded text-center",
+        size: '230x100' %>
+    <%= f.input :image, as: :file %>
+    <%= image_tag @company.image.url(:thumb),
+        class: "img-rounded text-center",
+        size: '100x100' %>
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,4 +1,6 @@
 class Job < ActiveRecord::Base
+  resourcify
+
   belongs_to :category, counter_cache: :jobs_count
   belongs_to :industry, counter_cache: :jobs_count
   belongs_to :contract_type, counter_cache: :jobs_count
@@ -15,13 +17,6 @@ class Job < ActiveRecord::Base
   has_many :impressions, as: :impressionable
 
   scope :published, -> { where(is_published: true) }
-
-  def self.by_category_and_industry(category_id = nil, industry_id = nil)
-    return where(category_id: category_id, industry_id: industry_id) if category_id && industry_id
-    return where(category_id: category_id) if category_id
-    return where(industry_id: industry_id) if industry_id
-    all
-  end
 
   def impression_count
     impressions.size
@@ -115,13 +110,9 @@ class Job < ActiveRecord::Base
   }
 
   delegate :name, to: :industry, prefix: true
-
   delegate :name, to: :category, prefix: true
-
   delegate :name, to: :contract_type, prefix: true
-
   delegate :name, to: :location, prefix: true
-
   delegate :range, to: :salary_range, prefix: true
 
   def self.options_for_sorted_by

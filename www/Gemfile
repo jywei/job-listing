@@ -38,10 +38,22 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'impressionist'
 
+gem 'devise'
+
+gem 'rolify'
+
+gem 'cancancan'
+
+gem 'paperclip', '~> 5.0.0'  #rails generate paperclip company image
+
+gem 'aws-sdk'
+
 group :development, :test do
   gem 'pry-byebug'
+  gem 'figaro', '~> 1.1', '>= 1.1.1'  #bundle exec figaro install
 end
 
 group :development do
+  gem 'awesome_print'
 end
 
