@@ -16,4 +16,4 @@
 //= require bootstrap-datepicker/core
 //= require filterrific/filterrific-jquery
 //= require chardinjs
-//= require_tree .
+//= require_tree.
