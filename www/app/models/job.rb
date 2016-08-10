@@ -33,6 +33,7 @@ class Job < ActiveRecord::Base
       :with_contract_type_id,
       :with_location_id,
       :with_salary_range_id,
+      :with_company_id,
       :with_posted_at_gte
     ]
   )
@@ -101,6 +102,11 @@ class Job < ActiveRecord::Base
     where(location_id: [*location_ids]) if location_ids.present?
   }
 
+  scope :with_company_id, -> (company_ids) {
+    company_ids.select! {|ele| ele != ""}
+    where(company_id: [*company_ids]) if company_ids.present?
+  }
+
   scope :with_salary_range_id, -> (salary_range_ids) {
     salary_range_ids.select! {|ele| ele != ""}
     where(salary_range_id: [*salary_range_ids]) if salary_range_ids.present?
@@ -114,6 +120,7 @@ class Job < ActiveRecord::Base
   delegate :name, to: :category, prefix: true
   delegate :name, to: :contract_type, prefix: true
   delegate :name, to: :location, prefix: true
+  delegate :name, to: :company, prefix: true
   delegate :range, to: :salary_range, prefix: true
 
   def self.options_for_sorted_by

@@ -14,7 +14,8 @@ class JobsController < ApplicationController
         with_category_id: Category.options_for_select,
         with_contract_type_id: ContractType.options_for_select,
         with_location_id: Location.options_for_select,
-        with_salary_range_id: SalaryRange.options_for_select
+        with_salary_range_id: SalaryRange.options_for_select,
+        with_company_id: Company.options_for_select
       }
     ) or return
     @jobs = @filterrific.find.page(params[:page])
@@ -95,7 +96,8 @@ class JobsController < ApplicationController
                                   :industry_id,
                                   :contract_type_id,
                                   :location_id,
-                                  :salary_range_id)
+                                  :salary_range_id,
+                                  :company_id)
     end
 
     def log_impression

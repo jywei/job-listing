@@ -21,6 +21,12 @@
     <%= f.input :welfare, as: :text %>
     <%= f.input :demand, as: :text %>
     <%= f.input :idea, as: :text %>
+    <%= f.association :employee_range,
+                      collection: EmployeeRange.all,  #.pluck(:range),
+                      priority: @company.employee_range,
+                      label_method: :range,
+                      label: "Employee Amount Range",
+                      prompt: "Choose a employee range for this company" %>
     <%= f.input :website %>
     <%= f.input :facebook %>
     <%= f.input :twitter %>

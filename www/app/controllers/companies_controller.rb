@@ -60,7 +60,8 @@ class CompaniesController < ApplicationController
                                       :android,
                                       :is_hiring,
                                       :image,
-                                      :cover)
+                                      :cover,
+                                      :employee_range_id)
     end
 
     def log_impression
