@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'home#index'
     # get 'categories' => 'categories#index'
+    get 'companies' => 'companies#index'
+    get 'getCompany' => 'companies#getCompany'
     get 'job_filter' => 'job_filter#index'
     get 'getData' => 'job_filter#getData'
     get 'addFilter' => 'job_filter#addFilter'
