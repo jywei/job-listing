@@ -143,7 +143,7 @@ class Job < ActiveRecord::Base
   def not_myanmar
     unless self.country_id == 150
       # binding.pry
-      self.location_id = nil
+      self.update_attributes(location_id: nil)
     end
   end
 

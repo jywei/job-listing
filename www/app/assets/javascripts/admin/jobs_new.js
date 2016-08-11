@@ -1,7 +1,10 @@
 $(document).ready( function() {
-  $('#job_location_id').hide();
-  $('#job_location_id').siblings($('label')).hide();
+  checkCountry()
   $('#job_country_id').on("change", function(){
+    checkCountry()
+  })
+
+  function checkCountry(){
     if ($('#job_country_id').val() == '150') {
       $('#job_location_id').show();
       $('#job_location_id').siblings($('label')).show();
@@ -10,5 +13,5 @@ $(document).ready( function() {
       $('#job_location_id').hide();
       $('#job_location_id').siblings($('label')).hide();
     }
-  })
+  }
 })
