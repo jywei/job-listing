@@ -31,8 +31,7 @@
                       collection: Country.all,
                       priority: @job.country,
                       label: "Job Country",
-                      prompt: "Choose a country of this job",
-                      selected: 150 %>
+                      prompt: "Choose a country of this job" %>
     <%= f.association :location,
                       collection: Location.all,
                       priority: @job.location,
