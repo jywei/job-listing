@@ -56,6 +56,8 @@ class JobsController < ApplicationController
 
   def update
     if @job.update(job_params)
+      @job.not_myanmar
+      # binding.pry
       redirect_to @job, notice: 'Job was successfully updated.'
     else
       render :edit
@@ -105,5 +107,4 @@ class JobsController < ApplicationController
       @job = Job.find(params[:id])
       impressionist(@job)
     end
-
 end

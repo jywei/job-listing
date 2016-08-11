@@ -140,4 +140,11 @@ class Job < ActiveRecord::Base
     start_day.to_s(:long)
   end
 
+  def not_myanmar
+    unless self.country_id == 150
+      # binding.pry
+      self.location_id = nil
+    end
+  end
+
 end
