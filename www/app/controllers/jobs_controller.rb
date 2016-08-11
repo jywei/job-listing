@@ -55,8 +55,8 @@ class JobsController < ApplicationController
   end
 
   def update
+    @job.not_myanmar
     if @job.update(job_params)
-      @job.not_myanmar
       # binding.pry
       redirect_to @job, notice: 'Job was successfully updated.'
     else
