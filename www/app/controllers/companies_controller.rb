@@ -61,7 +61,8 @@ class CompaniesController < ApplicationController
                                       :is_hiring,
                                       :image,
                                       :cover,
-                                      :employee_range_id)
+                                      :employee_range_id,
+                                      :country_id)
     end
 
     def log_impression

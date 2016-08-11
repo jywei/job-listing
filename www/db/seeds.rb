@@ -44,6 +44,16 @@ end
 
 Location.find_each { |location| Location.reset_counters(location.id, :jobs) }
 
+puts "Importing countries..."
+count = 1
+CSV.foreach(Rails.root.join("Country.csv"), headers: false) do |row|
+  Country.create! do |country|
+    country.id = count
+    country.name = row[2]
+  end
+  count += 1
+end
+
 user1 = User.create( { email: "admin@example.com", password: "12345678"} )
 user1.add_role :admin
 user2 = User.create( { email: "employer@example.com", password: "12345678"} )

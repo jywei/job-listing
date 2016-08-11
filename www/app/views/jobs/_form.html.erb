@@ -27,11 +27,18 @@
                       priority: @job.contract_type,
                       label: "Contract Type",
                       prompt: "Choose a contract type of the job" %>
+    <%= f.association :country,
+                      collection: Country.all,
+                      priority: @job.country,
+                      label: "Job Country",
+                      prompt: "Choose a country of this job",
+                      selected: 150 %>
     <%= f.association :location,
                       collection: Location.all,
                       priority: @job.location,
                       label: "Job Location",
-                      prompt: "Choose a job location of the job" %>
+                      prompt: "Choose a job location of the job",
+                      id: "myanmar_city" %>
     <%= f.association :salary_range,
                       collection: SalaryRange.all,  #.pluck(:range),
                       priority: @job.salary_range,
@@ -52,3 +59,15 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    $('#job_location_id').hide();
+    if ($('#job_country_id').val() == '150') {
+      alert('fse')
+      $('#job_location_id').show();
+    } else {
+      $('#job_location_id').hide();
+    }
+  })
+</script>
