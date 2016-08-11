@@ -15,7 +15,7 @@
               <hr>
               <td><i class="fa fa-dot-circle-o"></i><p><%= job.company.name if job.company.present? %></p></td>
               <td><i class="fa fa-building"></i><p><%= job.industry.name %></p></td>
-              <td><i class="fa fa-map-marker"></i><p><%= job.location.name %>, Myanmar</p></td>
+              <td><i class="fa fa-map-marker"></i><p><%= job.location.name if job.location.present? %> Myanmar</p></td>
               <td><i class="fa fa-laptop"></i><p><%= job.category.name %></p></td>
               <td><%= link_to 'Edit', edit_job_path(job) %></td>
               <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
