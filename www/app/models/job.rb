@@ -7,6 +7,7 @@ class Job < ActiveRecord::Base
   belongs_to :contract_type, counter_cache: :jobs_count
   belongs_to :location, counter_cache: :jobs_count
   belongs_to :salary_range, counter_cache: :jobs_count
+  belongs_to :country
 
   validates :title,               presence: true
   validates :description,         presence: true

@@ -97,7 +97,8 @@ class JobsController < ApplicationController
                                   :contract_type_id,
                                   :location_id,
                                   :salary_range_id,
-                                  :company_id)
+                                  :company_id,
+                                  :country_id)
     end
 
     def log_impression

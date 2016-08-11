@@ -15,6 +15,8 @@ class Company < ActiveRecord::Base
 
   belongs_to :industry
   belongs_to :employee_range
+  belongs_to :country
+  belongs_to :location
 
   scope :hiring, -> { where(is_hiring: true) }
 
