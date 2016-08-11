@@ -3,7 +3,7 @@ class Admin::CompaniesController < Admin::ApplicationController
   end
 
   def getCompany
-    @companies = Company.all
+    @companies = Company.all.includes(:jobs)
 
     respond_to do |format|
       format.html { render :json => { :companies => @companies } }
