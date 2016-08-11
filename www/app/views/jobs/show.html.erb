@@ -5,7 +5,9 @@
 <p>What kind of professional skill are we looking for? <%= @job.professional_skill %></p>
 <p>Job Starting Date: <%= @job.start_day %></p>
 <p>Country: <%= @job.country.name %></p>
-<p>State: <%= @job.location.name if @job.location.present? %></p>
+<% if @job.location.present? %>
+  <p>State: <%= @job.location.name %></p>
+<% end %>
 
 <%= link_to 'Edit', edit_job_path(@job) %> |
 <%= link_to 'Back', jobs_path %> |
