@@ -62,6 +62,7 @@ class CompaniesController < ApplicationController
                                       :image,
                                       :cover,
                                       :employee_range_id,
+                                      :location_id,
                                       :country_id)
     end
 

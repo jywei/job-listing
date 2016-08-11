@@ -6,11 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
 require 'csv'
 
-Company.create([{ name: "Apple", tagline: "Awesome!", phone: "0989098878", email: "amazingjob@hr.hr", about: "about love", welfare: "a lot of money", demand: "gay guys are awesome", idea: "to conquer the world", website: "none", facebook: "nope", twitter: "JIC", ios: "too fancy", android: "hmmm", industry_id: 1, employee_range_id: 4 },
-            { name: "Airbnb", tagline: "Awesome!", phone: "0989098878", email: "amazingjob@hr.hr", about: "about love", welfare: "a lot of money", demand: "gay guys are awesome", idea: "to conquer the world", website: "none", facebook: "nope", twitter: "JIC", ios: "too fancy", android: "hmmm", industry_id: 2, employee_range_id: 5 }])
+Company.create([{ name: "Apple", tagline: "Awesome!", phone: "0989098878", email: "amazingjob@hr.hr", about: "about love", welfare: "a lot of money", demand: "gay guys are awesome", idea: "to conquer the world", website: "none", facebook: "nope", twitter: "JIC", ios: "too fancy", android: "hmmm", industry_id: 1, employee_range_id: 4, country_id: 150, location_id: 5 },
+            { name: "Airbnb", tagline: "Awesome!", phone: "0989098878", email: "amazingjob@hr.hr", about: "about love", welfare: "a lot of money", demand: "gay guys are awesome", idea: "to conquer the world", website: "none", facebook: "nope", twitter: "JIC", ios: "too fancy", android: "hmmm", industry_id: 2, employee_range_id: 5, country_id: 150, location_id: 1 }])
 
 Category.create([{ name: 'Accounting / Finance' }, { name: 'Sales' }, { name: 'Marketing' }])
 
@@ -61,10 +60,10 @@ user2.add_role :employer
 user3 = User.create( { email: "seeker@example.com", password: "12345678"} )
 user3.add_role :seeker
 
-Job.create!([{ title: "wrestler", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 2, industry_id: 1, contract_type_id: 1, is_published: true, start_day: "2016-08-01", location_id: 1, salary_range_id: 5, company_id: 1 },
-            { title: "pornstar", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 1, industry_id: 2, contract_type_id: 2, is_published: true, start_day: "2016-05-01", location_id: 3, salary_range_id: 4, company_id: 1 },
-            { title: "unicorn", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 3, industry_id: 3, contract_type_id: 1, is_published: true, start_day: "2016-07-01", location_id: 5, salary_range_id: 2, company_id: 2 },
-            { title: "Actor", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 1, industry_id: 2, contract_type_id: 3, is_published: true, start_day: "2016-01-01", location_id: 2, salary_range_id: 3, company_id: 2 }])
+Job.create!([{ title: "wrestler", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 2, industry_id: 1, contract_type_id: 1, is_published: true, start_day: "2016-08-01", country_id: 150, location_id: 1, salary_range_id: 5, company_id: 1 },
+            { title: "pornstar", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 1, industry_id: 2, contract_type_id: 2, is_published: true, start_day: "2016-05-01", country_id: 150, location_id: 3, salary_range_id: 4, company_id: 1 },
+            { title: "unicorn", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 3, industry_id: 3, contract_type_id: 1, is_published: true, start_day: "2016-07-01", country_id: 150, location_id: 5, salary_range_id: 2, company_id: 2 },
+            { title: "Actor", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 1, industry_id: 2, contract_type_id: 3, is_published: true, start_day: "2016-01-01", country_id: 150, location_id: 2, salary_range_id: 3, company_id: 2 }])
 
 
 
