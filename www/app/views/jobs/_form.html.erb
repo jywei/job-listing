@@ -31,8 +31,7 @@
                       collection: Country.all,
                       priority: @job.country,
                       label: "Job Country",
-                      prompt: "Choose a country of this job",
-                      selected: 150 %>
+                      prompt: "Choose a country of this job" %>
     <%= f.association :location,
                       collection: Location.all,
                       priority: @job.location,
@@ -60,14 +59,5 @@
   </div>
 <% end %>
 
-<script>
-  $(document).ready(function(){
-    $('#job_location_id').hide();
-    if ($('#job_country_id').val() == '150') {
-      alert('fse')
-      $('#job_location_id').show();
-    } else {
-      $('#job_location_id').hide();
-    }
-  })
-</script>
+
+<%= javascript_include_tag '/assets/admin/jobs_new' %>
