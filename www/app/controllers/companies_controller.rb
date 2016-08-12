@@ -11,11 +11,13 @@ class CompaniesController < ApplicationController
   end
 
   def new
-    @company = current_user.company.build
+    @company = Company.new
+    @company.user_id = current_user.id
   end
 
   def create
-    @company = current_user.company.build(company_params)
+    @company = Company.new(company_params)
+    @company.user_id = current_user.id
     if @company.save
       redirect_to @company, notice: 'Company was successfully created.'
     else
