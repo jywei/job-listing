@@ -14,6 +14,11 @@
   <div class="actions">
     <%= f.input :name %>
     <%= f.input :tagline %>
+    <%= f.association :industry,
+                      collection: Industry.all,
+                      priority: @company.industry,
+                      label: "Company Industry",
+                      prompt: "Choose an industry of your company" %>
     <%= f.input :phone %>
     <%= f.input :email %>
     <%= f.input :about, as: :text %>

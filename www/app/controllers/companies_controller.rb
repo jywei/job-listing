@@ -18,6 +18,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     @company.user_id = current_user.id
+    current_user.add_role :employer
     if @company.save
       redirect_to @company, notice: 'Company was successfully created.'
     else
@@ -66,7 +67,8 @@ class CompaniesController < ApplicationController
                                       :cover,
                                       :employee_range_id,
                                       :location_id,
-                                      :country_id)
+                                      :country_id,
+                                      :industry_id)
     end
 
     def log_impression
@@ -74,10 +76,7 @@ class CompaniesController < ApplicationController
       impressionist(@company)
     end
 
-    def employer_role(resource)
-      if resource.is_a?(User)
-        resource.add_role :admin
-      end
-      resource
+    def employer_role
+      current_user.add_role :employer
     end
 end
