@@ -1,7 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show], unique: [:session_hash]
-  before_action :employer_role, only: [:create]
 
   def index
     @companies = Company.all
@@ -74,9 +73,5 @@ class CompaniesController < ApplicationController
     def log_impression
       @company = Company.find(params[:id])
       impressionist(@company)
-    end
-
-    def employer_role
-      current_user.add_role :employer
     end
 end
