@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show], unique: [:session_hash]
+  before_action :employer_role, only: [:create]
 
   def index
     @companies = Company.all
@@ -10,11 +11,11 @@ class CompaniesController < ApplicationController
   end
 
   def new
-    @company = Company.new
+    @company = current_user.company.build
   end
 
   def create
-    @company = Company.new(company_params)
+    @company = current_user.company.build(company_params)
     if @company.save
       redirect_to @company, notice: 'Company was successfully created.'
     else
@@ -69,5 +70,12 @@ class CompaniesController < ApplicationController
     def log_impression
       @company = Company.find(params[:id])
       impressionist(@company)
+    end
+
+    def employer_role(resource)
+      if resource.is_a?(User)
+        resource.add_role :admin
+      end
+      resource
     end
 end
