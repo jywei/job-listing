@@ -10,9 +10,9 @@
 <h2>Company Name: <%= @company.name %></h2>
 <p>Tagline: <%= @company.tagline %></p>
 <p>Employee Numbers: <%= @company.employee_range.range %></p>
-<p>Industry: <%= @company.industry.name %></p>
+<p>Industry: <%= @company.industry.name if @company.industry.present? %></p>
 <p>Country: <%= @company.country.name %></p>
-<p>State: <%= @company.location.name %></p>
+<p>State: <%= @company.location.name if @company.location.present? %></p>
 <p>Phone: <%= @company.phone %></p>
 <p>Email: <%= @company.email %></p>
 <p>About Us: <%= @company.about %></p>
