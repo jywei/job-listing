@@ -6,12 +6,10 @@ $(document).ready( function() {
 
   function checkCountry(){
     if ($('#company_country_id').val() == '150') {
-      $('#company_location_id').show();
-      $('#company_location_id').siblings($('label')).show();
+      $('.company_location').show();
     }
     else {
-      $('#company_location_id').hide();
-      $('#company_location_id').siblings($('label')).hide();
+      $('.company_location').hide();
     }
   }
 })
