@@ -54,6 +54,7 @@
     <%= f.input :is_published, as: :boolean,
                                checked_value: true,
                                unchecked_value: false %>
+    <%= f.input :company_id, as: :hidden, input_html: { value: "#{params[:company_id]}" } %>
     <%= f.button :submit %>
   </div>
 <% end %>

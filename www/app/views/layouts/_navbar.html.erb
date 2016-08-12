@@ -4,12 +4,15 @@
     <div class="nav-button">
       <ul>
         <li><%= link_to "Find Jobs", jobs_path %></li>
-        <li><%= link_to "Post a Job", new_job_path %></li>
+        <% if (user_signed_in?) && (current_user.has_role? :employer) %>
+          <li><%= link_to "Post a Job", "/jobs/new?company_id=#{current_user.company.id}" %></li>
+        <% end %>
         <li><%= link_to "kerker", jobs_path %></li>
       </ul>
       <ul class="floatright">
         <% if user_signed_in? %>
           <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+          <li><%= current_user.id %></li>
         <% else %>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
           <li><%= link_to "Log In", new_user_session_path %></li>

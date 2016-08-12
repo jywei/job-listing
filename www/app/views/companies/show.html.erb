@@ -34,6 +34,7 @@
       <th>Position</th>
       <th>Type</th>
       <th>Salary</th>
+      <th>Country</th>
       <th>City</th>
       <th>Starting Date</th>
       <th>Application</th>
@@ -42,18 +43,17 @@
   <tbody>
   <% @company.jobs.each do |job| %>
     <tr>
-      <td><%= job.title %></td>
+      <td><%= link_to job.title, job %></td>
       <td><%= job.contract_type.name %></td>
       <td><%= job.salary_range.range %></td>
-      <td><%= job.location.name %></td>
+      <td><%= job.country.name %></td>
+      <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
       <td><%= job.start_day %></td>
-      <td><%= link_to "Job", "#" %></td>
+      <td><%= link_to "Job", edit_job_path(job) %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
 
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %> |
-<%= link_to 'Home', root_path %>
+<%= link_to 'Edit Company Information', edit_company_path(@company) %> |
+<%= link_to 'Create a new job', "/jobs/new?company_id=#{@company.id}" %>
