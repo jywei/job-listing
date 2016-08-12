@@ -34,6 +34,7 @@ class JobsController < ApplicationController
 
   # GET /jobs/1
   def show
+    # @company = @job.company
   end
 
   # GET /jobs/new
@@ -47,6 +48,7 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
+    #@job.company_id = Company.find_by(id: params[:company_id])
     if @job.save
       redirect_to @job, notice: 'Job was successfully created.'
     else
@@ -55,9 +57,9 @@ class JobsController < ApplicationController
   end
 
   def update
+    # @job.company_id = Company.find(params[:company_id])
     @job.not_myanmar
     if @job.update(job_params)
-      # binding.pry
       redirect_to @job, notice: 'Job was successfully updated.'
     else
       render :edit
