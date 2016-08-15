@@ -48,7 +48,7 @@
           <th>Country</th>
           <th>City</th>
           <th>Starting Date</th>
-          <th>Application</th>
+          <th colspan="2">Application</th>
         </tr>
       </thead>
       <tbody>
@@ -60,7 +60,8 @@
           <td><%= job.country.name %></td>
           <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
           <td><%= job.start_day %></td>
-          <td><%= link_to "Job", edit_job_path(job) %></td>
+          <td><%= link_to "Edit", edit_job_path(job) %></td>
+          <td><%= link_to "Delete", job_path(job), method: :delete %></td>
         </tr>
       <% end %>
       </tbody>
