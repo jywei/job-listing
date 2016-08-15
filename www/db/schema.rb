@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812081106) do
+ActiveRecord::Schema.define(version: 20160815051402) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -136,13 +136,17 @@ ActiveRecord::Schema.define(version: 20160812081106) do
   end
 
   create_table "resumes", force: :cascade do |t|
-    t.string   "firstname",   limit: 255
-    t.string   "lastname",    limit: 255
-    t.string   "phone",       limit: 255
-    t.integer  "location_id", limit: 4
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "firstname",          limit: 255
+    t.string   "lastname",           limit: 255
+    t.string   "phone",              limit: 255
+    t.integer  "location_id",        limit: 4
+    t.integer  "user_id",            limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "cover_file_name",    limit: 255
+    t.string   "cover_content_type", limit: 255
+    t.integer  "cover_file_size",    limit: 4
+    t.datetime "cover_updated_at"
   end
 
   add_index "resumes", ["location_id"], name: "index_resumes_on_location_id", using: :btree

@@ -17,8 +17,8 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     @company.user_id = current_user.id
-    current_user.add_role :employer
     if @company.save
+      current_user.add_role :employer
       redirect_to @company, notice: 'Company was successfully created.'
     else
       render :new
@@ -42,6 +42,7 @@ class CompaniesController < ApplicationController
   end
 
   private
+
     def set_company
       @company = Company.find(params[:id])
     end
