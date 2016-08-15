@@ -1,0 +1,30 @@
+<h2>New Resume</h2>
+
+<%= simple_form_for(@resume, html: { class: "form-horizontal center max-width" }) do |f| %>
+  <% if @resume.errors.any? %>
+    <div id='error_explanationo'>
+      <h2><%= pluralize(@resume,errors.count, 'error') %> prohibited this resume from being saved:</h2>
+      <ul>
+        <% @company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.input :firstname, class: "form-control" %>
+    <%= f.input :lastname, class: 'form-control' %>
+    <%= f.input :phone, class: 'form-control' %>
+    <%= f.association :location,
+                      collection: Location.all,
+                      label: 'Current Location',
+                      prompt: 'Choose a location',
+                      class: 'form-control' %>
+    <%= f.input :cover, as: :file %>
+    <%= image_tag @resume.cover.url(:preview),
+        class: "img-rounded text-center",
+        size: '230x100' %>
+    <%= f.button :submit %>
+  </div>
+<% end %>

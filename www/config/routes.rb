@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   get 'which_role' => 'pages#which_role'
   get 'select_jobs' => 'jobs#select_jobs', defaults: { format: 'json' }
 
-  resources :companies
   resources :jobs
+  resources :resumes
+  resources :companies
 
 end
