@@ -18,7 +18,7 @@ class Job < ActiveRecord::Base
 
   has_many :impressions, as: :impressionable
 
-  scope :published, -> { where(is_published: true) }
+  default_scope { where(is_published: true) }
 
   def impression_count
     impressions.size
@@ -54,10 +54,18 @@ class Job < ActiveRecord::Base
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
-    num_or_conditions = 3
-    where(
+    num_or_conditions = 4
+
+    # includes(:company)
+    # .where(company: {name: name})
+    # .where("title LIKE ?", title)
+    # .where("description LIKE ?", description)
+
+    joins(:company)
+    .where(
       terms.map {
         or_clauses = [
+          "LOWER(companies.name) LIKE ?",
           "LOWER(jobs.title) LIKE ?",
           "LOWER(jobs.description) LIKE ?",
           "LOWER(jobs.requirement) LIKE ?"
@@ -66,6 +74,16 @@ class Job < ActiveRecord::Base
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conditions }.flatten
     )
+    # num_or_conditions = 1
+    # where(
+    #   terms.map {
+    #     or_clauses = [
+    #       "LOWER(companies.name) LIKE ?"
+    #     ].join(' OR ')
+    #     "(#{ or_clauses })"
+    #   }.join(' AND '),
+    #   *terms.map { |e| [e] * num_or_conditions }.flatten
+    # ).joins(:company)
   }
 
   scope :sorted_by, -> (sort_option) {
