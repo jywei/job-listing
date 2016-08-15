@@ -18,6 +18,10 @@ class ResumesController < ApplicationController
     end
   end
 
+  def education
+    
+  end
+
   def edit
     # @resime = Resume.find(:id)
   end

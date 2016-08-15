@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815051402) do
+ActiveRecord::Schema.define(version: 20160815104623) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -63,6 +63,12 @@ ActiveRecord::Schema.define(version: 20160815051402) do
   end
 
   create_table "countries", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "degree_levels", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -170,6 +176,19 @@ ActiveRecord::Schema.define(version: 20160815051402) do
     t.datetime "updated_at",                         null: false
   end
 
+  create_table "schools", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.date     "start_day"
+    t.date     "end_day"
+    t.integer  "degree_level_id", limit: 4
+    t.string   "field_of_study",  limit: 255
+    t.string   "grade",           limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "schools", ["degree_level_id"], name: "index_schools_on_degree_level_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -198,4 +217,5 @@ ActiveRecord::Schema.define(version: 20160815051402) do
 
   add_foreign_key "resumes", "locations"
   add_foreign_key "resumes", "users"
+  add_foreign_key "schools", "degree_levels"
 end
