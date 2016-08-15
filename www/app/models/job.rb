@@ -61,11 +61,15 @@ class Job < ActiveRecord::Base
     # .where("title LIKE ?", title)
     # .where("description LIKE ?", description)
 
-    joins(:company)
+    joins(:company, :location, :country, :category, :industry)
     .where(
       terms.map {
         or_clauses = [
           "LOWER(companies.name) LIKE ?",
+          # "LOWER(locations.name) LIKE ?",
+          # "LOWER(countries.name) LIKE ?",
+          # "LOWER(categories.name) LIKE ?",
+          # "LOWER(industries.name) LIKE ?",
           "LOWER(jobs.title) LIKE ?",
           "LOWER(jobs.description) LIKE ?",
           "LOWER(jobs.requirement) LIKE ?"
