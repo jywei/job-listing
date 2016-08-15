@@ -5,7 +5,7 @@
     <div class="search">
       <h1 class="center">Let us find you a job!</h1>
       <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-      <%= f.text_field(:search_query, class: 'filterrific-periodically-observed search-bar') %>
+        <%= f.text_field(:search_query, class: 'search-bar') %>
     </div>
     <h1>We found <%= @filterrific.find.size %> jobs</h1>
   </div>
@@ -16,7 +16,7 @@
     </div>
     <div>
       Job Posted After
-      <%= f.text_field(:with_posted_at_gte, class: 'js-datepicker') %>
+      <%= f.text_field(:with_posted_at_gte, class: 'js-datepicker filterrific-periodically-observed') %>
     </div>
     <div class="panel-group max-width" id="" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
@@ -32,7 +32,7 @@
             <%= f.collection_check_boxes(:with_industry_id, Industry.all, :id, :name) do |b| %>
             <div class="block filter-list">
               <div class="inline">
-                <%= b.check_box %>
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
                 <%= b.object.name %>
                 (<%= @jobs.where(industry_id: b.object.id).size %>)
               </div>
@@ -54,7 +54,7 @@
             <%= f.collection_check_boxes(:with_category_id, Category.all, :id, :name) do |b| %>
             <div class="block filter-list">
               <div class="inline">
-                <%= b.check_box %>
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
                 <%= b.object.name %>
                 (<%= @jobs.where(category_id: b.object.id).size %>)
               </div>
@@ -76,7 +76,7 @@
             <%= f.collection_check_boxes(:with_contract_type_id, ContractType.all, :id, :name) do |b| %>
             <div class="block filter-list">
               <div class="inline">
-                <%= b.check_box %>
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
                 <%= b.object.name %>
                 (<%= @jobs.where(contract_type_id: b.object.id).size %>)
               </div>
@@ -98,7 +98,7 @@
             <%= f.collection_check_boxes(:with_location_id, Location.all, :id, :name) do |b| %>
             <div class="block filter-list">
               <div class="inline">
-                <%= b.check_box %>
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
                 <%= b.object.name %>
                 (<%= @jobs.where(location_id: b.object.id).size %>)
               </div>
@@ -120,7 +120,7 @@
             <%= f.collection_check_boxes(:with_salary_range_id, SalaryRange.all, :id, :range) do |b| %>
             <div class="block filter-list">
               <div class="inline">
-                <%= b.check_box %>
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
                 <%= b.object.range %>
                 (<%= @jobs.where(salary_range_id: b.object.id).size %>)
               </div>
@@ -133,16 +133,16 @@
       <div class="panel panel-default">
         <div class="panel-heading collapsed" role="tab" id="headingSix" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
           <h4 class="panel-title">
-            Comapany Name
+            Company Name
           </h4>
           <i class="fa fa-chevron-down arrow-down"></i>
         </div>
         <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
           <div class="panel-body">
-            <%= f.collection_check_boxes(:with_company_id, Company.all, :id, :name) do |b| %>
+            <%= f.collection_check_boxes(:with_company_id, Company.most_jobs, :id, :name) do |b| %>
             <div class="block filter-list">
               <div class="inline">
-                <%= b.check_box %>
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
                 <%= b.object.name %>
                 (<%= @jobs.where(company_id: b.object.id).size %>)
               </div>
@@ -155,7 +155,7 @@
   </div>
   <div>
     Sorted by
-    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], class: "filterrific-periodically-observed") %>
   </div>
   <%= render_filterrific_spinner %>
 <% end %>

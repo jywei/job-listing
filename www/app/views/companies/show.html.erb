@@ -27,33 +27,67 @@
 <p>android: <%= link_to @company.android %></p>
 <p>Total Views: <%= @company.impression_count %></p>
 
-<p>Current Opportunity <%= @company.jobs_count %>: </p>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Position</th>
-      <th>Type</th>
-      <th>Salary</th>
-      <th>Country</th>
-      <th>City</th>
-      <th>Starting Date</th>
-      <th>Application</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @company.jobs.each do |job| %>
-    <tr>
-      <td><%= link_to job.title, job %></td>
-      <td><%= job.contract_type.name %></td>
-      <td><%= job.salary_range.range %></td>
-      <td><%= job.country.name %></td>
-      <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
-      <td><%= job.start_day %></td>
-      <td><%= link_to "Job", edit_job_path(job) %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><%= link_to "My Jobs", "#my_jobs", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Saved CV", "#saved_cv", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Account Status", "#status", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Account Settings", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+  <div id="my_jobs" class="tab-pane fade in active">
+    <p>Current Opportunity <%= @company.jobs_count %>: </p>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Type</th>
+          <th>Salary</th>
+          <th>Country</th>
+          <th>City</th>
+          <th>Starting Date</th>
+          <th colspan="2">Application</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @company.jobs.each do |job| %>
+        <tr>
+          <td><%= link_to job.title, job %></td>
+          <td><%= job.contract_type.name %></td>
+          <td><%= job.salary_range.range %></td>
+          <td><%= job.country.name %></td>
+          <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
+          <td><%= job.start_day %></td>
+          <td><%= link_to "Edit", edit_job_path(job) %></td>
+          <td><%= link_to "Delete", job_path(job), method: :delete %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="saved_cv" class="tab-pane fade">
+    <h3>Saved CV</h3>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+  <div id="status" class="tab-pane fade">
+    <h3>Account Status</h3>
+    <%= render 'layouts/pricing_table' %>
+
+  <div id="settings" class="tab-pane fade">
+    <h3>Account Settings</h3>
+    <%= render 'form' %>
+  </div>
+</div>
 
 <%= link_to 'Edit Company Information', edit_company_path(@company) %> |
 <%= link_to 'Create a new job', "/jobs/new?company_id=#{@company.id}" %>
+
+<script>
+  $(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+      $(this).tab('show');
+    });
+  });
+</script>

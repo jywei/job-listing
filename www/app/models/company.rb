@@ -18,7 +18,9 @@ class Company < ActiveRecord::Base
   belongs_to :country
   belongs_to :location
 
-  scope :hiring, -> { where(is_hiring: true) }
+  default_scope { where(is_hiring: true) }
+
+  scope :most_jobs, -> { order("jobs_count DESC").limit(6) }
 
   def impression_count
     impressions.size

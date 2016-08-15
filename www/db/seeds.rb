@@ -8,8 +8,8 @@
 
 require 'csv'
 
-Company.create([{ name: "Apple", tagline: "Awesome!", phone: "0989098878", email: "amazingjob@hr.hr", about: "about love", welfare: "a lot of money", demand: "gay guys are awesome", idea: "to conquer the world", website: "none", facebook: "nope", twitter: "JIC", ios: "too fancy", android: "hmmm", industry_id: 1, employee_range_id: 4, country_id: 150, location_id: 5 },
-            { name: "Airbnb", tagline: "Awesome!", phone: "0989098878", email: "amazingjob@hr.hr", about: "about love", welfare: "a lot of money", demand: "gay guys are awesome", idea: "to conquer the world", website: "none", facebook: "nope", twitter: "JIC", ios: "too fancy", android: "hmmm", industry_id: 2, employee_range_id: 5, country_id: 150, location_id: 1 }])
+Company.create([{ name: "Apple", tagline: "Awesome!", phone: "0989098878", email: "amazingjob@hr.hr", about: "about love", welfare: "a lot of money", demand: "gay guys are awesome", idea: "to conquer the world", website: "none", facebook: "nope", twitter: "JIC", ios: "too fancy", android: "hmmm", industry_id: 1, employee_range_id: 4, country_id: 150, location_id: 5, is_hiring: true },
+            { name: "Airbnb", tagline: "Awesome!", phone: "0989098878", email: "amazingjob@hr.hr", about: "about love", welfare: "a lot of money", demand: "gay guys are awesome", idea: "to conquer the world", website: "none", facebook: "nope", twitter: "JIC", ios: "too fancy", android: "hmmm", industry_id: 2, employee_range_id: 5, country_id: 150, location_id: 1, is_hiring: true }])
 
 Category.create([{ name: 'Accounting / Finance' }, { name: 'Sales' }, { name: 'Marketing' }])
 

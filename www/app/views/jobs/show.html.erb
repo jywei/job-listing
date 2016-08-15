@@ -10,4 +10,4 @@
 <% end %>
 
 <%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', company_path(@job.company) %>
+<%= link_to 'Back', company_path(@job.company) if @job.company.present? %>
