@@ -1,6 +1,6 @@
 <h2>Published Jobs</h2>
-<% @company.jobs.published.each do |job| %>
-  <% if job.is_published == true && job.status != "expired" %>
+<% if @company.jobs.published.exists && @company.jobs.not_expired.exists %>
+  <% @company.jobs.published.each do |job| %>
     <br>
     <table class="table table-hover">
       <thead>
@@ -27,16 +27,17 @@
         </tr>
       </tbody>
     </table>
-  <% else %>
-    <h4>Currently there are no published jobs.</h4>
   <% end %>
+<% else %>
+  <h4>Currently there are no published jobs.</h4>
 <% end %>
+
 
 <br>
 
 <h2>Unpublished Jobs</h2>
-<% @company.jobs.unpublished.each do |job| %>
-  <% if job.is_published == false %>
+<% if @company.jobs.unpublished.exists && @company.jobs.not_expired.exists %>
+  <% @company.jobs.unpublished.each do |job| %>
     <br>
     <table class="table table-hover">
       <thead>
@@ -63,15 +64,16 @@
         </tr>
       </tbody>
     </table>
-  <% else %>
-    <h4>Currently there are no unpublished jobs.</h4>
   <% end %>
+<% else %>
+  <h4>Currently there are no unpublished jobs.</h4>
 <% end %>
+
 
 <br>
 
 <h2>Expired Jobs</h2>
-<% if @company.jobs.expired.exists? %>
+<% if @company.jobs.expired.exists %>
   <% @company.jobs.expired.each do |job| %>
     <br>
     <table class="table table-hover">

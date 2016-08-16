@@ -4,6 +4,7 @@ class Job < ActiveRecord::Base
   scope :unpublished, -> { where(is_published: false) }
   scope :published, -> { where(is_published: true) }
   scope :expired, -> { where(status: "expired") }
+  scope :not_expired, -> { where.not(status: "expired") }
 
   belongs_to :company, counter_cache: :jobs_count
   belongs_to :category, counter_cache: :jobs_count

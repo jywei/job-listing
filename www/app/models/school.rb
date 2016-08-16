@@ -1,3 +1,3 @@
 class School < ActiveRecord::Base
-  belongs_to :degree_level_id
+  has_many :degree_levels
 end

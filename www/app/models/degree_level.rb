@@ -1,3 +1,3 @@
 class DegreeLevel < ActiveRecord::Base
-  has_many :schools
+  belongs_to :school
 end
