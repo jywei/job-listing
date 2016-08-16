@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   get 'which_role' => 'pages#which_role'
   get 'select_jobs' => 'jobs#select_jobs', defaults: { format: 'json' }
   get 'resumes/education' => 'resumes#education'
-  get 'resumes/school' => 'resumes#school'
+  get 'resumes/getEdu' => 'resumes#getEdu'
+  get 'resumes/addSch' => 'resumes#addSch'
 
   resources :jobs
   resources :resumes
