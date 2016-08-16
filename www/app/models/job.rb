@@ -1,6 +1,10 @@
 class Job < ActiveRecord::Base
   resourcify
 
+  scope :unpublished, -> { where(is_published: false) }
+  scope :published, -> { where(is_published: true) }
+  scope :expired, -> { where(status: "expried") }
+
   belongs_to :company, counter_cache: :jobs_count
   belongs_to :category, counter_cache: :jobs_count
   belongs_to :industry, counter_cache: :jobs_count
@@ -17,8 +21,6 @@ class Job < ActiveRecord::Base
   validates :professional_skill,  presence: true
 
   has_many :impressions, as: :impressionable
-
-  default_scope { where(is_published: true) }
 
   def impression_count
     impressions.size
@@ -61,7 +63,7 @@ class Job < ActiveRecord::Base
     # .where("title LIKE ?", title)
     # .where("description LIKE ?", description)
 
-    joins(:company, :location, :country, :category, :industry)
+    joins(:company)
     .where(
       terms.map {
         or_clauses = [
