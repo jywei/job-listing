@@ -2,26 +2,37 @@
 
 <h3>Your Education</h3>
 
-<h3>Schools/Universities</h3>
+<div>
+  <h3 class="inline">Schools/Universities</h3>
 
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  ADD
-</button>
+  <button type="button" class="btn btn-primary floatright" data-toggle="modal" data-target="#myModal">
+    ADD
+  </button>
+</div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-body">
-        <%= form_tag '#', method: :get, remote: true do %>
-          <%= text_field_tag :name %>
-          <%= submit_tag :submit_tag %>
-        <% end %>
-      </div>
+      <%= form_tag '#', method: :get, remote: true, class: "form" do %>
+        <div class="modal-body">
+          <%= text_field_tag :name, "", class: "form-control" %>
+          <div>
+            <%= text_field_tag :start_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
+            <%= text_field_tag :end_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
+          </div>
+          <%= select_tag 'degree_level_id', options_from_collection_for_select(DegreeLevel.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <%= text_field_tag :field_of_study, '', class: 'form-control' %>
+          <%= text_field_tag :grade, '', class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
 
-<ul>
+<ul class="sch-form">
 </ul>
 
 <h3>Languages</h3>
@@ -35,3 +46,11 @@
 <h3>Accomplishments</h3>
 <ul>
 </ul>
+
+<script>
+  $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
+  $('.js-datepicker').datepicker();
+</script>
+
+<%= javascript_include_tag '/assets/education' %>
+
