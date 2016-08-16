@@ -31,6 +31,8 @@ SalaryRange.find_each { |salary_range| SalaryRange.reset_counters(salary_range.i
 
 Company.find_each { |company| Company.reset_counters(company.id, :jobs) }
 
+DegreeLevel.create([{ name: "High School or equivalent" }, { name: 'Vocational training' }, { name: 'Certification(Diploma)' }, { name: "Bachelor's degree" }, { name: "Master's degree" }])
+
 puts "Importing cities..."
 count = 1
 CSV.foreach(Rails.root.join("myanmar_city.csv"), headers: false) do |row|

@@ -1,0 +1,37 @@
+<h2>Your Education</h2>
+
+<h3>Your Education</h3>
+
+<h3>Schools/Universities</h3>
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  ADD
+</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= form_tag '#', method: :get, remote: true do %>
+          <%= text_field_tag :name %>
+          <%= submit_tag :submit_tag %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ul>
+</ul>
+
+<h3>Languages</h3>
+<ul>
+</ul>
+
+<h3>Interests and activities</h3>
+<ul>
+</ul>
+
+<h3>Accomplishments</h3>
+<ul>
+</ul>
