@@ -1,6 +1,8 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show], unique: [:session_hash]
+  before_action :expiration_check, only: [:index]
+
   authorize_resource
 
   # GET /jobs
@@ -18,7 +20,7 @@ class JobsController < ApplicationController
         with_company_id: Company.options_for_select
       }
     ) or return
-    @jobs = @filterrific.find.page(params[:page])
+    @jobs = @filterrific.find.includes(:impressions, :company, :industry, :location, :category, :contract_type).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -109,4 +111,9 @@ class JobsController < ApplicationController
       @job = Job.find(params[:id])
       impressionist(@job)
     end
+
+    def expiration_check
+      Job.where("start_day < ?", Date.today).update_all(status: 'expired')
+    end
+
 end

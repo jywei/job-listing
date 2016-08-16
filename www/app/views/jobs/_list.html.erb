@@ -5,11 +5,12 @@
     <%= will_paginate jobs %>
   </div>
       <div class="table">
-        <% jobs.each do |job| %>
+        <% jobs.published.each do |job| %>
           <div class="job-list" style="border: 1px solid #111111;">
             <tr>
-              <td><p><%= job.decorated_start_day %></p></td>
+              <td><p>The vacanncy will expire at: <%= job.decorated_start_day %></p></td>
               <td><h2><%= link_to job.title, job %></h2></td>
+              <td><h3>Vacanncy Created At: <%= job.decorated_created_at %></h3></td>
               <td><p>(<%= job.contract_type.name %>)</p></td>
               <td><i class="fa fa-eye"></i><p><%= "#{ job.impressionist_count } views" %></p></td>
               <hr>
