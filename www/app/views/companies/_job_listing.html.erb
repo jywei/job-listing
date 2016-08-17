@@ -1,6 +1,6 @@
 <h2>Published Jobs</h2>
-<% if @company.jobs.published.exists && @company.jobs.not_expired.exists %>
-  <% @company.jobs.published.each do |job| %>
+<% if @company.jobs.published.present? && @company.jobs.unexpired.present? %>
+  <% @company.jobs.published.unexpired.each do |job| %>      <!-- not expried and published -->
     <br>
     <table class="table table-hover">
       <thead>
@@ -35,8 +35,8 @@
 <br>
 
 <h2>Unpublished Jobs</h2>
-<% unless @company.jobs.unpublished.nil? && @company.jobs.not_expired.nil? %>
-  <% @company.jobs.unpublished.each do |job| %>
+<% if @company.jobs.unpublished.present? && @company.jobs.unexpired.present? %>
+  <% @company.jobs.unpublished.unexpired.each do |job| %>     <!-- not published and not expired -->
     <br>
     <table class="table table-hover">
       <thead>
@@ -71,8 +71,8 @@
 <br>
 
 <h2>Expired Jobs</h2>
-<% unless @company.jobs.expired.nil? %>
-  <% @company.jobs.expired.each do |job| %>
+<% if @company.jobs.expired.present? %>
+  <% @company.jobs.expired.each do |job| %>     <!-- expired -->
     <br>
     <table class="table table-hover">
       <thead>

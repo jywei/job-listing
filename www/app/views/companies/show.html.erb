@@ -6,6 +6,11 @@
 <%= image_tag @company.image.url(:thumb),
             class: "img-rounded text-center",
             size: '100x100' %>
+<br>
+<br />
+
+<%= link_to 'Edit Company Information', edit_company_path(@company), class: "btn btn-default" %>
+<%= link_to 'Create a new job', "/jobs/new?company_id=#{@company.id}", class: "btn btn-default" %>
 
 <h2><strong>Company Name: </strong><%= @company.name %></h2>
 <p><strong>Tagline: </strong><%= @company.tagline %></p>
@@ -54,9 +59,6 @@
     <%= render 'form' %>
   </div>
 </div>
-
-<%= link_to 'Edit Company Information', edit_company_path(@company) %> |
-<%= link_to 'Create a new job', "/jobs/new?company_id=#{@company.id}" %>
 
 <script>
   $(document).ready(function(){

@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show], unique: [:session_hash]
+  before_action :expiration_check, only: [:show]
 
   def index
     @companies = Company.all
@@ -74,5 +75,9 @@ class CompaniesController < ApplicationController
     def log_impression
       @company = Company.find(params[:id])
       impressionist(@company)
+    end
+
+    def expiration_check
+      Job.where("start_day < ?", Date.today).update_all(status: 'expired')
     end
 end
