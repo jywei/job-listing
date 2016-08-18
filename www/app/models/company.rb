@@ -13,10 +13,14 @@ class Company < ActiveRecord::Base
   has_many :jobs
   has_many :impressions, as: :impressionable
 
+  has_many :following_users, class_name: 'User', through: :reserved_companies
+  has_many :reserved_companies, foreign_key: 'favorite_company_id'
+
   belongs_to :industry
   belongs_to :employee_range
   belongs_to :country
   belongs_to :location
+  belongs_to :user
 
   default_scope { where(is_hiring: true) }
 

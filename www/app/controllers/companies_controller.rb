@@ -3,6 +3,8 @@ class CompaniesController < ApplicationController
   before_action :log_impression, only: [:show], unique: [:session_hash]
   before_action :expiration_check, only: [:show]
 
+  respond_to :html, :js
+
   def index
     @companies = Company.all
   end
@@ -42,6 +44,20 @@ class CompaniesController < ApplicationController
     redirect_to companies_url, notice: 'Company was successfully destroyed.'
   end
 
+  def save_to_favorites
+    @reserve_company = ReservedCompany.create(following_user_id: current_user.id, favorite_company_id: params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def unlike
+    @reserve_company.destroy
+    respond_to do |format|
+      format.json
+    end
+  end
+
   private
 
     def set_company
@@ -53,6 +69,8 @@ class CompaniesController < ApplicationController
                                       :tagline,
                                       :phone,
                                       :email,
+                                      :address1,
+                                      :address2,
                                       :about,
                                       :story,
                                       :welfare,

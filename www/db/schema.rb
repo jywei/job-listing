@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815104623) do
+ActiveRecord::Schema.define(version: 20160818053611) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20160815104623) do
     t.integer  "country_id",         limit: 4
     t.integer  "location_id",        limit: 4
     t.integer  "user_id",            limit: 4
+    t.string   "address1",           limit: 255
+    t.string   "address2",           limit: 255
   end
 
   create_table "contract_types", force: :cascade do |t|
@@ -72,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160815104623) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "school_id",  limit: 4
   end
 
   create_table "employee_ranges", force: :cascade do |t|
@@ -141,6 +144,13 @@ ActiveRecord::Schema.define(version: 20160815104623) do
     t.datetime "updated_at",                         null: false
   end
 
+  create_table "reserved_companies", force: :cascade do |t|
+    t.integer  "following_user_id",   limit: 4
+    t.integer  "favorite_company_id", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
   create_table "resumes", force: :cascade do |t|
     t.string   "firstname",          limit: 255
     t.string   "lastname",           limit: 255
@@ -177,17 +187,23 @@ ActiveRecord::Schema.define(version: 20160815104623) do
   end
 
   create_table "schools", force: :cascade do |t|
-    t.string   "name",            limit: 255
+    t.integer  "university_id",   limit: 4
     t.date     "start_day"
     t.date     "end_day"
     t.integer  "degree_level_id", limit: 4
     t.string   "field_of_study",  limit: 255
     t.string   "grade",           limit: 255
+    t.integer  "resume_id",       limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "schools", ["degree_level_id"], name: "index_schools_on_degree_level_id", using: :btree
+  create_table "universities", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "country_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

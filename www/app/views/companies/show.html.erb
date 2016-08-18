@@ -11,11 +11,13 @@
 
 <%= link_to 'Edit Company Information', edit_company_path(@company), class: "btn btn-default" %>
 <%= link_to 'Create A New Job', "/jobs/new?company_id=#{@company.id}", class: "btn btn-default" %>
+<%= link_to 'Save company to favorites', "#", remote: true, 'data-id': @company.id, class: "btn btn-default like_button" %>
 
 <h2><strong>Company Name: </strong><%= @company.name %></h2>
 <p><strong>Tagline: </strong><%= @company.tagline %></p>
 <p><strong>Employee Numbers: </strong><%= @company.employee_range.range %></p>
 <p><strong>Industry: </strong><%= @company.industry.name if @company.industry.present? %></p>
+<p><strong>Address: </strong><%= @company.address1 %> <%= @company.address2 %></p>
 <p><strong>Country: </strong><%= @company.country.name %></p>
 <p><strong>State: </strong><%= @company.location.name if @company.location.present? %></p>
 <p><strong>Phone: </strong><%= @company.phone %></p>
@@ -65,5 +67,11 @@
     $(".nav-tabs a").click(function(){
       $(this).tab('show');
     });
+
+    $('.like_button').click(function(){
+      $.getJSON('/companies/save_to_favorites?id=' + $(this).data('id'), function(data){
+        console.log(data)
+      })
+    })
   });
 </script>
