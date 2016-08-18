@@ -7,7 +7,7 @@
       <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
         <%= f.text_field(:search_query, class: 'search-bar') %>
     </div>
-    <h1>We found <%= @filterrific.find.size %> jobs</h1>
+    <h1>We found <%= @jobs.size %> jobs</h1>
   </div>
   <div class="col-md-4">
     <p>Filter by:</p>

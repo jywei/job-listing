@@ -39,7 +39,8 @@ class Job < ActiveRecord::Base
       :with_salary_range_id,
       :with_company_id,
       :with_posted_at_gte,
-      :unexpired
+      :unexpired,
+      :published
     ]
   )
 
@@ -60,20 +61,11 @@ class Job < ActiveRecord::Base
     # change the number of OR conditions.
     num_or_conditions = 4
 
-    # includes(:company)
-    # .where(company: {name: name})
-    # .where("title LIKE ?", title)
-    # .where("description LIKE ?", description)
-
     joins(:company)
     .where(
       terms.map {
         or_clauses = [
           "LOWER(companies.name) LIKE ?",
-          # "LOWER(locations.name) LIKE ?",
-          # "LOWER(countries.name) LIKE ?",
-          # "LOWER(categories.name) LIKE ?",
-          # "LOWER(industries.name) LIKE ?",
           "LOWER(jobs.title) LIKE ?",
           "LOWER(jobs.description) LIKE ?",
           "LOWER(jobs.requirement) LIKE ?"
@@ -82,16 +74,6 @@ class Job < ActiveRecord::Base
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conditions }.flatten
     )
-    # num_or_conditions = 1
-    # where(
-    #   terms.map {
-    #     or_clauses = [
-    #       "LOWER(companies.name) LIKE ?"
-    #     ].join(' OR ')
-    #     "(#{ or_clauses })"
-    #   }.join(' AND '),
-    #   *terms.map { |e| [e] * num_or_conditions }.flatten
-    # ).joins(:company)
   }
 
   scope :sorted_by, -> (sort_option) {
@@ -143,9 +125,13 @@ class Job < ActiveRecord::Base
     where('created_at >= ?', date)
   }
 
-  scope :not_expired, -> {
-    where.not(status: "expired")
-  }
+  # scope :unexpired, -> {
+  #   where(status: nil)
+  # }
+
+  # scope :published, -> {
+  #   where(is_published: true)
+  # }
 
   delegate :name, to: :industry, prefix: true
   delegate :name, to: :category, prefix: true
@@ -175,11 +161,5 @@ class Job < ActiveRecord::Base
       update_attributes(location_id: nil)
     end
   end
-
-  # def expiration_check
-  #   if start_day < Date.today
-  #     update_attributes(status: "expired")
-  #   end
-  # end
 
 end

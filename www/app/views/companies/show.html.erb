@@ -10,7 +10,7 @@
 <br />
 
 <%= link_to 'Edit Company Information', edit_company_path(@company), class: "btn btn-default" %>
-<%= link_to 'Create a new job', "/jobs/new?company_id=#{@company.id}", class: "btn btn-default" %>
+<%= link_to 'Create A New Job', "/jobs/new?company_id=#{@company.id}", class: "btn btn-default" %>
 
 <h2><strong>Company Name: </strong><%= @company.name %></h2>
 <p><strong>Tagline: </strong><%= @company.tagline %></p>
@@ -36,7 +36,7 @@
   <li role="presentation" class="active"><%= link_to "My Jobs", "#my_jobs", class: "btn btn-default", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Saved CV", "#saved_cv", class: "btn btn-default", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Account Status", "#status", class: "btn btn-default", "data-toggle" => "tab" %></li>
-  <li role="presentation"><%= link_to "Account Settings", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Company Profile", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>
 </ul>
 
 <br>

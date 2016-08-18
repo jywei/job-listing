@@ -25,7 +25,7 @@ class ResumesController < ApplicationController
     @schools = School.all
 
     respond_to do |format|
-      format.html { render :json => { :school => @schools } }
+      format.html { render json: { school: @schools } }
     end
   end
 
@@ -38,7 +38,7 @@ class ResumesController < ApplicationController
                               field_of_study: params[:field_of_study],
                               grade: params[:grade])
     respond_to do |format|
-      format.html { render :json => { :school => @school } }
+      format.html { render json: { school: @school } }
     end
   end
 

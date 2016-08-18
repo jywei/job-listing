@@ -8,7 +8,7 @@ class JobsController < ApplicationController
   # GET /jobs
   def index
     @filterrific = initialize_filterrific(
-      Job,
+      Job.unexpired.published,
       params[:filterrific],
       select_options: {
         sorted_by: Job.options_for_sorted_by,
