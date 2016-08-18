@@ -32,7 +32,11 @@ class ResumesController < ApplicationController
     end
 
     respond_to do |format|
+<<<<<<< HEAD
       format.html { render :json => { :school => bigschool } }
+=======
+      format.html { render json: { school: @schools } }
+>>>>>>> 6efb9bb6c4a8937c18e1dbaad3835b51a4ed5c3b
     end
   end
 
@@ -58,7 +62,11 @@ class ResumesController < ApplicationController
     end
 
     respond_to do |format|
+<<<<<<< HEAD
       format.json { render :json => boolean }
+=======
+      format.html { render json: { school: @school } }
+>>>>>>> 6efb9bb6c4a8937c18e1dbaad3835b51a4ed5c3b
     end
   end
 

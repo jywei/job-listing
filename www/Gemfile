@@ -50,6 +50,8 @@ gem 'paperclip', '~> 5.0.0'  #rails generate paperclip company image
 
 gem 'aws-sdk'
 
+gem 'responders'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'figaro', '~> 1.1', '>= 1.1.1'  #bundle exec figaro install

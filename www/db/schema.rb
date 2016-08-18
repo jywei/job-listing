@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20160817050640) do
     t.integer  "country_id",         limit: 4
     t.integer  "location_id",        limit: 4
     t.integer  "user_id",            limit: 4
+    t.string   "address1",           limit: 255
+    t.string   "address2",           limit: 255
   end
 
   create_table "contract_types", force: :cascade do |t|
@@ -140,6 +142,13 @@ ActiveRecord::Schema.define(version: 20160817050640) do
     t.integer  "jobs_count", limit: 4,   default: 0
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+  end
+
+  create_table "reserved_companies", force: :cascade do |t|
+    t.integer  "following_user_id",   limit: 4
+    t.integer  "favorite_company_id", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "resumes", force: :cascade do |t|

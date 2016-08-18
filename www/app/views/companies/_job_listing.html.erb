@@ -1,6 +1,6 @@
 <h2>Published Jobs</h2>
-<% @company.jobs.published.each do |job| %>
-  <% if job.is_published == true %>
+<% if @company.jobs.published.present? && @company.jobs.unexpired.present? %>
+  <% @company.jobs.published.unexpired.each do |job| %>      <!-- not expried and published -->
     <br>
     <table class="table table-hover">
       <thead>
@@ -10,7 +10,7 @@
           <th>Salary</th>
           <th>Country</th>
           <th>City</th>
-          <th>Starting Date</th>
+          <th>Vacanncy Expiration Date</th>
           <th colspan="2">Application</th>
         </tr>
       </thead>
@@ -27,16 +27,16 @@
         </tr>
       </tbody>
     </table>
-  <% else %>
-    <h4>Currently there are no published jobs.</h4>
   <% end %>
+<% else %>
+  <h4>Currently there are no published jobs.</h4>
 <% end %>
 
 <br>
 
 <h2>Unpublished Jobs</h2>
-<% @company.jobs.unpublished.each do |job| %>
-  <% if job.is_published == false %>
+<% if @company.jobs.unpublished.present? && @company.jobs.unexpired.present? %>
+  <% @company.jobs.unpublished.unexpired.each do |job| %>     <!-- not published and not expired -->
     <br>
     <table class="table table-hover">
       <thead>
@@ -46,7 +46,7 @@
           <th>Salary</th>
           <th>Country</th>
           <th>City</th>
-          <th>Starting Date</th>
+          <th>Vacanncy Expiration Date</th>
           <th colspan="2">Application</th>
         </tr>
       </thead>
@@ -63,16 +63,16 @@
         </tr>
       </tbody>
     </table>
-  <% else %>
-    <h4>Currently there are no unpublished jobs.</h4>
   <% end %>
+<% else %>
+  <h4>Currently there are no unpublished jobs.</h4>
 <% end %>
 
 <br>
 
 <h2>Expired Jobs</h2>
-<% if @company.jobs.expired.exists? %>
-  <% @company.jobs.expired.each do |job| %>
+<% if @company.jobs.expired.present? %>
+  <% @company.jobs.expired.each do |job| %>     <!-- expired -->
     <br>
     <table class="table table-hover">
       <thead>
@@ -82,7 +82,7 @@
           <th>Salary</th>
           <th>Country</th>
           <th>City</th>
-          <th>Starting Date</th>
+          <th>Vacanncy Expiration Date</th>
           <th colspan="2">Application</th>
         </tr>
       </thead>

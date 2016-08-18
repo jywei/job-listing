@@ -144,7 +144,7 @@
   position: relative;
 }
 
-#pricing-table #most-popular {
+#pricing-table .most-popular {
   z-index: 2;
   top: -13px;
   border-width: 3px;
@@ -185,7 +185,7 @@
   background-image: linear-gradient(#fff, #eee);
 }
 
-#pricing-table #most-popular h3 {
+#pricing-table .most-popular h3 {
   background-color: #ddd;
   background-image: -moz-linear-gradient(#eee,#ddd);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));

@@ -1,13 +1,17 @@
 <h2><%= @job.title %></h2>
-<p><strong>Job Description: </strong><%= @job.description %></p>
+<p><strong>Company: </strong><%= link_to @job.company.name, company_path(@job.company) if @job.company.present? %></p>
+<p><strong>Job Category: </strong><%= @job.category.name %></p>
+<p><strong>Industry: </strong><%= @job.industry.name %></p>
+<p><strong>Contract Type: </strong><%= @job.contract_type.name %></p>
 <p><strong>Job Requiremnet: </strong><%= @job.requirement %></p>
 <p><strong>How to apply? </strong><%= @job.apply_instruction %></p>
 <p><strong>What kind of professional skill are we looking for? </strong><%= @job.professional_skill %></p>
-<p><strong>Job Starting Date: </strong><%= @job.start_day %></p>
+<p><strong>Monthly Salary: </strong><%= @job.salary_range.range %></p>
+<p><strong>Vacanncy Expiration Date: </strong><%= @job.start_day %></p>
 <p><strong>Country: </strong><%= @job.country.name %></p>
 <% if @job.location.present? %>
   <p><strong>State: </strong><%= @job.location.name %></p>
 <% end %>
 
-<%= link_to 'Edit', "/jobs/#{@job.id}/edit?company_id=#{@job.company.id}" %> |
-<%= link_to 'Back', company_path(@job.company) if @job.company.present? %>
+<%= link_to 'Edit Job Content', "/jobs/#{@job.id}/edit?company_id=#{@job.company.id}" %> |
+<%= link_to 'Back To Company Profile', company_path(@job.company) if @job.company.present? %>

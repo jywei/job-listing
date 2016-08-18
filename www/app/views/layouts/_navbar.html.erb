@@ -7,12 +7,20 @@
         <% if (user_signed_in?) && (current_user.has_role? :employer) %>
           <li><%= link_to "Post a Job", "/jobs/new?company_id=#{current_user.company.id}" %></li>
         <% end %>
-        <li><%= link_to "kerker", jobs_path %></li>
+        <li><%= link_to "CV Search", "#" %></li>
+        <li><%= link_to "My Company", @company %></li>
       </ul>
       <ul class="floatright">
         <% if user_signed_in? %>
-          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-          <li><%= current_user.email %></li>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn"><%= current_user.email %></button>
+              <div class="dropdown-content">
+                <%= link_to "Personal Account Update", edit_user_registration_path, class: "dropdown-btn" %>
+                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-btn" %>
+              </div>
+            </div>
+          </li>
         <% else %>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
           <li><%= link_to "Log In", new_user_session_path %></li>
@@ -24,3 +32,57 @@
     </div>
   <!-- </div> -->
 </nav>
+
+<style>
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: black;
+  color: white;
+  padding: 0 16px 16px 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  color: white !important;
+  background-color: black;
+}
+
+.dropdown-btn {
+  color: black !important;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: black;
+}
+</style>

@@ -1,24 +1,22 @@
 <div id="filterrific_results">
-
   <div>
     <%= page_entries_info jobs, entry_name: "Jobs", model: 'job'  %>
     <%= will_paginate jobs %>
   </div>
       <div class="table">
-        <% jobs.each do |job| %>
+        <% jobs.published.each do |job| %>
           <div class="job-list" style="border: 1px solid #111111;">
             <tr>
-              <td><p><%= job.decorated_start_day %></p></td>
+              <td><p>The vacanncy will expire at: <%= job.decorated_start_day %></p></td>
               <td><h2><%= link_to job.title, job %></h2></td>
+              <td><h3>Vacanncy Created At: <%= job.decorated_created_at %></h3></td>
               <td><p>(<%= job.contract_type.name %>)</p></td>
               <td><i class="fa fa-eye"></i><p><%= "#{ job.impressionist_count } views" %></p></td>
               <hr>
-              <td><i class="fa fa-dot-circle-o"></i><p><%= job.company.name if job.company.present? %></p></td>
+              <td><i class="fa fa-dot-circle-o"></i><p><%= link_to job.company.name, job.company %></p></td>
               <td><i class="fa fa-building"></i><p><%= job.industry.name %></p></td>
               <td><i class="fa fa-map-marker"></i><p><%= job.location.name if job.location.present? %> Myanmar</p></td>
               <td><i class="fa fa-laptop"></i><p><%= job.category.name %></p></td>
-              <td><%= link_to 'Edit', edit_job_path(job) %></td>
-              <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           </div>
         <br>

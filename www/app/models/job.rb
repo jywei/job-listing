@@ -3,7 +3,8 @@ class Job < ActiveRecord::Base
 
   scope :unpublished, -> { where(is_published: false) }
   scope :published, -> { where(is_published: true) }
-  scope :expired, -> { where(status: "expried") }
+  scope :expired, -> { where(status: "expired") }
+  scope :unexpired, -> { where(status: nil) }
 
   belongs_to :company, counter_cache: :jobs_count
   belongs_to :category, counter_cache: :jobs_count
@@ -27,7 +28,7 @@ class Job < ActiveRecord::Base
   end
 
   filterrific(
-    default_filter_params: { sorted_by: 'start_day_desc' },
+    default_filter_params: { sorted_by: 'created_at_desc' },
     available_filters: [
       :sorted_by,
       :search_query,
@@ -37,7 +38,9 @@ class Job < ActiveRecord::Base
       :with_location_id,
       :with_salary_range_id,
       :with_company_id,
-      :with_posted_at_gte
+      :with_posted_at_gte,
+      :unexpired,
+      :published
     ]
   )
 
@@ -58,20 +61,11 @@ class Job < ActiveRecord::Base
     # change the number of OR conditions.
     num_or_conditions = 4
 
-    # includes(:company)
-    # .where(company: {name: name})
-    # .where("title LIKE ?", title)
-    # .where("description LIKE ?", description)
-
     joins(:company)
     .where(
       terms.map {
         or_clauses = [
           "LOWER(companies.name) LIKE ?",
-          # "LOWER(locations.name) LIKE ?",
-          # "LOWER(countries.name) LIKE ?",
-          # "LOWER(categories.name) LIKE ?",
-          # "LOWER(industries.name) LIKE ?",
           "LOWER(jobs.title) LIKE ?",
           "LOWER(jobs.description) LIKE ?",
           "LOWER(jobs.requirement) LIKE ?"
@@ -80,24 +74,14 @@ class Job < ActiveRecord::Base
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conditions }.flatten
     )
-    # num_or_conditions = 1
-    # where(
-    #   terms.map {
-    #     or_clauses = [
-    #       "LOWER(companies.name) LIKE ?"
-    #     ].join(' OR ')
-    #     "(#{ or_clauses })"
-    #   }.join(' AND '),
-    #   *terms.map { |e| [e] * num_or_conditions }.flatten
-    # ).joins(:company)
   }
 
   scope :sorted_by, -> (sort_option) {
     # extract the sort direction from the param value.
     direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
     case sort_option.to_s
-    when /^start_day_/
-      order("jobs.start_day #{ direction }")
+    when /^created_at_/
+      order("jobs.created_at #{ direction }")
     when /^title_/
       order("LOWER(jobs.title) #{ direction }")
     # when /^industry_name_/
@@ -138,8 +122,16 @@ class Job < ActiveRecord::Base
   }
 
   scope :with_posted_at_gte, -> (date) {
-    where('start_day >= ?', date)
+    where('created_at >= ?', date)
   }
+
+  # scope :unexpired, -> {
+  #   where(status: nil)
+  # }
+
+  # scope :published, -> {
+  #   where(is_published: true)
+  # }
 
   delegate :name, to: :industry, prefix: true
   delegate :name, to: :category, prefix: true
@@ -151,8 +143,8 @@ class Job < ActiveRecord::Base
   def self.options_for_sorted_by
     [
       ['Title (a-z)', 'title_asc'],
-      ['Recently Published (newest first)', 'start_day_desc'],
-      ['Recently Published (oldest first)', 'start_day_asc']
+      ['Recently Published (newest first)', 'created_at_desc'],
+      ['Recently Published (oldest first)', 'created_at_asc']
     ]
   end
 
@@ -165,9 +157,8 @@ class Job < ActiveRecord::Base
   end
 
   def not_myanmar
-    unless self.country_id == 150
-      # binding.pry
-      self.update_attributes(location_id: nil)
+    unless country_id == 150
+      update_attributes(location_id: nil)
     end
   end
 

@@ -6,11 +6,18 @@
 <%= image_tag @company.image.url(:thumb),
             class: "img-rounded text-center",
             size: '100x100' %>
+<br>
+<br />
+
+<%= link_to 'Edit Company Information', edit_company_path(@company), class: "btn btn-default" %>
+<%= link_to 'Create A New Job', "/jobs/new?company_id=#{@company.id}", class: "btn btn-default" %>
+<%= link_to 'Save company to favorites', "#", remote: true, 'data-id': @company.id, class: "btn btn-default like_button" %>
 
 <h2><strong>Company Name: </strong><%= @company.name %></h2>
 <p><strong>Tagline: </strong><%= @company.tagline %></p>
 <p><strong>Employee Numbers: </strong><%= @company.employee_range.range %></p>
 <p><strong>Industry: </strong><%= @company.industry.name if @company.industry.present? %></p>
+<p><strong>Address: </strong><%= @company.address1 %> <%= @company.address2 %></p>
 <p><strong>Country: </strong><%= @company.country.name %></p>
 <p><strong>State: </strong><%= @company.location.name if @company.location.present? %></p>
 <p><strong>Phone: </strong><%= @company.phone %></p>
@@ -31,7 +38,7 @@
   <li role="presentation" class="active"><%= link_to "My Jobs", "#my_jobs", class: "btn btn-default", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Saved CV", "#saved_cv", class: "btn btn-default", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Account Status", "#status", class: "btn btn-default", "data-toggle" => "tab" %></li>
-  <li role="presentation"><%= link_to "Account Settings", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Company Profile", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>
 </ul>
 
 <br>
@@ -48,20 +55,23 @@
   <div id="status" class="tab-pane fade">
     <h3>Account Status</h3>
     <%= render 'layouts/pricing_table' %>
-
+  </div>
   <div id="settings" class="tab-pane fade">
     <h3>Account Settings</h3>
     <%= render 'form' %>
   </div>
 </div>
 
-<%= link_to 'Edit Company Information', edit_company_path(@company) %> |
-<%= link_to 'Create a new job', "/jobs/new?company_id=#{@company.id}" %>
-
 <script>
   $(document).ready(function(){
     $(".nav-tabs a").click(function(){
       $(this).tab('show');
     });
+
+    $('.like_button').click(function(){
+      $.getJSON('/companies/save_to_favorites?id=' + $(this).data('id'), function(data){
+        console.log(data)
+      })
+    })
   });
 </script>
