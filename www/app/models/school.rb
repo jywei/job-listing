@@ -1,3 +1,7 @@
 class School < ActiveRecord::Base
-  has_many :degree_levels
+  belongs_to :degree_level
+  belongs_to :resume
+  belongs_to :university
+  validates :field_of_study, presence: true
+  validates :grade, presence: true
 end

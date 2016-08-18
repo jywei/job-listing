@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_reserve_company, only: [:show, :unlike]
   before_action :log_impression, only: [:show], unique: [:session_hash]
   before_action :expiration_check, only: [:show]
 
@@ -47,18 +48,23 @@ class CompaniesController < ApplicationController
   def save_to_favorites
     @reserve_company = ReservedCompany.create(following_user_id: current_user.id, favorite_company_id: params[:id])
     respond_to do |format|
-      format.json
+      format.html { render json: !@reserve_company }
     end
   end
 
   def unlike
-    @reserve_company.destroy
+    # @reserve_company.destroy
+    @reserve_company = @reserve_companies.find_by(favorite_company_id: params[:id]).destroy
     respond_to do |format|
-      format.json
+      format.html { render json: !@reserve_company }
     end
   end
 
   private
+
+    def set_reserve_company
+      @reserve_companies = current_user.reserved_companies
+    end
 
     def set_company
       @company = Company.find(params[:id])
