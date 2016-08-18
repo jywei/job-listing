@@ -51,6 +51,13 @@ CSV.foreach(Rails.root.join("Country.csv"), headers: false) do |row|
   count += 1
 end
 
+puts "Importing universities..."
+CSV.foreach(Rails.root.join("myanmar_universities.csv"), headers: false) do |row|
+  University.create! do |university|
+    university.name = row[0]
+  end
+end
+
 user1 = User.create( { email: "admin@example.com", password: "12345678"} )
 user1.add_role :admin
 user2 = User.create( { email: "employer@example.com", password: "12345678"} )

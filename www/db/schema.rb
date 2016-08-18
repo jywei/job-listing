@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815104623) do
+ActiveRecord::Schema.define(version: 20160817050640) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160815104623) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "school_id",  limit: 4
   end
 
   create_table "employee_ranges", force: :cascade do |t|
@@ -174,6 +175,25 @@ ActiveRecord::Schema.define(version: 20160815104623) do
     t.integer  "jobs_count", limit: 4,   default: 0
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.integer  "university_id",   limit: 4
+    t.date     "start_day"
+    t.date     "end_day"
+    t.integer  "degree_level_id", limit: 4
+    t.string   "field_of_study",  limit: 255
+    t.string   "grade",           limit: 255
+    t.integer  "resume_id",       limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "universities", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "country_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|

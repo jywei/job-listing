@@ -15,16 +15,23 @@
     <div class="modal-content">
       <%= form_tag '#', method: :get, remote: true, class: "form" do %>
         <div class="modal-body">
-          <%= text_field_tag :name, "", class: "form-control" %>
+          <%= label_tag 'university_id' %>
+          <%= select_tag 'university_id', options_from_collection_for_select(University.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
           <div>
+            <%= label_tag 'start_day' %>
             <%= text_field_tag :start_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
+            <%= label_tag 'end_day' %>
             <%= text_field_tag :end_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
           </div>
+          <%= label_tag 'degree_level_id' %>
           <%= select_tag 'degree_level_id', options_from_collection_for_select(DegreeLevel.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <%= label_tag 'field_of_study' %>
           <%= text_field_tag :field_of_study, '', class: 'form-control' %>
+          <%= label_tag 'grade' %>
           <%= text_field_tag :grade, '', class: "form-control" %>
         </div>
         <div class="modal-footer">
+          <div class='error_zone center'></div>
           <%= submit_tag :Save, class: "btn btn-success" %>
         </div>
       <% end %>
@@ -32,8 +39,8 @@
   </div>
 </div>
 
-<ul class="sch-form">
-</ul>
+<div class="sch-form">
+</div>
 
 <h3>Languages</h3>
 <ul>

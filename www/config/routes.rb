@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'resumes/education' => 'resumes#education'
   get 'resumes/getEdu' => 'resumes#getEdu'
   get 'resumes/addSch' => 'resumes#addSch'
+  get 'resumes/deleEdu' => 'resumes#deleEdu'
 
   resources :jobs
   resources :resumes
