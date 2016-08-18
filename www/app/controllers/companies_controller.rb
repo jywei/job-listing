@@ -47,7 +47,7 @@ class CompaniesController < ApplicationController
   def save_to_favorites
     @reserve_company = ReservedCompany.create(following_user_id: current_user.id, favorite_company_id: params[:id])
     respond_to do |format|
-      format.html
+      format.json
     end
   end
 
