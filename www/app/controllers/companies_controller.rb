@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
-  before_action :set_reserved_company, only: [:show, :unfollow]
+  before_action :set_reserved_companies, only: [:show, :unfollow]
   before_action :log_impression, only: [:show], unique: [:session_hash]
   before_action :expiration_check, only: [:show]
 
@@ -57,7 +57,7 @@ class CompaniesController < ApplicationController
 
   private
 
-    def set_reserved_company
+    def set_reserved_companies
       @reserved_companies = current_user.reserved_companies
     end
 

@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action :set_reserved_jobs, only: [:show, :unfollow_job]
   before_action :log_impression, only: [:show], unique: [:session_hash]
   before_action :expiration_check, only: [:index]
 
@@ -82,7 +83,21 @@ class JobsController < ApplicationController
     end
   end
 
+  def favorite_job
+    @reserved_job = ReservedJob.create(tracking_user_id: current_user.id, favorite_job_id: params[:id])
+    render json: @reserved_job
+  end
+
+  def unfollow_job
+    @reserved_job = @reserved_jobs.find_by(favorite_job_id: params[:id]).destroy
+    render json: @reserved_job
+  end
+
   private
+
+    def set_reserved_jobs
+      @reserved_jobs = current_user.reserved_jobs
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_job
       @job = Job.find(params[:id])

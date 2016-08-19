@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817050640) do
+ActiveRecord::Schema.define(version: 20160819052455) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -149,6 +149,13 @@ ActiveRecord::Schema.define(version: 20160817050640) do
     t.integer  "favorite_company_id", limit: 4
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+  end
+
+  create_table "reserved_jobs", force: :cascade do |t|
+    t.integer  "tracking_user_id", limit: 4
+    t.integer  "favorite_job_id",  limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "resumes", force: :cascade do |t|

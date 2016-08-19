@@ -23,6 +23,9 @@ class Job < ActiveRecord::Base
 
   has_many :impressions, as: :impressionable
 
+  has_many :tracking_users, class_name: 'User', through: :reserved_jobs
+  has_many :reserved_jobs, foreign_key: 'favorite_job_id'
+
   def impression_count
     impressions.size
   end
