@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
-  before_action :set_reserved_jobs, only: [:show, :unfollow_job]
+  before_action :set_reserved_jobs, only: [:unfollow_job]
   before_action :log_impression, only: [:show], unique: [:session_hash]
   before_action :expiration_check, only: [:index]
 

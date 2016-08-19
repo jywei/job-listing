@@ -11,10 +11,12 @@
 
 <%= link_to 'Edit Company Information', edit_company_path(@company), class: "btn btn-default" %>
 <%= link_to 'Create A New Job', "/jobs/new?company_id=#{@company.id}", class: "btn btn-default" %>
-<%= link_to 'Save company to favorites', "#", remote: true, 'data-id': @company.id, class: "btn btn-default like_button #{'hide' if current_user.favorite_companies.find_by(id: @company.id)}" %>
-<%= link_to 'Unfollow this Company', "#", remote: true, 'data-id': @company.id, class: "btn btn-default unlike_button #{'hide' unless current_user.favorite_companies.find_by(id: @company.id)}" %>
+<% if user_signed_in? %>
+  <%= link_to 'Save company to favorites', "#", remote: true, 'data-id': @company.id, class: "btn btn-default like_button #{'hide' if current_user.favorite_companies.find_by(id: @company.id)}" %>
+  <%= link_to 'Unfollow this Company', "#", remote: true, 'data-id': @company.id, class: "btn btn-default unlike_button #{'hide' unless current_user.favorite_companies.find_by(id: @company.id)}" %>
+<% end %>
 
-<div id="map"></div>
+<div id="map" style="margin: 20px 0;"></div>
 
 <h2><strong>Company Name: </strong><%= @company.name %></h2>
 <p><strong>Tagline: </strong><%= @company.tagline %></p>
