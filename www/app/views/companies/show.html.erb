@@ -14,6 +14,8 @@
 <%= link_to 'Save company to favorites', "#", remote: true, 'data-id': @company.id, class: "btn btn-default like_button #{'hide' if current_user.favorite_companies.find_by(id: @company.id)}" %>
 <%= link_to 'Unfollow this Company', "#", remote: true, 'data-id': @company.id, class: "btn btn-default unlike_button #{'hide' unless current_user.favorite_companies.find_by(id: @company.id)}" %>
 
+<div id="map"></div>
+
 <h2><strong>Company Name: </strong><%= @company.name %></h2>
 <p><strong>Tagline: </strong><%= @company.tagline %></p>
 <p><strong>Employee Numbers: </strong><%= @company.employee_range.range %></p>
@@ -94,6 +96,33 @@
         }
       })
     });
+
+    window.initMap = function() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: {lat: -34.397, lng: 150.644}
+      });
+      var geocoder = new google.maps.Geocoder();
+
+      window.geocodeAddress(geocoder, map);
+    }
+
+    window.address = '<%= @company.address1 %>';
+    // window.address = 'တိုင်ပေ ထိုင်ဝမ်';
+
+    window.geocodeAddress = function(geocoder, resultsMap) {
+      geocoder.geocode({'address': window.address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
 
   });
 </script>

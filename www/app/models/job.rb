@@ -19,7 +19,6 @@ class Job < ActiveRecord::Base
   validates :requirement,         presence: true
   validates :apply_instruction,   presence: true
   validates :start_day,           presence: true
-  validates :professional_skill,  presence: true
 
   has_many :impressions, as: :impressionable
 

@@ -112,6 +112,7 @@ class JobsController < ApplicationController
                                   :location,
                                   :start_day,
                                   :professional_skill,
+                                  :language_skills,
                                   :is_published,
                                   :category_id,
                                   :industry_id,

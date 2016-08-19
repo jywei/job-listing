@@ -1,7 +1,15 @@
 <h2><%= @job.title %></h2>
 <%= link_to 'Save job to favorites', "#", remote: true, 'data-id': @job.id, class: "btn btn-default like_button #{'hide' if current_user.favorite_jobs.find_by(id: @job.id)}" %>
 <%= link_to 'Unfollow this Job', "#", remote: true, 'data-id': @job.id, class: "btn btn-default unlike_button #{'hide' unless current_user.favorite_jobs.find_by(id: @job.id)}" %>
-<p><strong>Company: </strong><%= link_to @job.company.name, company_path(@job.company) if @job.company.present? %></p>
+<h3><strong>Company: </strong><%= link_to @job.company.name, company_path(@job.company) if @job.company.present? %></h3>
+<%= image_tag @job.company.cover.url(:preview),
+            class: "img-rounded text-center",
+            size: '230x100' %>
+
+<%= image_tag @job.company.image.url(:thumb),
+            class: "img-rounded text-center",
+            size: '100x100' %><br />
+<br>
 <p><strong>Job Category: </strong><%= @job.category.name %></p>
 <p><strong>Industry: </strong><%= @job.industry.name %></p>
 <p><strong>Contract Type: </strong><%= @job.contract_type.name %></p>
