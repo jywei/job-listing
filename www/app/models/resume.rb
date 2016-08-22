@@ -5,6 +5,7 @@ class Resume < ActiveRecord::Base
   validates_attachment_content_type :cover, content_type: /\Acover\/.*\Z/
 
   has_many :schools
+  has_many :languages
  
   belongs_to :location
   belongs_to :user

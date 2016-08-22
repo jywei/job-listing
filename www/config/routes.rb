@@ -22,13 +22,11 @@ Rails.application.routes.draw do
   get 'resumes/education' => 'resumes#education'
   get 'resumes/getEdu' => 'resumes#getEdu'
   get 'resumes/addSch' => 'resumes#addSch'
+  get 'resumes/addLan' => 'resumes#addLan'
   get 'resumes/deleEdu' => 'resumes#deleEdu'
 
   get 'companies/save_to_favorites' => 'companies#save_to_favorites', as: :save_to_favorites
-  get 'companies/unfollow' => 'companies#unfollow', as: :unfollow
-
-  get 'jobs/favorite_job' => 'jobs#favorite_job', as: :favorite_job
-  get 'jobs/unfollow_job' => 'jobs#unfollow_job', as: :unfollow_job
+  get 'companies/unlike' => 'companies#unlike', as: :unlike
 
   resources :jobs
   resources :resumes

@@ -23,6 +23,7 @@ class ResumesController < ApplicationController
 
   def getEdu
     @schools = School.all.includes(:university, :degree_level)
+    @language = Language.all
 
     bigschool = Array.new
     @schools.each do |sc|
@@ -31,20 +32,27 @@ class ResumesController < ApplicationController
       bigschool.push(school)
     end
 
+    biglan = Array.new
+    @language.each do |lan|
+      language = Array.new
+      language.push(lan.name, lan.proficiency.name, lan.id)
+      biglan.push(language)
+    end
+
     respond_to do |format|
-      format.html { render :json => { :school => bigschool } }
+      format.html { render :json => { :school => bigschool, :language => biglan } }
     end
   end
 
   def addSch
-    # binding.pry
     @school = School.new(school_params)
 
     respond_to do |format|
       if @school.save
+        resume_id = current_user.resume.id
+        @school.update_attributes(resume_id: resume_id)
         school = Array.new
-        # binding.pry
-        school.push(@school.university.name, @school.start_day, @school.end_day, @school.degree_level.name, @school.field_of_study, @school.grade)
+        school.push(@school.university.name, @school.start_day, @school.end_day, @school.degree_level.name, @school.field_of_study, @school.grade, @school.id)
         format.json { render :json => { :school => school } }
       else
         format.json { render :json => { :error => "", :school => @school.errors.full_messages } }
@@ -52,9 +60,27 @@ class ResumesController < ApplicationController
     end
   end
 
+  def addLan
+    @language = Language.new(language_params)
+
+    respond_to do |format|
+      if @language.save
+        resume_id = current_user.resume.id
+        @language.update_attributes(resume_id: resume_id)
+        language = Array.new
+        language.push(@language.name, @language.proficiency_id, @language.id)
+        format.json { render :json => { :language => language } }
+      else
+        format.json { render :json => { :error => "", :language => @language.errors.full_messages } }
+      end
+    end
+  end
+
   def deleEdu
     if params[:name] == 'Sch'
       boolean = School.find(params[:id]).delete
+    elsif params[:name] == 'Lan'
+      boolean = Language.find(params[:id]).delete
     end
 
     respond_to do |format|
@@ -86,5 +112,10 @@ class ResumesController < ApplicationController
                                      :degree_level_id,
                                      :field_of_study,
                                      :grade)
+    end
+
+    def language_params
+      params.require(:language).permit(:name,
+                                       :proficiency_id)
     end
 end
