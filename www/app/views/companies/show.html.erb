@@ -109,8 +109,7 @@
       window.geocodeAddress(geocoder, map);
     }
 
-    window.address = '<%= @company.address1 %>';
-    // window.address = 'တိုင်ပေ ထိုင်ဝမ်';
+    window.address = '<%= @company.address1 %>' + ', <%= @company.location.name %>' + ', <%= @company.country.name %>';
 
     window.geocodeAddress = function(geocoder, resultsMap) {
       geocoder.geocode({'address': window.address}, function(results, status) {
@@ -125,6 +124,5 @@
         }
       });
     }
-
   });
 </script>
