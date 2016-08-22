@@ -1,12 +1,12 @@
 var ff
 $.getJSON('/resumes/getEdu', function(data){
   for(var i = 0; i < data.school.length; i++){
-    $('<ul class="deleSch"><li>' + data.school[i][0] + '</li>'
+    $('<ul class="Sch"><li>' + data.school[i][0] + '</li>'
     + '<li>' + data.school[i][1] + ' - ' + data.school[i][2] + '</li>'
     + '<li>Degree Level : ' + data.school[i][3] + '</li>'
     + '<li>Field of Study : ' + data.school[i][4] + '</li>'
-    + '<li>Grade : ' + data.school[i][5] + '</li></ul>'
-    + '<a herf="#" class="deleLoca btn btn-danger" data-remote="true" data-id="' + data.school[i][6] + '">Delete</a>').appendTo($('.sch-form'))
+    + '<li>Grade : ' + data.school[i][5] + '</li>'
+    + '<a herf="#" class="deleSch btn btn-danger" data-remote="true" data-id="' + data.school[i][6] + '">Delete</a></ul>').appendTo($('.sch-form'))
     addDele('Sch')
   }
 })
@@ -48,10 +48,12 @@ function addDele(name) {
   var ff
   $(".dele" + name).click(function(){
     ff = $(this)
-    $.getJSON('/resumes/deleEdu?id=' + $(this).data('id') + '&name=' + name, function(data){
+    debugger
+    $.getJSON('/resumes/dele' + name + '?id=' + $(this).data('id') + '&name=' + name, function(data){
       if(data != false) {
-        ff.parent().parent().remove()
+        ff.parent().remove()
       }
     })
   })
 }
+
