@@ -13,6 +13,7 @@
     <div>
       <%= link_to('Reset filters', reset_filterrific_url) %>
     </div>
+    <br>
     <div class="panel-group max-width" id="" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading collapsed" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -23,7 +24,6 @@
         </div>
         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
           <div class="panel-body">
-            <%#= f.select(:with_industry_id, @filterrific.select_options[:with_industry_id], { include_blank: '- Any -' }) %>
             <%= f.collection_check_boxes(:with_industry_id, Industry.all, :id, :name) do |b| %>
             <div class="block filter-list">
               <div class="inline">

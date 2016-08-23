@@ -1,11 +1,11 @@
 <div id="filterrific_results">
-  <div>
+  <div style="margin-bottom: 20px;">
     <%= page_entries_info jobs, entry_name: "Jobs", model: 'job'  %>
     <%= will_paginate jobs %>
   </div>
       <div class="table">
         <% jobs.published.each do |job| %>
-          <div class="job-list" style="border: 1px solid #111111;">
+          <div class="job-list" style="border: 1px solid #111111; padding: 10px;">
             <tr>
               <td><p>The vacanncy will expire at: <%= job.decorated_start_day %></p></td>
               <td><h2><%= link_to job.title, job %></h2></td>
