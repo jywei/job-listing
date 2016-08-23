@@ -9,6 +9,12 @@ $.getJSON('/resumes/getEdu', function(data){
     + '<a herf="#" class="deleSch btn btn-danger" data-remote="true" data-id="' + data.school[i][6] + '">Delete</a></ul>').appendTo($('.sch-form'))
     addDele('Sch')
   }
+  for(var i = 0; i < data.language.length; i++){
+    $('<ul class="Lan"><li>' + data.language[i][0] + '</li>'
+    + '<li>' + data.language[i][1] + '</li>'
+    + '<a herf="#" class="deleLan btn btn-danger" data-remote="true" data-id="' + data.language[i][2] + '">Delete</a></ul>').appendTo($('.lan-form'))
+    addDele('Lan')
+  }
 })
 
 $('.form').submit(function(){
@@ -24,11 +30,13 @@ $('.form').submit(function(){
     type: 'get',
     success: function(data) {
       if(data.error == undefined){
-        $('<ul class="deleSch"><li>' + data.school[0] + '</li>'
+        $('<ul class="Sch"><li>' + data.school[0] + '</li>'
         + '<li>' + data.school[1] + ' - ' + data.school[2] + '</li>'
         + '<li>Degree Level : ' + data.school[3] + '</li>'
         + '<li>Field of Study : ' + data.school[4] + '</li>'
-        + '<li>Grade : ' + data.school[5] + '</li></ul>').appendTo($('.sch-form'))
+        + '<li>Grade : ' + data.school[5] + '</li>'
+        + '<a herf="#" class="deleSch btn btn-danger" data-remote="true" data-id="' + data.school[6] + '">Delete</a></ul>').appendTo($('.sch-form'))
+        addDele('Sch')
         $('.modal').modal('hide')
       }
       else{
@@ -44,13 +52,40 @@ $('.form').submit(function(){
   })
 })
 
+$('.lanform').submit(function(){
+  var ff = $(this)
+  $.ajax({
+    url: '/resumes/addLan',
+    data: { language: { name: $('.lanform #lan-name').val(),
+                        proficiency_id: $('.lanform #proficiency_id').val() } },
+    type: 'get',
+    success: function(data) {
+      if(data.error == undefined){
+        $('<ul class="Lan"><li>' + data.language[0] + '</li>'
+        + '<li>' + data.language[1] + '</li>'
+        + '<a herf="#" class="deleLan btn btn-danger" data-remote="true" data-id="' + data.language[2] + '">Delete</a></ul>').appendTo($('.lan-form'))
+        addDele('Lan')
+        $('.modal').modal('hide')
+      }
+      else{
+        for(var i = 0; i < data.language.length; i++){
+          console.log(data.school[i])
+          $('<p>' + data.school[i] + '</p>').appendTo($('.error_zone'))
+        } 
+      }
+    },
+    failure: function() {
+      alert('unsuccess')
+    }
+  })
+})
+
 function addDele(name) {
   var ff
   $(".dele" + name).click(function(){
     ff = $(this)
-    debugger
-    $.getJSON('/resumes/dele' + name + '?id=' + $(this).data('id') + '&name=' + name, function(data){
-      if(data != false) {
+    $.getJSON('/resumes/deleEdu?id=' + $(this).data('id') + '&name=' + name, function(data){
+      if(data == false) {
         ff.parent().remove()
       }
     })

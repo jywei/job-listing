@@ -156,6 +156,7 @@
     var ff
     $(".dele" + name).click(function(){
       ff = $(this)
+        debugger
       $.getJSON('/admin/deleFilter?id=' + $(this).data('id') + '&name=' + name, function(data){
         if(data != false) {
           ff.parent().parent().remove()
