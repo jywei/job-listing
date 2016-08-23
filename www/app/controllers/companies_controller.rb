@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
-  before_action :set_reserved_companies, only: [:unfollow]
+  before_action :set_reserved_companies, only: [:unlike]
   before_action :log_impression, only: [:show], unique: [:session_hash]
   before_action :expiration_check, only: [:show]
 
@@ -72,7 +72,7 @@ class CompaniesController < ApplicationController
     render json: @reserved_company
   end
 
-  def unfollow
+  def unlike
     @reserved_company = @reserved_companies.find_by(favorite_company_id: params[:id]).destroy
     render json: @reserved_company
   end

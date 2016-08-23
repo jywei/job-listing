@@ -3,11 +3,11 @@
 <%= form_for_filterrific @filterrific do |f| %>
   <div class="col-md-12">
     <div class="search">
-      <h1 class="center">Let us find you a job!</h1>
+      <h1 class="center">All Companies</h1>
       <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
         <%= f.text_field(:search_query, class: 'search-bar') %>
     </div>
-    <h1>We have found <%= @companies.size %> companies</h1>
+    <h1>There are <%= @companies.size %> companies</h1>
   </div>
   <div class="col-md-4">
     <div>

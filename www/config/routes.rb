@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   get 'companies/save_to_favorites' => 'companies#save_to_favorites', as: :save_to_favorites
   get 'companies/unlike' => 'companies#unlike', as: :unlike
 
+  get 'jobs/favorite_job' => 'jobs#favorite_job', as: :favorite_job
+  get 'jobs/unfollow_job' => 'jobs#unfollow_job', as: :unfollow_job
+
   resources :jobs
   resources :resumes
   resources :companies

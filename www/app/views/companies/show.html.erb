@@ -8,9 +8,10 @@
             size: '100x100' %>
 <br>
 <br />
-
-<%= link_to 'Edit Company Information', edit_company_path(@company), class: "btn btn-default" %>
-<%= link_to 'Create A New Job', "/jobs/new?company_id=#{@company.id}", class: "btn btn-default" %>
+<% if (user_signed_in?) && (current_user.id == @company.user_id) %>
+  <%= link_to 'Edit Company Information', edit_company_path(@company), class: "btn btn-default" %>
+  <%= link_to 'Create A New Job', "/jobs/new?company_id=#{@company.id}", class: "btn btn-default" %>
+<% end %>
 <% if user_signed_in? %>
   <%= link_to 'Save company to favorites', "#", remote: true, 'data-id': @company.id, class: "btn btn-default like_button #{'hide' if current_user.favorite_companies.find_by(id: @company.id)}" %>
   <%= link_to 'Unfollow this Company', "#", remote: true, 'data-id': @company.id, class: "btn btn-default unlike_button #{'hide' unless current_user.favorite_companies.find_by(id: @company.id)}" %>
@@ -18,7 +19,7 @@
 
 <div id="map" style="margin: 20px 0;"></div>
 
-<h2><strong>Company Name: </strong><%= @company.name %></h2>
+<h2><strong>Company Name: </strong><%= @company.name.titleize %></h2>
 <p><strong>Tagline: </strong><%= @company.tagline %></p>
 <p><strong>Employee Numbers: </strong><%= @company.employee_range.range %></p>
 <p><strong>Industry: </strong><%= @company.industry.name if @company.industry.present? %></p>
@@ -87,7 +88,7 @@
     });
 
     $('.unlike_button').click(function(){
-      $.getJSON('/companies/unfollow?id=' + $(this).data('id'), function(data){
+      $.getJSON('/companies/unlike?id=' + $(this).data('id'), function(data){
         if(data){
           alert('You have successfully unfollowed this company!')
           $('.like_button').removeClass('hide')
