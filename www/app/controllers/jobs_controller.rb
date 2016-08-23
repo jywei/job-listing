@@ -19,7 +19,8 @@ class JobsController < ApplicationController
         with_location_id: Location.options_for_select,
         with_salary_range_id: SalaryRange.options_for_select,
         with_company_id: Company.options_for_select
-      }
+      },
+      default_filter_params: {},
     ) or return
     @jobs = @filterrific.find.includes(:impressions, :company, :industry, :location, :category, :contract_type).page(params[:page])
 
@@ -30,7 +31,7 @@ class JobsController < ApplicationController
 
     # rescue ActiveRecord::RecordNotFound => e
     #   # There is an issue with the persisted param_set. Reset it.
-    #   puts "Had to reset filterrific params: #{ e.message }"
+    #   puts "Had to reset filter params: #{ e.message }"
     #   redirect_to(reset_filterrific_url(format: :html)) and return
     # end
   end

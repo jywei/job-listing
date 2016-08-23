@@ -109,7 +109,12 @@
       window.geocodeAddress(geocoder, map);
     }
 
-    window.address = '<%= @company.address1 %>' + ', <%= @company.location.name %>' + ', <%= @company.country.name %>';
+    window.address = '<%= @company.address1 if @company.address1.present? %>' +
+                     ', <%= @company.address2 if @company.address2.present? %>' +
+                     ', <%= @company.location.name if @company.location.present? %>' +
+                     ', <%= @company.country.name if @company.country.present? %>';
+
+    // window.address = "Kabaaye Pagoda 150, Yangon, Myanmar ";
 
     window.geocodeAddress = function(geocoder, resultsMap) {
       geocoder.geocode({'address': window.address}, function(results, status) {

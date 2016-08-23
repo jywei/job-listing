@@ -7,7 +7,29 @@ class CompaniesController < ApplicationController
   respond_to :html, :js
 
   def index
-    @companies = Company.all
+    @filterrific = initialize_filterrific(
+      Company.all,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Company.options_for_sorted_by,
+        with_industry_id: Industry.options_for_select,
+        with_location_id: Location.options_for_select,
+        with_employee_range_id: EmployeeRange.options_for_select
+      },
+      default_filter_params: {},
+    ) or return
+    @companies = @filterrific.find.includes(:impressions, :industry, :location, :employee_range).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+    # rescue ActiveRecord::RecordNotFound => e
+    #   # There is an issue with the persisted param_set. Reset it.
+    #   puts "Had to reset filter params: #{ e.message }"
+    #   redirect_to(reset_filterrific_url(format: :html)) and return
+    # end
   end
 
   def show

@@ -1,0 +1,98 @@
+<%#= render( partial: "companies/filter", locals: { companies: @companies } ) %>
+
+<%= form_for_filterrific @filterrific do |f| %>
+  <div class="col-md-12">
+    <div class="search">
+      <h1 class="center">Let us find you a job!</h1>
+      <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+        <%= f.text_field(:search_query, class: 'search-bar') %>
+    </div>
+    <h1>We have found <%= @companies.size %> companies</h1>
+  </div>
+  <div class="col-md-4">
+    <div>
+      <%= link_to('Reset filters', reset_filterrific_url) %>
+    </div>
+    <div class="panel-group max-width" id="" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <h4 class="panel-title">
+            Industry
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <%#= f.select(:with_industry_id, @filterrific.select_options[:with_industry_id], { include_blank: '- Any -' }) %>
+            <%= f.collection_check_boxes(:with_industry_id, Industry.all, :id, :name) do |b| %>
+            <div class="block filter-list">
+              <div class="inline">
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
+                <%= b.object.name %>
+                <%= company_size(:industry_id, b.object.id) %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <h4 class="panel-title">
+            Company Location
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_location_id, Location.all, :id, :name) do |b| %>
+            <div class="block filter-list">
+              <div class="inline">
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
+                <%= b.object.name %>
+                <%= company_size(:location_id, b.object.id) %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <h4 class="panel-title">
+            Employee Range
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_employee_range_id, EmployeeRange.all, :id, :range) do |b| %>
+            <div class="block filter-list">
+              <div class="inline">
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
+                <%= b.object.range %>
+                <%= job_size(:employee_range_id, b.object.id) %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render_filterrific_spinner %>
+<% end %>
+
+<script>
+  $('.panel-heading').click(function(){
+    var ff = $(this)
+    if($(this).hasClass('collapsed')) {
+      ff.children('i').addClass('rotate180')
+    }
+    else {
+      ff.children('i').removeClass('rotate180')
+    }
+  })
+</script>
