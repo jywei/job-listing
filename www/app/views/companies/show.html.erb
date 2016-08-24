@@ -20,6 +20,7 @@
 <div id="map" style="margin: 20px 0;"></div>
 
 <h2><strong>Company Name: </strong><%= @company.name.titleize %></h2>
+<h4><%= pluralize(@company.jobs.published.unexpired.count, 'available vacancy') %></h4>
 <p><strong>Tagline: </strong><%= @company.tagline %></p>
 <p><strong>Employee Numbers: </strong><%= @company.employee_range.range %></p>
 <p><strong>Industry: </strong><%= @company.industry.name if @company.industry.present? %></p>
@@ -51,7 +52,6 @@
 
 <div class="tab-content">
   <div id="my_jobs" class="tab-pane fade in active">
-    <p>Current Opportunity <%= @company.jobs_count %>: </p>
     <%= render 'job_listing' %>
   </div>
   <div id="saved_cv" class="tab-pane fade">
@@ -67,6 +67,8 @@
     <%= render 'form' %>
   </div>
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9EdOPfGfgc4jz6fUq6Yfn3tQRrtcHHzo&callback=initMap" async defer></script>
 
 <script>
   $(document).ready(function(){

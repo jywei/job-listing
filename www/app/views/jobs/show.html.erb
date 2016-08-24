@@ -15,18 +15,35 @@
             class: "img-rounded text-center",
             size: '100x100' %><br />
 <br>
+<h3>Company Details</h3>
+<p><strong>Company Industry: </strong><%= @job.company.industry.name %></p>
+<p><strong>No. Of Employees: </strong><%= @job.company.employee_range.range %></p>
+<hr>
+<h3>Job Details</h3>
 <p><strong>Job Category: </strong><%= @job.category.name %></p>
-<p><strong>Industry: </strong><%= @job.industry.name %></p>
 <p><strong>Contract Type: </strong><%= @job.contract_type.name %></p>
-<p><strong>Job Requiremnet: </strong><%= @job.requirement %></p>
-<p><strong>How to apply? </strong><%= @job.apply_instruction %></p>
-<p><strong>What kind of professional skill are we looking for? </strong><%= @job.professional_skill %></p>
-<p><strong>Monthly Salary: </strong><%= @job.salary_range.range %></p>
-<p><strong>Vacanncy Expiration Date: </strong><%= @job.start_day %></p>
 <p><strong>Country: </strong><%= @job.country.name %></p>
 <% if @job.location.present? %>
   <p><strong>State: </strong><%= @job.location.name %></p>
 <% end %>
+<hr>
+<h3>Professional Skill</h3>
+<p><strong>What kind of professional skill are we looking for? </strong><%= @job.professional_skill %></p>
+<hr>
+<h3>Language Skill</h3>
+<p><strong>What kind of language skill do we need? </strong><%= @job.language_skills %></p>
+<hr>
+<h3>Job Description</h3>
+<p><strong>Job Requiremnet: </strong><%= @job.requirement %></p>
+<p><strong>How to apply? </strong><%= @job.apply_instruction %></p>
+<p><strong>Vacancy Expiration Date: </strong><%= @job.start_day %></p>
+<p><strong>Monthly Salary: </strong><%= @job.salary_range.range %></p>
+<hr>
+<h3>About The Company</h3>
+<p><%= @job.company.about %></p>
+
+
+
 
 <script>
   $('.like_button').click(function(){
