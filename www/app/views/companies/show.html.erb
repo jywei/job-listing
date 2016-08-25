@@ -1,0 +1,136 @@
+
+<%= image_tag @company.cover.url(:preview),
+            class: "img-rounded text-center",
+            size: '230x100' %>
+
+<%= image_tag @company.image.url(:thumb),
+            class: "img-rounded text-center",
+            size: '100x100' %>
+<br>
+<br />
+<% if (user_signed_in?) && (current_user.id == @company.user_id) %>
+  <%= link_to 'Edit Company Information', edit_company_path(@company), class: "btn btn-default" %>
+  <%= link_to 'Create A New Job', "/jobs/new?company_id=#{@company.id}", class: "btn btn-default" %>
+<% end %>
+<% if user_signed_in? %>
+  <%= link_to 'Save company to favorites', "#", remote: true, 'data-id': @company.id, class: "btn btn-default like_button #{'hide' if current_user.favorite_companies.find_by(id: @company.id)}" %>
+  <%= link_to 'Unfollow this Company', "#", remote: true, 'data-id': @company.id, class: "btn btn-default unlike_button #{'hide' unless current_user.favorite_companies.find_by(id: @company.id)}" %>
+<% end %>
+
+<div id="map" style="margin: 20px 0;"></div>
+
+<h2><strong>Company Name: </strong><%= @company.name.titleize %></h2>
+<h4><%= pluralize(@company.jobs.published.unexpired.count, 'available vacancy') %></h4>
+<p><strong>Tagline: </strong><%= @company.tagline %></p>
+<p><strong>Employee Numbers: </strong><%= @company.employee_range.range %></p>
+<p><strong>Industry: </strong><%= @company.industry.name if @company.industry.present? %></p>
+<p><strong>Address: </strong><%= @company.address1 %> <%= @company.address2 %></p>
+<p><strong>Country: </strong><%= @company.country.name %></p>
+<p><strong>State: </strong><%= @company.location.name if @company.location.present? %></p>
+<p><strong>Phone: </strong><%= @company.phone %></p>
+<p><strong>Email: </strong><%= @company.email %></p>
+<p><strong>About Us: </strong><%= @company.about %></p>
+<p><strong>Our History: </strong><%= @company.story %></p>
+<p><strong>Why are we awesome? </strong><%= @company.welfare %></p>
+<p><strong>Who we are looking for? </strong><%= @company.demand %></p>
+<p><strong>Idea: </strong><%= @company.idea %></p>
+<p><strong>Our Site: </strong><%= link_to @company.website %></p>
+<p><strong>Our Facebook: </strong><%= link_to @company.facebook %></p>
+<p><strong>Our Twitter: </strong><%= link_to @company.twitter %></p>
+<p><strong>ios: </strong><%= link_to @company.ios %></p>
+<p><strong>android: </strong><%= link_to @company.android %></p>
+<p><strong>Total Views: </strong><%= @company.impression_count %></p>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><%= link_to "My Jobs", "#my_jobs", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Saved CV", "#saved_cv", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Account Status", "#status", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Company Profile", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+  <div id="my_jobs" class="tab-pane fade in active">
+    <%= render 'job_listing' %>
+  </div>
+  <div id="saved_cv" class="tab-pane fade">
+    <h3>Saved CV</h3>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+  <div id="status" class="tab-pane fade">
+    <h3>Account Status</h3>
+    <%= render 'layouts/pricing_table' %>
+  </div>
+  <div id="settings" class="tab-pane fade">
+    <h3>Account Settings</h3>
+    <%= render 'form' %>
+  </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9EdOPfGfgc4jz6fUq6Yfn3tQRrtcHHzo&callback=initMap" async defer></script>
+
+<script>
+  $(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+      $(this).tab('show');
+    });
+
+    $('.like_button').click(function(){
+      $.getJSON('/companies/save_to_favorites?id=' + $(this).data('id'), function(data){
+        if(data){
+          alert('You are currently following this company!')
+          $('.like_button').addClass('hide')
+          $('.unlike_button').removeClass('hide')
+        }
+        else{
+          alert('Failed to add this company to your favorites, sorry!')
+        }
+      })
+    });
+
+    $('.unlike_button').click(function(){
+      $.getJSON('/companies/unlike?id=' + $(this).data('id'), function(data){
+        if(data){
+          alert('You have successfully unfollowed this company!')
+          $('.like_button').removeClass('hide')
+          $('.unlike_button').addClass('hide')
+        }
+        else{
+          alert('Failed to unfollow this company, sorry!')
+        }
+      })
+    });
+
+    window.initMap = function() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: {lat: -34.397, lng: 150.644}
+      });
+      var geocoder = new google.maps.Geocoder();
+
+      window.geocodeAddress(geocoder, map);
+    }
+
+    window.address = '<%= @company.address1 if @company.address1.present? %>' +
+                     ', <%= @company.address2 if @company.address2.present? %>' +
+                     ', <%= @company.location.name if @company.location.present? %>' +
+                     ', <%= @company.country.name if @company.country.present? %>';
+
+    // window.address = "Kabaaye Pagoda 150, Yangon, Myanmar ";
+
+    window.geocodeAddress = function(geocoder, resultsMap) {
+      geocoder.geocode({'address': window.address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+  });
+</script>
