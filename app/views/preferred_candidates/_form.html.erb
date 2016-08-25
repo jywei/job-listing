@@ -1,0 +1,39 @@
+<%= simple_form_for(@preferred_candidate) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :country,
+                      collection: Country.all,
+                      priority: @preferred_candidate.country,
+                      default: @job.country_id,
+                      label: "Country" %>
+    <%= f.association :location,
+                      collection: Location.all,
+                      priority: @preferred_candidate.location,
+                      default: @job.location_id,
+                      label: "Location" %>
+    <%= f.association :contract_type,
+                      collection: ContractType.all,
+                      priority: @preferred_candidate.contract_type,
+                      default: @job.contract_type_id,
+                      label: "Contract Type" %>
+    <%= f.association :category,
+                      collection: Category.all,
+                      priority: @preferred_candidate.category,
+                      default: @job.category_id,
+                      label: "Job Category" %>
+    <%#= f.input :career_level_id %>
+    <%= f.association :degree_level,
+                      collection: DegreeLevel.all,
+                      priority: @preferred_candidate.degree_level,
+                      label: "Degree Level" %>
+    <%= f.association :related_experience,
+                      collection: RelatedExperience.all,
+                      priority: @preferred_candidate.related_experience,
+                      label: "Related Experience" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

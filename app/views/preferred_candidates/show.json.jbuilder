@@ -1,0 +1,1 @@
+json.partial! "preferred_candidates/preferred_candidate", preferred_candidate: @preferred_candidate

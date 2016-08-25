@@ -1,0 +1,9 @@
+<h2>New Resumes</h2>
+
+<%= form_for @resume do |f| %>
+  <%= f.text_field :firstname %>
+  <%= f.text_field :lastname %>
+  <%= f.text_field :phone %>
+  <%= text_field :location_id %>
+  <%= f.submit :submit %>
+<% end %>
