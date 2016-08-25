@@ -6,6 +6,11 @@ class Resume < ActiveRecord::Base
 
   has_many :schools
   has_many :languages
+  has_many :skills
+  has_many :experiences
+  has_many :djrs
+  has_many :djis
+  has_one :djs
  
   belongs_to :location
   belongs_to :user

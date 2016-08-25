@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  job_title: MyString
+  company_name: MyString
+  start_day: 2016-08-23
+  end_day: 2016-08-23
+  country_id: 1
+  industry_id: 1
+  contract_type_id: 1
+  activities: MyString
+  resume_id: 1
+
+two:
+  job_title: MyString
+  company_name: MyString
+  start_day: 2016-08-23
+  end_day: 2016-08-23
+  country_id: 1
+  industry_id: 1
+  contract_type_id: 1
+  activities: MyString
+  resume_id: 1

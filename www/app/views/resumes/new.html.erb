@@ -15,11 +15,17 @@
   <div class="actions">
     <%= f.input :firstname, class: "form-control" %>
     <%= f.input :lastname, class: 'form-control' %>
+    <%= f.text_field :birth, class: "js-datepicker filterrific-periodically-observed form-control" %>
     <%= f.input :phone, class: 'form-control' %>
     <%= f.association :location,
                       collection: Location.all,
                       label: 'Current Location',
                       prompt: 'Choose a location',
+                      class: 'form-control' %>
+    <%= f.association :location,
+                      collection: EmploymentStatus.all,
+                      label: 'Employment Status',
+                      prompt: 'Choose employment status',
                       class: 'form-control' %>
     <%= f.input :cover, as: :file %>
     <%= image_tag @resume.cover.url(:preview),
@@ -28,3 +34,9 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+<script>
+  $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
+  $('.js-datepicker').datepicker();
+</script>
+
