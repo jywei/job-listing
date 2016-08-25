@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<div class="company">
-  <div>
-    @companies
+<div class="job">
+  <div id="filtered_company">
+    <%= render( partial: "companies/filter", locals: { companies: @companies } ) %>
+  </div>
+  <br>
+  <hr>
+  <div class="col-sm-8">
+    <%= render( partial: 'companies/list', locals: { companies: @companies } ) %>
   </div>
 </div>
-

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <%= viewport_meta_tag %>
-    <title><%= content_for?(:title) ? yield(:title) : "JobsBoard" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Jobs Board" %></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <%= csrf_meta_tags %>
 
@@ -38,28 +38,6 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-
-<!--     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">JobsBoard</a>
-        </div>
-
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><%= link_to "Link1", '#' %></li>
-            <li><%= link_to "Link2", '#' %></li>
-            <li><%= link_to "Link3", '#' %></li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
     <%= render 'layouts/navbar' %>
     <%= bootstrap_flash %>
     <br>
@@ -85,6 +63,6 @@
     </div> <!-- /container -->
     <%= render 'layouts/footer' %>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9EdOPfGfgc4jz6fUq6Yfn3tQRrtcHHzo&callback=initMap" async defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9EdOPfGfgc4jz6fUq6Yfn3tQRrtcHHzo&callback=initMap" async defer></script> -->
   </body>
 </html>
