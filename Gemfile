@@ -52,6 +52,8 @@ gem 'aws-sdk'
 
 gem 'responders'
 
+gem 'cocoon'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'figaro', '~> 1.1', '>= 1.1.1'  #bundle exec figaro install

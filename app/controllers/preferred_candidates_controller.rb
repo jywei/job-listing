@@ -15,6 +15,7 @@ class PreferredCandidatesController < ApplicationController
   # GET /preferred_candidates/new
   def new
     @preferred_candidate = PreferredCandidate.new
+    @preferred_candidate.languages.new
     @job = @preferred_candidate.job
   end
 
@@ -70,6 +71,6 @@ class PreferredCandidatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def preferred_candidate_params
-      params.require(:preferred_candidate).permit(:location_id, :country_id, :language_id, :contract_type_id, :job_category_id, :career_level_id, :degree_level_id, :related_experience_id)
+      params.require(:preferred_candidate).permit(:job_id, :location_id, :country_id, :contract_type_id, :category_id, :career_level_id, :degree_level_id, :related_experience_id, languages_attributes: [:id, :language_skill_id, :proficiency_id, :_destroy, language_skill: [], proficiency: [] ] )
     end
 end

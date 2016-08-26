@@ -1,5 +1,6 @@
 class PreferredCandidate < ActiveRecord::Base
   belongs_to :job
+
   belongs_to :location
   belongs_to :country
   belongs_to :contract_type
@@ -8,4 +9,6 @@ class PreferredCandidate < ActiveRecord::Base
   belongs_to :related_experience
 
   has_many :languages
+  accepts_nested_attributes_for :languages, allow_destroy: true
+
 end

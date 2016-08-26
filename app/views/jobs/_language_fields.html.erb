@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <%= f.input :language_skill_id,
+              as: :select,
+              collection: LanguageSkill.all,
+              label: "Language Skill" %>
+  <%= f.input :proficiency_id,
+              as: :select,
+              collection: Proficiency.all,
+              label: "Language Proficiency" %>
+  <%= link_to_remove_association "Remove Language", f, data: { confirm: 'do you really want to do this?' }, class: "btn btn-danger btn-xs" %>
+  <br>
+</div>
