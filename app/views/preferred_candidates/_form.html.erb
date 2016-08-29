@@ -1,0 +1,57 @@
+<%= simple_form_for(@job.preferred_candidate || @preferred_candidate) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :country,
+                      collection: Country.all,
+                      priority: @preferred_candidate.country,
+                      default: @job.country_id,
+                      label: "Country" %>
+    <%= f.association :location,
+                      collection: Location.all,
+                      priority: @preferred_candidate.location,
+                      default: @job.location_id,
+                      label: "Location" %>
+    <%= f.association :contract_type,
+                      collection: ContractType.all,
+                      priority: @preferred_candidate.contract_type,
+                      default: @job.contract_type_id,
+                      label: "Contract Type" %>
+    <%= f.association :category,
+                      collection: Category.all,
+                      priority: @preferred_candidate.category,
+                      default: @job.category_id,
+                      label: "Job Category" %>
+    <%#= f.input :career_level_id %>
+    <%= f.association :degree_level,
+                      collection: DegreeLevel.all,
+                      priority: @preferred_candidate.degree_level,
+                      default: @preferred_candidate.degree_level,
+                      label: "Degree Level" %>
+    <%= f.association :related_experience,
+                      collection: RelatedExperience.all,
+                      priority: @preferred_candidate.related_experience,
+                      default: @preferred_candidate.related_experience,
+                      label: "Related Experience" %>
+    <%= f.input :job_id, input_html: { value: params[:id] }, as: :hidden %>
+    <div id="languages">
+      <label>Required Language Skill</label>
+      <% @preferred_candidate.languages.each do |language| %>
+        <%= language.language_skill.name %>
+        <%= language.proficiency.name %>
+      <% end %>
+      <%= f.simple_fields_for :languages do |language| %>
+        <%= render partial: "language_fields", locals: { f: language } %>
+      <% end %>
+      <br>
+      <div class="links">
+        <%= link_to_add_association "Add Language", f, :languages, class: "btn btn-link" %>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

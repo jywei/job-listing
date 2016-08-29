@@ -1,0 +1,40 @@
+<nav class="na">
+  <!-- <div class="nav-holder"> -->
+    <%= link_to "Jobs Board", root_url, class: "nav-title" %>
+    <div class="nav-button">
+      <ul>
+        <li><%= link_to "Find Jobs", jobs_path %></li>
+        <% if (user_signed_in?) && (current_user.has_role? :employer) %>
+          <li><%= link_to "Post a Job", "/jobs/new?company_id=#{current_user.company.id}" %></li>
+        <% end %>
+        <li><%= link_to "All Companies", companies_path %></li>
+        <li><%= link_to "CV Search", "#" %></li>
+        <li><%= link_to "Dashboard", "#" %></li>
+      </ul>
+      <ul class="floatright">
+        <% if user_signed_in? %>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn"><%= current_user.email %></button>
+              <div class="dropdown-content">
+                <%= link_to "Personal Account Update", edit_user_registration_path, class: "dropdown-btn" %>
+                <% if current_user.has_role? :employer %>
+                  <%= link_to "Manage My Company", current_user.company, class: "dropdown-btn" %>
+                <% end %>
+                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-btn" %>
+              </div>
+            </div>
+          </li>
+        <% else %>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to "Log In", new_user_session_path %></li>
+        <% end %>
+        <% if (user_signed_in?) && (current_user.has_role? :employer) %>
+          <li><%= current_user.company.name.titleize %></li>
+        <% end %>
+        <li>EN</li>
+        <li>ျမန္မာ</li>
+      </ul>
+    </div>
+  <!-- </div> -->
+</nav>
