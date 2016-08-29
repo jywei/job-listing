@@ -1,4 +1,15 @@
 class ResumesController < ApplicationController
+
+  def index
+    @filterrific = initialize_filterrific(
+      Resume.all,
+      params[:filterrific],
+      select_options: {
+        sorted_by: 
+      }
+    )
+  end
+
   def show
   end
 

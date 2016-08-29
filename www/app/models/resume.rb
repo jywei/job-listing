@@ -14,4 +14,38 @@ class Resume < ActiveRecord::Base
  
   belongs_to :location
   belongs_to :user
+
+  def self.options_for_select
+  end
+
+  filterrific(
+    default_filter_params: { sorted_by: 'created_at_desc' },
+    available_filters: [
+      :sorted_by,
+      :search_query,
+    ]
+  )
+
+  self.per_page = 10
+
+  scope :search_query, -> (query) {
+    return nil if query.blank?
+    terms = query.downcase.split(/\s+/)
+    terms = terms.map { |e|
+      (e.gsub('*', '%') + '%')gsub(/%+/, '%')
+    }
+
+    number_or_conditions = 6
+
+    where(
+      terms.map {
+        or_clauses = [
+          "LOWER(resumes.first) LIKE ?",
+          "LOWER(resumes.phone) LIKE ?"
+        ].join(' OR ')
+        "(#{ or_clauses })"
+      }.join(' AND '),
+      *terms.map { |e| [e] * num_or_conditions }.flatten
+    )
+  }
 end
