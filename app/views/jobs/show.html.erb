@@ -42,8 +42,10 @@
 <h3>About The Company</h3>
 <p><%= @job.company.about %></p>
 <hr>
-<h3>Preferred Candidate</h3>
-<%= render 'preferred_candidates/form' %>
+<% if (user_signed_in?) && (current_user.id == @job.company.user_id) %>
+  <h3>Preferred Candidate</h3>
+  <%= render 'preferred_candidates/form' %>
+<% end %>
 
 <script>
   $('.like_button').click(function(){

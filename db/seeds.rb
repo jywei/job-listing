@@ -21,6 +21,8 @@ EmployeeRange.create([ { range: '1 - 5'}, { range: '6 - 10'}, { range: '11 - 20'
 
 RelatedExperience.create([ { name: 'No Relatived Experience'}, { name: '0 - 1 years'}, { name: '1 - 3 years'}, { name: '3 - 5 years'}, { name: '5 - 7 years'}, { name: '7 years +'}])
 
+CareerLevel.create([ { name: 'Student/Internship'}, { name: 'Entry Level'}, { name: 'Experienced (Non-manager)'}, { name: 'Manager (Supervisor of Stuff)'}, { name: 'Executive (VP, Department Head, etc.'}, { name: 'Senior Executive (President, CEO, etc.)'}, { name: 'Other'}])
+
 Category.find_each { |category| Category.reset_counters(category.id, :jobs) }
 
 Industry.find_each { |industry| Industry.reset_counters(industry.id, :jobs) }

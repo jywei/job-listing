@@ -22,12 +22,16 @@
                       priority: @preferred_candidate.category,
                       default: @job.category_id,
                       label: "Job Category" %>
-    <%#= f.input :career_level_id %>
     <%= f.association :degree_level,
                       collection: DegreeLevel.all,
                       priority: @preferred_candidate.degree_level,
                       default: @preferred_candidate.degree_level,
                       label: "Degree Level" %>
+    <%= f.association :career_level,
+                      collection: CareerLevel.all,
+                      priority: @preferred_candidate.career_level,
+                      default: @preferred_candidate.career_level,
+                      label: "Career Level" %>
     <%= f.association :related_experience,
                       collection: RelatedExperience.all,
                       priority: @preferred_candidate.related_experience,
