@@ -13,7 +13,7 @@ Category.create([{ name: 'Accounting / Finance' }, { name: 'Sales' }, { name: 'M
 
 Industry.create([{ name: 'Telecommunications Services' }, { name: 'Construction' }, { name: 'Distribution / Logistics' }])
 
-ContractType.create([ { name: 'Full Time'}, { name: 'Part Time'}, { name: 'Internship'}])
+ContractType.create([ { name: 'Full Time'}, { name: 'Part Time'}, { name: 'Internship'}, { name: 'Remote'}])
 
 SalaryRange.create([ { range: '0 - 99,999 Ks.'}, { range: '100,000 - 249,999 Ks.'}, { range: '250,000 - 499,999 Ks.'}, { range: '500,000 - 749,999 Ks.'}, { range: '750,000 Ks. +'}])
 

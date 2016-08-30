@@ -28,14 +28,14 @@
 <% end %>
 <hr>
 <h3>Professional Skill</h3>
-<p><strong>What kind of professional skill are we looking for? </strong><%= @job.professional_skill %></p>
+<p><strong>What kind of professional skill are we looking for? </strong><%= @job.professional_skill.html_safe %></p>
 <hr>
 <h3>Language Skill</h3>
-<p><strong>What kind of language skill do we need? </strong><%= @job.language_skills %></p>
+<p><strong>What kind of language skill do we need? </strong><%= @job.language_skills.html_safe %></p>
 <hr>
 <h3>Job Description</h3>
-<p><strong>Job Requiremnet: </strong><%= @job.requirement %></p>
-<p><strong>How to apply? </strong><%= @job.apply_instruction %></p>
+<p><strong>Job Requiremnet: </strong><%= @job.requirement.html_safe %></p>
+<p><strong>How to apply? </strong><%= @job.apply_instruction.html_safe %></p>
 <p><strong>Vacancy Expiration Date: </strong><%= @job.start_day %></p>
 <p><strong>Monthly Salary: </strong><%= @job.salary_range.range %></p>
 <hr>

@@ -29,11 +29,11 @@
 <p><strong>State: </strong><%= @company.location.name if @company.location.present? %></p>
 <p><strong>Phone: </strong><%= @company.phone %></p>
 <p><strong>Email: </strong><%= @company.email %></p>
-<p><strong>About Us: </strong><%= @company.about %></p>
-<p><strong>Our History: </strong><%= @company.story %></p>
-<p><strong>Why are we awesome? </strong><%= @company.welfare %></p>
-<p><strong>Who we are looking for? </strong><%= @company.demand %></p>
-<p><strong>Idea: </strong><%= @company.idea %></p>
+<p><strong>About Us: </strong><%= raw @company.about %></p>
+<p><strong>Our History: </strong><%= raw @company.story %></p>
+<p><strong>Why are we awesome? </strong><%= raw @company.welfare %></p>
+<p><strong>Who we are looking for? </strong><%= raw @company.demand %></p>
+<p><strong>Idea: </strong><%= raw @company.idea %></p>
 <p><strong>Our Site: </strong><%= link_to @company.website %></p>
 <p><strong>Our Facebook: </strong><%= link_to @company.facebook %></p>
 <p><strong>Our Twitter: </strong><%= link_to @company.twitter %></p>
