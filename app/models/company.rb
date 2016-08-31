@@ -40,7 +40,8 @@ class Company < ActiveRecord::Base
       :search_query,
       :with_industry_id,
       :with_location_id,
-      :with_employee_range_id
+      :with_employee_range_id,
+      :with_vacancy_numbers
     ]
   )
 
@@ -100,6 +101,17 @@ class Company < ActiveRecord::Base
   scope :with_employee_range_id, -> (employee_range_ids) {
     employee_range_ids.select! {|ele| ele != ""}
     where(employee_range_id: [*employee_range_ids]) if employee_range_ids.present?
+  }
+
+  scope :with_vacancy_numbers, -> (vacancy_numbers) {
+    vacancy_numbers.select! {|ele| ele != ""}
+    if vacancy_numbers.present? && vacancy_numbers.first == 1
+      where(jobs_count: 1)
+    elsif vacancy_numbers.present? && vacancy_numbers.first == 2
+      where(jobs_count: (2..3))
+    elsif vacancy_numbers.present? && vacancy_numbers.first == 3
+      where("jobs_count >= 4")
+    end
   }
 
   delegate :name, to: :industry, prefix: true

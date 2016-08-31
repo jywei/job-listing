@@ -80,6 +80,29 @@
           </div>
         </div>
       </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingFour" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+          <h4 class="panel-title">
+            Vacancy Numbers
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_vacancy_numbers, [[1, '1 vacancy'] ,[2, '2 ~ 3 vacancies'], [3, 'more than 4 vacancies']], :first, :last) do |b| %>
+            <div class="block filter-list">
+              <div class="inline">
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
+                <%= b.object.last %>
+                <%#= job_size(:employee_range_id, b.object.id) %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <%= render_filterrific_spinner %>
