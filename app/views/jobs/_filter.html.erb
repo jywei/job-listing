@@ -1,22 +1,20 @@
 <%#= render( partial: "jobs/filter", locals: { jobs: @jobs } ) %>
 
-<%= form_for_filterrific @filterrific do |f| %>
+<%= form_for_filterrific(@filterrific, class: "form-group") do |f| %>
   <div class="col-md-12">
     <div class="search">
       <h1 class="center">Let us find you a job!</h1>
       <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-        <%= f.text_field(:search_query, class: 'search-bar') %>
+        <%= f.text_field(:search_query, class: 'search-bar form-control') %>
     </div>
     <h1>We found <%= @jobs.size %> jobs</h1>
+    <br>
   </div>
   <div class="col-md-4">
-    <p>Filter by:</p>
+    <p><%= link_to('Reset filters', reset_filterrific_url, class: "btn btn-default") %></p>
     <div>
-      <%= link_to('Reset filters', reset_filterrific_url) %>
-    </div>
-    <div>
-      Job Posted After
-      <%= f.text_field(:with_posted_at_gte, class: 'js-datepicker filterrific-periodically-observed') %>
+      Job Posted After:
+      <%= f.text_field(:with_posted_at_gte, class: 'js-datepicker filterrific-periodically-observed form-control') %>
     </div>
     <br>
     <div class="panel-group max-width" id="" role="tablist" aria-multiselectable="true">

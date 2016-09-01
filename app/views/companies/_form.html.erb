@@ -60,7 +60,9 @@
     <%= image_tag @company.image.url(:thumb),
         class: "img-rounded text-center",
         size: '100x100' %>
-    <%= f.button :submit %>
+    <div class="form-actions" style="margin: 20px 0;">
+      <%= f.button :submit %>
+    </div>
   </div>
 <% end %>
 
