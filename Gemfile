@@ -34,7 +34,7 @@ gem 'will_paginate-bootstrap'
 
 gem 'chardinjs-rails'
 
-gem 'momentjs-rails', '>= 2.9.0'
+# gem 'momentjs-rails', '>= 2.9.0'
 
 gem 'bootstrap-datepicker-rails'
 
