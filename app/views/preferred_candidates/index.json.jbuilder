@@ -1,0 +1,1 @@
+json.array! @preferred_candidates, partial: 'preferred_candidates/preferred_candidate', as: :preferred_candidate

@@ -1,0 +1,70 @@
+<%= simple_form_for(@company, html: { class: 'form-horizontal center' }) do |f| %>
+  <% if @company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% @company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.input :name %>
+    <%= f.input :tagline %>
+    <%= f.association :industry,
+                      collection: Industry.all,
+                      priority: @company.industry,
+                      label: "Company Industry",
+                      prompt: "Choose an industry of your company" %>
+    <%= f.input :phone %>
+    <%= f.input :email %>
+    <%= f.input :address1, label: "Company's Address", placeholder: "Street Address" %>
+    <%= f.input :address2, label: false, placeholder: "Other Address Info" %>
+    <%= f.input :about, as: :text, input_html: { class: 'editor' } %>
+    <%= f.input :story, as: :text, input_html: { class: 'editor' } %>
+    <%= f.input :welfare, as: :text, input_html: { class: 'editor' } %>
+    <%= f.input :demand, as: :text, input_html: { class: 'editor' } %>
+    <%= f.input :idea, as: :text, input_html: { class: 'editor' } %>
+    <%= f.association :country,
+                      collection: Country.all,
+                      priority: @company.country,
+                      label: "Company's Country",
+                      prompt: "Choose a country of this company" %>
+    <%= f.association :location,
+                      collection: Location.all,
+                      priority: @company.location,
+                      label: "Company's Location",
+                      prompt: "Choose a job location of this compamy" %>
+    <%= f.association :employee_range,
+                      collection: EmployeeRange.all,  #.pluck(:range),
+                      priority: @company.employee_range,
+                      label_method: :range,
+                      label: "Employee Amount Range",
+                      prompt: "Choose a employee range for this company" %>
+    <%= f.input :website %>
+    <%= f.input :facebook %>
+    <%= f.input :twitter %>
+    <%= f.input :ios %>
+    <%= f.input :android %>
+    <%= f.input :is_hiring, as: :boolean,
+                            checked_value: true,
+                            unchecked_value: false %>
+    <%= f.input :cover, as: :file, label: "Comany Background Image (230x100)" %>
+    <%= image_tag @company.cover.url(:preview),
+        class: "img-rounded text-center",
+        size: '230x100' %>
+    <%= f.input :image, as: :file, label: "Comany Logo Image (100x100)" %>
+    <%= image_tag @company.image.url(:thumb),
+        class: "img-rounded text-center",
+        size: '100x100' %>
+    <div class="form-actions" style="margin: 20px 0;">
+      <%= f.button :submit %>
+    </div>
+  </div>
+<% end %>
+
+<%= javascript_include_tag '/assets/admin/companies_new' %>
+

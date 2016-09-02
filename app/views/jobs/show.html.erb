@@ -1,0 +1,76 @@
+<h2><%= @job.title.titleize  %></h2>
+<% if (user_signed_in?) && (current_user.id == @job.company.user_id) %>
+  <%= link_to 'Edit Job Content', "/jobs/#{@job.id}/edit?company_id=#{@job.company.id}", class: "btn btn-default" %>
+<% end %>
+<% if user_signed_in? %>
+  <%= link_to 'Save job to favorites', "#", remote: true, 'data-id': @job.id, class: "btn btn-default like_button #{'hide' if current_user.favorite_jobs.find_by(id: @job.id)}" %>
+  <%= link_to 'Unfollow this Job', "#", remote: true, 'data-id': @job.id, class: "btn btn-default unlike_button #{'hide' unless current_user.favorite_jobs.find_by(id: @job.id)}" %>
+<% end %>
+<h3><strong>Company: </strong><%= link_to @job.company.name, company_path(@job.company) if @job.company.present? %></h3>
+<%= image_tag @job.company.cover.url(:preview),
+            class: "img-rounded text-center",
+            size: '230x100' %>
+
+<%= image_tag @job.company.image.url(:thumb),
+            class: "img-rounded text-center",
+            size: '100x100' %><br />
+<br>
+<h3>Company Details</h3>
+<p><strong>Company Industry: </strong><%= @job.company.industry.name %></p>
+<p><strong>No. Of Employees: </strong><%= @job.company.employee_range.range %></p>
+<hr>
+<h3>Job Details</h3>
+<p><strong>Job Category: </strong><%= @job.category.name %></p>
+<p><strong>Contract Type: </strong><%= @job.contract_type.name %></p>
+<p><strong>Country: </strong><%= @job.country.name %></p>
+<% if @job.location.present? %>
+  <p><strong>State: </strong><%= @job.location.name %></p>
+<% end %>
+<hr>
+<h3>Professional Skill</h3>
+<p><strong>What kind of professional skill are we looking for? </strong><%= @job.professional_skill.html_safe %></p>
+<hr>
+<h3>Language Skill</h3>
+<p><strong>What kind of language skill do we need? </strong><%= @job.language_skills.html_safe %></p>
+<hr>
+<h3>Job Description</h3>
+<p><strong>Job Requiremnet: </strong><%= @job.requirement.html_safe %></p>
+<p><strong>How to apply? </strong><%= @job.apply_instruction.html_safe %></p>
+<p><strong>Vacancy Expiration Date: </strong><%= @job.start_day %></p>
+<p><strong>Monthly Salary: </strong><%= @job.salary_range.range %></p>
+<hr>
+<h3>About The Company</h3>
+<p><%= @job.company.about %></p>
+<hr>
+<% if (user_signed_in?) && (current_user.id == @job.company.user_id) %>
+  <h3>Preferred Candidate</h3>
+  <%= render 'preferred_candidates/form' %>
+<% end %>
+
+<script>
+  $('.like_button').click(function(){
+    $.getJSON('/jobs/favorite_job?id=' + $(this).data('id'), function(data){
+      if(data){
+        alert('You are currently following this job!')
+        $('.like_button').addClass('hide')
+        $('.unlike_button').removeClass('hide')
+      }
+      else{
+        alert('Failed to add this job to your favorites, sorry!')
+      }
+    })
+  });
+
+  $('.unlike_button').click(function(){
+    $.getJSON('/jobs/unfollow_job?id=' + $(this).data('id'), function(data){
+      if(data){
+        alert('You have successfully unfollowed this job!')
+        $('.like_button').removeClass('hide')
+        $('.unlike_button').addClass('hide')
+      }
+      else{
+        alert('Failed to unfollow this job, sorry!')
+      }
+    })
+  });
+</script>
