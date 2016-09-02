@@ -17,3 +17,4 @@
 //= require bootstrap/modal
 //= require filterrific/filterrific-jquery
 //= require chardinjs
+//= require cocoon

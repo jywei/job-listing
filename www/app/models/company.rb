@@ -104,7 +104,7 @@ class Company < ActiveRecord::Base
 
   delegate :name, to: :industry, prefix: true
   delegate :name, to: :location, prefix: true
-  delegate :range, to: :employee_range, prefix: true
+  delegate :range, to: :employee_range, prefix: true #.employee_range_range
 
   def self.options_for_sorted_by
     [

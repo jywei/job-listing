@@ -1,4 +1,4 @@
-<%= simple_form_for(@company, html: { class: 'form-horizontal center max-width' }) do |f| %>
+<%= simple_form_for(@company, html: { class: 'form-horizontal center' }) do |f| %>
   <% if @company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
@@ -23,11 +23,11 @@
     <%= f.input :email %>
     <%= f.input :address1, label: "Company's Address", placeholder: "Street Address" %>
     <%= f.input :address2, label: false, placeholder: "Other Address Info" %>
-    <%= f.input :about, as: :text %>
-    <%= f.input :story, as: :text %>
-    <%= f.input :welfare, as: :text %>
-    <%= f.input :demand, as: :text %>
-    <%= f.input :idea, as: :text %>
+    <%= f.input :about, as: :text, input_html: { class: 'editor' } %>
+    <%= f.input :story, as: :text, input_html: { class: 'editor' } %>
+    <%= f.input :welfare, as: :text, input_html: { class: 'editor' } %>
+    <%= f.input :demand, as: :text, input_html: { class: 'editor' } %>
+    <%= f.input :idea, as: :text, input_html: { class: 'editor' } %>
     <%= f.association :country,
                       collection: Country.all,
                       priority: @company.country,
@@ -60,7 +60,9 @@
     <%= image_tag @company.image.url(:thumb),
         class: "img-rounded text-center",
         size: '100x100' %>
-    <%= f.button :submit %>
+    <div class="form-actions" style="margin: 20px 0;">
+      <%= f.button :submit %>
+    </div>
   </div>
 <% end %>
 

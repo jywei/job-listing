@@ -28,47 +28,49 @@
 <% end %>
 <hr>
 <h3>Professional Skill</h3>
-<p><strong>What kind of professional skill are we looking for? </strong><%= @job.professional_skill %></p>
+<p><strong>What kind of professional skill are we looking for? </strong><%= @job.professional_skill.html_safe %></p>
 <hr>
 <h3>Language Skill</h3>
-<p><strong>What kind of language skill do we need? </strong><%= @job.language_skills %></p>
+<p><strong>What kind of language skill do we need? </strong><%= @job.language_skills.html_safe %></p>
 <hr>
 <h3>Job Description</h3>
-<p><strong>Job Requiremnet: </strong><%= @job.requirement %></p>
-<p><strong>How to apply? </strong><%= @job.apply_instruction %></p>
+<p><strong>Job Requiremnet: </strong><%= @job.requirement.html_safe %></p>
+<p><strong>How to apply? </strong><%= @job.apply_instruction.html_safe %></p>
 <p><strong>Vacancy Expiration Date: </strong><%= @job.start_day %></p>
 <p><strong>Monthly Salary: </strong><%= @job.salary_range.range %></p>
 <hr>
 <h3>About The Company</h3>
 <p><%= @job.company.about %></p>
-
-
-
+<hr>
+<% if (user_signed_in?) && (current_user.id == @job.company.user_id) %>
+  <h3>Preferred Candidate</h3>
+  <%= render 'preferred_candidates/form' %>
+<% end %>
 
 <script>
   $('.like_button').click(function(){
-      $.getJSON('/jobs/favorite_job?id=' + $(this).data('id'), function(data){
-        if(data){
-          alert('You are currently following this job!')
-          $('.like_button').addClass('hide')
-          $('.unlike_button').removeClass('hide')
-        }
-        else{
-          alert('Failed to add this job to your favorites, sorry!')
-        }
-      })
-    });
+    $.getJSON('/jobs/favorite_job?id=' + $(this).data('id'), function(data){
+      if(data){
+        alert('You are currently following this job!')
+        $('.like_button').addClass('hide')
+        $('.unlike_button').removeClass('hide')
+      }
+      else{
+        alert('Failed to add this job to your favorites, sorry!')
+      }
+    })
+  });
 
-    $('.unlike_button').click(function(){
-      $.getJSON('/jobs/unfollow_job?id=' + $(this).data('id'), function(data){
-        if(data){
-          alert('You have successfully unfollowed this job!')
-          $('.like_button').removeClass('hide')
-          $('.unlike_button').addClass('hide')
-        }
-        else{
-          alert('Failed to unfollow this job, sorry!')
-        }
-      })
-    });
+  $('.unlike_button').click(function(){
+    $.getJSON('/jobs/unfollow_job?id=' + $(this).data('id'), function(data){
+      if(data){
+        alert('You have successfully unfollowed this job!')
+        $('.like_button').removeClass('hide')
+        $('.unlike_button').addClass('hide')
+      }
+      else{
+        alert('Failed to unfollow this job, sorry!')
+      }
+    })
+  });
 </script>

@@ -39,6 +39,7 @@ class JobsController < ApplicationController
   # GET /jobs/1
   def show
     # @company = @job.company
+    @preferred_candidate = PreferredCandidate.new
   end
 
   # GET /jobs/new

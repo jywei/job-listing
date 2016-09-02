@@ -13,15 +13,23 @@ Category.create([{ name: 'Accounting / Finance' }, { name: 'Sales' }, { name: 'M
 
 Industry.create([{ name: 'Telecommunications Services' }, { name: 'Construction' }, { name: 'Distribution / Logistics' }])
 
-ContractType.create([ { name: 'Full Time'}, { name: 'Part Time'}, { name: 'Internship'}])
+ContractType.create([ { name: 'Full Time'}, { name: 'Part Time'}, { name: 'Internship'}, { name: 'Remote'}])
 
 SalaryRange.create([ { range: '0 - 99,999 Ks.'}, { range: '100,000 - 249,999 Ks.'}, { range: '250,000 - 499,999 Ks.'}, { range: '500,000 - 749,999 Ks.'}, { range: '750,000 Ks. +'}])
 
 EmployeeRange.create([ { range: '1 - 5'}, { range: '6 - 10'}, { range: '11 - 20'}, { range: '21 - 50'}, { range: '51 - 100'}, { range: '101 - 500'}, { range: '501 - 1000'}, { range: '1000 - 5000'}, { range: '5000 + '}])
 
+RelatedExperience.create([ { name: 'No Relatived Experience'}, { name: '0 - 1 years'}, { name: '1 - 3 years'}, { name: '3 - 5 years'}, { name: '5 - 7 years'}, { name: '7 years +'}])
+
+CareerLevel.create([ { name: 'Student/Internship'}, { name: 'Entry Level'}, { name: 'Experienced (Non-manager)'}, { name: 'Manager (Supervisor of Stuff)'}, { name: 'Executive (VP, Department Head, etc.'}, { name: 'Senior Executive (President, CEO, etc.)'}, { name: 'Other'}])
+
 Category.find_each { |category| Category.reset_counters(category.id, :jobs) }
 
 Industry.find_each { |industry| Industry.reset_counters(industry.id, :jobs) }
+
+# def a(model, block)
+#   model.send(:find_each, block)
+# end
 
 ContractType.find_each { |contract_type| ContractType.reset_counters(contract_type.id, :jobs) }
 
@@ -75,10 +83,9 @@ Company.create([{ name: "Apple", tagline: "Awesome!", phone: "0989098878", email
 
 Company.find_each { |company| Company.reset_counters(company.id, :jobs) }
 
-
-Job.create!([{ title: "wrestler", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 2, industry_id: 1, contract_type_id: 1, is_published: true, start_day: "2017-08-01", country_id: 150, location_id: 1, salary_range_id: 5, company_id: 1 },
-            { title: "pornstar", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 1, industry_id: 2, contract_type_id: 2, is_published: true, start_day: "2017-05-01", country_id: 150, location_id: 3, salary_range_id: 4, company_id: 1 },
-            { title: "unicorn", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 3, industry_id: 3, contract_type_id: 1, is_published: true, start_day: "2017-07-01", country_id: 150, location_id: 5, salary_range_id: 2, company_id: 2 },
+Job.create!([{ title: "Wrestler", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 2, industry_id: 1, contract_type_id: 1, is_published: true, start_day: "2017-08-01", country_id: 150, location_id: 1, salary_range_id: 5, company_id: 1 },
+            { title: "Pornstar", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 1, industry_id: 2, contract_type_id: 2, is_published: true, start_day: "2017-05-01", country_id: 150, location_id: 3, salary_range_id: 4, company_id: 1 },
+            { title: "Unicorn", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 3, industry_id: 3, contract_type_id: 1, is_published: true, start_day: "2017-07-01", country_id: 150, location_id: 5, salary_range_id: 2, company_id: 2 },
             { title: "Actor", description: "a great job", requirement: "be awesome", apply_instruction: "be on time", professional_skill: "sex king", category_id: 1, industry_id: 2, contract_type_id: 3, is_published: true, start_day: "2017-01-01", country_id: 150, location_id: 2, salary_range_id: 3, company_id: 2 }])
 
 

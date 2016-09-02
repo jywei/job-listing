@@ -38,6 +38,18 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
+    <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script>
+      tinymce.init({
+        selector: '.editor',
+        height: 300,
+        theme: 'modern',
+        content_css: [
+          'https://fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+          'https://www.tinymce.com/css/codepen.min.css'
+        ]
+      });
+    </script>
     <%= render 'layouts/navbar' %>
     <%= bootstrap_flash %>
     <br>

@@ -4,6 +4,8 @@ class CompaniesController < ApplicationController
   before_action :log_impression, only: [:show], unique: [:session_hash]
   before_action :expiration_check, only: [:show]
 
+  authorize_resource
+
   respond_to :html, :js
 
   def index
