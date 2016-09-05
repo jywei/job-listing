@@ -1,0 +1,24 @@
+<div id="filterrific_results">
+  <div style="margin-bottom: 20px;">
+    <%= page_entries_info resumes, entry_name: "Resumes", model: 'resume' %>
+    <%= will_paginate resumes %>
+  </div>
+  <div class="table">
+    <% resumes.each do |resume| %>
+      <div class="job-list" style="border: 1px solid #111111; padding: 10px;">
+        <tr>
+          <td><%= image_tag resume.cover.url(:preview), class: "img-rounded text-center", size: '230x100' %></td><br />
+          <td><i class="fa fa-user"></i><p><%= resume.firstname + " " + resume.lastname %></p></td>
+          <td><i class="fa fa-phone"></i><p><%= resume.phone %></p></td>
+          <td><i class="fa fa-child"></i><p><%= calculate_age(resume.birth) + " years old" %></p></td>
+          <hr>
+          <td><i class="fa fa-briefcase"></i><p><%= resume.employment_status.name %></p></td>
+          <td><i class="fa fa-map-marker"></i><p><%= resume.location.name if resume.location.present? %></p></td>
+        </tr>
+      </div>
+    <br>
+    <% end %>
+  </div>
+</div>
+
+<%= will_paginate resumes %>

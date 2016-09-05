@@ -1,0 +1,163 @@
+<%= form_for_filterrific @filterrific do |f| %>
+  <div class="col-md-12">
+    <div class="search">
+      <h1 class="center">All Resumes</h1>
+      <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+        <%= f.text_field(:search_query, class: 'search-bar') %>
+    </div>
+    <h1>There are <%= @resumes.size %> resumes</h1>
+  </div>
+  <div class="col-md-4">
+    <div>
+      <%= link_to('Reset filters', reset_filterrific_url) %>
+    </div>
+    <br>
+    <div class="panel-group max-width" id="" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <h4 class="panel-title">
+            Location
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_location_id, Location.all, :id, :name) do |b| %>
+            <div class="block filter-list">
+              <div class="inline">
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
+                <%= b.object.name %>
+                <%#= resume_size(:location_id, b.object.id) %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <h4 class="panel-title">
+            Employment Status
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_employment_status_id, EmploymentStatus.all, :id, :name) do |b| %>
+            <div class="block filter-list">
+              <div class="inline">
+                <%= b.check_box(class: "filterrific-periodically-observed") %>
+                <%= b.object.name %>
+                <%#= resume_size(:employment_status_id, b.object.id) %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <h4 class="panel-title">
+            Work Expirence
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            <%= f.collection_check_boxes :with_employment_count, [[1, 'None'], [2, '1 to 2'], [3, '3 to 5'], [4, '6 and counting']], :first, :last do |b| %>
+              <div class="block filter-list">
+                <div class="inline">
+                  <%= b.check_box(class: "filterrific-periodically-observed") %>
+                  <%= b.object[1] %>
+                  <%#= resume_size(:experience_count, b.object[0]) %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingFour" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+          <h4 class="panel-title">
+            Desired Job Salary
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+          <div class="panel-body">
+            <%= f.collection_check_boxes :with_desired_job_salary, [[1, '0 - 99,999 Ks.'], [2, '100,000 - 249,999 Ks.'], [3, '250,000 - 499,999 Ks.'], [4, '500,000 - 749,999 Ks.'], [5, '750,000 Ks.+']], :first, :last do |b| %>
+              <div class="block filter-list">
+                <div class="inline">
+                  <%= b.check_box(class: "filterrific-periodically-observed") %>
+                  <%= b.object[1] %>
+                  <%#= DesiredJobSalary_size(b.object[0]) %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingFive" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+          <h4 class="panel-title">
+            Age
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+          <div class="panel-body">
+            <%= f.collection_check_boxes :with_age, [[1, '18 to 29'], [2, '30 to 39'], [3, '40 to 49']], :first, :last do |b| %>
+              <div class="block filter-list">
+                <div class="inline">
+                  <%= b.check_box(class: "filterrific-periodically-observed") %>
+                  <%= b.object[1] %>
+                  <%#= DesiredJobSalary_size(b.object[0]) %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading collapsed" role="tab" id="headingSix" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+          <h4 class="panel-title">
+            Desired Job Role
+          </h4>
+          <i class="fa fa-chevron-down arrow-down"></i>
+        </div>
+        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+          <div class="panel-body">
+            <%= f.collection_check_boxes(:with_desired_job_role, Category.all, :id, :name) do |b| %>
+              <div class="block filter-list">
+                <div class="inline">
+                  <%= b.check_box(class: "filterrific-periodically-observed") %>
+                  <%= b.object.name %>
+                  <%#= DesiredJobSalary_size(b.object[0]) %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <%= render_filterrific_spinner %>
+<% end %>
+
+<script>
+  $('.panel-heading').click(function(){
+    var ff = $(this)
+    if($(this).hasClass('collapsed')) {
+      ff.children('i').addClass('rotate180')
+    }
+    else {
+      ff.children('i').removeClass('rotate180')
+    }
+  })
+</script>

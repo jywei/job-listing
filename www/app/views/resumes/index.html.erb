@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<div class="job">
+  <div id="filtered_resume">
+    <%= render( partial: "resumes/filter", locals: { resumes: @resumes } ) %>
+  </div>
+  <br>
+  <hr>
+  <div class="col-sm-8">
+    <%= render( partial: 'resumes/list', locals: { resumes: @resumes } ) %>
+  </div>
+</div>

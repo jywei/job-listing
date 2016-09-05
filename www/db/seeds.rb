@@ -39,6 +39,8 @@ DegreeLevel.create([ { name: "High School or equivalent" }, { name: 'Vocational 
 
 Proficiency.create([ { name: "Basic Knowledge" }, { name: "Conversational" }, { name: "Full working proficiency" }, { name: "Native Tongue" } ])
 
+EmploymentStatus.create([ { name: "Actively searching" }, { name: "Employed but open to opportunities" }, { name: "Employed, not open to opportunities" } ])
+
 puts "Importing cities..."
 count = 1
 CSV.foreach(Rails.root.join("myanmar_city.csv"), headers: false) do |row|
