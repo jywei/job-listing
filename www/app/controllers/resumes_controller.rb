@@ -1,13 +1,13 @@
 class ResumesController < ApplicationController
-  respond_to :html, :js
 
   def index
     @filterrific = initialize_filterrific(
       Resume.all,
       params[:filterrific],
       default_filter_params: {},
+              
     ) or return
-    @resumes = @filterrific.find.includes(:djs, :location, :employment_status, :experiences).page(params[:page])
+    @resumes = @filterrific.find.includes(:desired_jobs_salary, :location, :employment_status, :experiences).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -123,9 +123,9 @@ class ResumesController < ApplicationController
 
   def getExp
     @experiences = Experience.where(resume_id: current_user.resume.id)
-    @djs = Djs.where(resume_id: current_user.resume.id)
-    @djr = Djr.where(resume_id: current_user.resume.id)
-    @dji = Dji.where(resume_id: current_user.resume.id)
+    @djs = DesiredJobsSalary.where(resume_id: current_user.resume.id)
+    @djr = DesiredJobsRole.where(resume_id: current_user.resume.id)
+    @dji = DesiredJobsIndustry.where(resume_id: current_user.resume.id)
 
     bigexp = Array.new
     @experiences.each do |exp|
@@ -170,8 +170,8 @@ class ResumesController < ApplicationController
   end
 
   def addDJS
-    unless current_user.resume.djs.present?
-      @djs = Djs.new(djs_params)
+    unless current_user.resume.desired_jobs_salary.present?
+      @djs = DesiredJobsSalary.new(djs_params)
 
       respond_to do |format|
         if @djs.save
@@ -186,7 +186,7 @@ class ResumesController < ApplicationController
   end
 
   def addDJR
-    @djr = Djr.new(djr_params)
+    @djr = DesiredJobsRole.new(djr_params)
 
     respond_to do |format|
       if @djr.save
@@ -202,7 +202,7 @@ class ResumesController < ApplicationController
   end
 
   def addDJI
-    @dji = Dji.new(dji_params)
+    @dji = DesiredJobsIndustry.new(dji_params)
 
     respond_to do |format|
       if @dji.save
@@ -221,11 +221,11 @@ class ResumesController < ApplicationController
     if params[:name] == 'Exp'
       boolean = Experience.find(params[:id]).delete
     elsif params[:name] == 'Djs'
-      boolean = Djs.find(params[:id]).delete
+      boolean = DesiredJobsSalary.find(params[:id]).delete
     elsif params[:name] == 'Djr'
-      boolean = Djr.find(params[:id]).delete
+      boolean = DesiredJobsRole.find(params[:id]).delete
     elsif params[:name] == 'Dji'
-      boolean = Dji.find(params[:id]).delete
+      boolean = DesiredJobsIndustry.find(params[:id]).delete
     end
 
     respond_to do |format|
@@ -244,8 +244,7 @@ class ResumesController < ApplicationController
                                      :phone,
                                      :location_id,
                                      :cover,
-                                     :birth,
-                                     :employment_status_id)
+                                     :birth)
     end
 
     def school_params
