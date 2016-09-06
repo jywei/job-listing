@@ -16,9 +16,9 @@ class Users::SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     yield resource if block_given?
     if resource.has_role? :employer == true
-      redirect_to resource.company
+      redirect_to resource.company || root_path
     elsif resource.has_role? :admin == true
-      redirect_to admin_root_path
+      redirect_to admin_root_path || root_path
     else
       respond_with resource, location: after_sign_in_path_for(resource)
     end

@@ -22,7 +22,7 @@
 <h2><strong>Company Name: </strong><%= @company.name.titleize %></h2>
 <h4><%= pluralize(@company.jobs.published.unexpired.count, 'available vacancy') %></h4>
 <p><strong>Tagline: </strong><%= @company.tagline %></p>
-<p><strong>Employee Numbers: </strong><%= @company.employee_range.range %></p>
+<p><strong>Employee Numbers: </strong><%= @company.employee_range.range if @company.employee_range.present? %></p>
 <p><strong>Industry: </strong><%= @company.industry.name if @company.industry.present? %></p>
 <p><strong>Address: </strong><%= @company.address1 %> <%= @company.address2 %></p>
 <p><strong>Country: </strong><%= @company.country.name %></p>
