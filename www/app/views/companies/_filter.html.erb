@@ -1,13 +1,14 @@
 <%#= render( partial: "companies/filter", locals: { companies: @companies } ) %>
 
-<%= form_for_filterrific @filterrific do |f| %>
+<%= form_for_filterrific(@filterrific, class: "form-group") do |f| %>
   <div class="col-md-12">
     <div class="search">
       <h1 class="center">All Companies</h1>
       <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-        <%= f.text_field(:search_query, class: 'search-bar') %>
+        <%= f.text_field(:search_query, class: 'search-bar form-control') %>
     </div>
     <h1>There are <%= @companies.size %> companies</h1>
+    <br>
   </div>
   <div class="col-md-4">
     <div>
