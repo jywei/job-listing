@@ -1,8 +1,9 @@
 class Language < ActiveRecord::Base
-  has_one :proficiency
-  has_one :language_skill
+  has_one :fluency
+  has_one :language_code
+
   belongs_to :resume
-  belongs_to :language_code
+  belongs_to :language_skill
 
   belongs_to :preferred_candidate
 end

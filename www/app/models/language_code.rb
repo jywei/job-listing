@@ -1,3 +1,3 @@
 class LanguageCode < ActiveRecord::Base
-  has_many :languages
+  belongs_to :language
 end
