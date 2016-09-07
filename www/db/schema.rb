@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906034658) do
+ActiveRecord::Schema.define(version: 20160907034723) do
 
   create_table "career_levels", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -129,6 +129,13 @@ ActiveRecord::Schema.define(version: 20160906034658) do
     t.datetime "updated_at",                   null: false
   end
 
+  create_table "fluencies", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "language_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type", limit: 255
     t.integer  "impressionable_id",   limit: 4
@@ -184,6 +191,13 @@ ActiveRecord::Schema.define(version: 20160906034658) do
     t.text     "language_skills",    limit: 65535
   end
 
+  create_table "language_codes", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "language_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "language_skills", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
@@ -194,8 +208,8 @@ ActiveRecord::Schema.define(version: 20160906034658) do
     t.integer  "language_skill_id",      limit: 4
     t.integer  "proficiency_id",         limit: 4
     t.integer  "resume_id",              limit: 4
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "preferred_candidate_id", limit: 4
   end
 
@@ -252,8 +266,8 @@ ActiveRecord::Schema.define(version: 20160906034658) do
     t.string   "phone",                limit: 255
     t.integer  "location_id",          limit: 4
     t.integer  "user_id",              limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "cover_file_name",      limit: 255
     t.string   "cover_content_type",   limit: 255
     t.integer  "cover_file_size",      limit: 4

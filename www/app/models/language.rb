@@ -4,4 +4,7 @@ class Language < ActiveRecord::Base
   belongs_to :resume
 
   belongs_to :preferred_candidate
+
+  has_one :fluency
+  has_one :language_code
 end
