@@ -8,9 +8,9 @@ class Resume < ActiveRecord::Base
   has_many :languages
   has_many :skills
   has_many :experiences
-  has_many :djrs
-  has_many :djis
-  has_one :djs
+  has_many :desired_jobs_roles
+  has_many :desired_jobs_industries
+  has_one :desired_jobs_salary
  
   belongs_to :location
   belongs_to :user

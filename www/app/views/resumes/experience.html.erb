@@ -1,0 +1,141 @@
+<h2>Your Work Experience</h2>
+
+<h3>Your Work Experience</h3>
+
+<div>
+  <h3 class="inline">Company / Position</h3>
+
+  <button type="button" class="btn btn-primary floatright" data-toggle="modal" data-target="#myModal">
+    ADD
+  </button>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "form" do %>
+        <div class="modal-body">
+          <%= label_tag 'job_title' %>
+          <%= text_field_tag :job_title, '', class: 'form-control' %>
+          <%= label_tag 'company_name' %>
+          <%= text_field_tag :company_name, '', class: 'form-control' %>
+          <div>
+            <%= label_tag 'start_day' %>
+            <%= text_field_tag :start_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
+            <%= label_tag 'end_day' %>
+            <%= text_field_tag :end_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
+          </div>
+          <%= label_tag 'country_id' %>
+          <%= select_tag 'country_id', options_from_collection_for_select(Country.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <%= label_tag 'industry_id' %>
+          <%= select_tag 'industry_id', options_from_collection_for_select(Industry.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <%= label_tag 'contract_type_id' %>
+          <%= select_tag 'contract_type_id', options_from_collection_for_select(ContractType.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <%= label_tag 'activities' %>
+          <%= text_field_tag :activities, '', class: 'form-control' %>
+        </div>
+        <div class="modal-footer">
+          <div class='exp_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="exp-form">
+</div>
+
+<div>
+  <h3 class="inline">Desired Job Salary</h3>
+
+  <button type="button" class="btn btn-primary floatright" id="djs_button" data-toggle="modal" data-target="#myModal1">
+    ADD
+  </button>
+</div>
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "djsform" do %>
+        <div class="modal-body">
+          <%= label_tag 'salary' %>
+          <%= text_field_tag :salary, '', class: 'form-control' %>
+        </div>
+        <div class="modal-footer">
+          <div class='djs_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="djs-form">
+</div>
+
+<div>
+  <h3 class="inline">Desired Job Role</h3>
+
+  <button type="button" class="btn btn-primary floatright" id="djr_button" data-toggle="modal" data-target="#myModal2">
+    ADD
+  </button>
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "djrform" do %>
+        <div class="modal-body">
+          <%= label_tag 'Role Name' %>
+          <%= select_tag 'category_id', options_from_collection_for_select(Category.all, 'id', 'name'), class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <div class='djr_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="djr-form">
+</div>
+
+<div>
+  <h3 class="inline">Desired Job Industry</h3>
+
+  <button type="button" class="btn btn-primary floatright" id="dji_button" data-toggle="modal" data-target="#myModal3">
+    ADD
+  </button>
+</div>
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "djiform" do %>
+        <div class="modal-body">
+          <%= label_tag 'Industry' %>
+          <%= select_tag 'industry_id', options_from_collection_for_select(Industry.all, 'id', 'name'), class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <div class='dji_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="dji-form">
+</div>
+
+<%= link_to 'Complete', root_path, class: "btn btn-default floatright" %>
+
+<script>
+  $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
+  $('.js-datepicker').datepicker();
+</script>
+
+<%= javascript_include_tag '/assets/experience' %>
+

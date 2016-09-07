@@ -15,6 +15,11 @@ $.getJSON('/resumes/getEdu', function(data){
     + '<a herf="#" class="deleLan btn btn-danger" data-remote="true" data-id="' + data.language[i][2] + '">Delete</a></ul>').appendTo($('.lan-form'))
     addDele('Lan')
   }
+  for(var i = 0; i < data.skill.length; i++){
+    $('<ul><li>' + data.skill[i].name + '</li>'
+    + '<a herf="#" class="deleSki btn btn-danger" data-remote="true" data-id="' + data.skill[i].id + '">Delete</a></ul>').appendTo($('.ski-form'))
+    addDele('Ski')
+  }
 })
 
 $('.form').submit(function(){
@@ -41,8 +46,7 @@ $('.form').submit(function(){
       }
       else{
         for(var i = 0; i < data.school.length; i++){
-          console.log(data.school[i])
-          $('<p>' + data.school[i] + '</p>').appendTo($('.error_zone'))
+          $('<p>' + data.school[i] + '</p>').appendTo($('.sch_error_zone'))
         } 
       }
     },
@@ -56,7 +60,7 @@ $('.lanform').submit(function(){
   var ff = $(this)
   $.ajax({
     url: '/resumes/addLan',
-    data: { language: { name: $('.lanform #lan-name').val(),
+    data: { language: { language_skill_id: $('.lanform #lan-name').val(),
                         proficiency_id: $('.lanform #proficiency_id').val() } },
     type: 'get',
     success: function(data) {
@@ -69,8 +73,32 @@ $('.lanform').submit(function(){
       }
       else{
         for(var i = 0; i < data.language.length; i++){
-          console.log(data.school[i])
-          $('<p>' + data.school[i] + '</p>').appendTo($('.error_zone'))
+          $('<p>' + data.language[i] + '</p>').appendTo( ff.children($('.lan_error_zone')) )
+        } 
+      }
+    },
+    failure: function() {
+      alert('unsuccess')
+    }
+  })
+})
+
+$('.skiform').submit(function(){
+  var ff = $(this)
+  $.ajax({
+    url: '/resumes/addSki',
+    data: { skill: { name: $('.skiform #ski-name').val() } },
+    type: 'get',
+    success: function(data) {
+      if(data.error == undefined){
+        $('<ul><li>' + data.skill.name + '</li>'
+        + '<a herf="#" class="deleSki btn btn-danger" data-remote="true" data-id="' + data.skill.id + '">Delete</a></ul>').appendTo($('.ski-form'))
+        addDele('Ski')
+        $('.modal').modal('hide')
+      }
+      else{
+        for(var i = 0; i < data.skill.length; i++){
+          $('<p>' + data.skill[i] + '</p>').appendTo( ff.children($('.ski_error_zone')) )
         } 
       }
     },

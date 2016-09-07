@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906034658) do
+ActiveRecord::Schema.define(version: 20160907034723) do
 
   create_table "career_levels", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -82,6 +82,27 @@ ActiveRecord::Schema.define(version: 20160906034658) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "desired_jobs_industries", force: :cascade do |t|
+    t.integer  "industry_id", limit: 4
+    t.integer  "resume_id",   limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "desired_jobs_roles", force: :cascade do |t|
+    t.integer  "category_id", limit: 4
+    t.integer  "resume_id",   limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "desired_jobs_salaries", force: :cascade do |t|
+    t.integer  "salary",     limit: 4
+    t.integer  "resume_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "employee_ranges", force: :cascade do |t|
     t.string   "range",      limit: 255
     t.datetime "created_at",             null: false
@@ -92,6 +113,27 @@ ActiveRecord::Schema.define(version: 20160906034658) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.string   "job_title",        limit: 255
+    t.string   "company_name",     limit: 255
+    t.date     "start_day"
+    t.date     "end_day"
+    t.integer  "country_id",       limit: 4
+    t.integer  "industry_id",      limit: 4
+    t.integer  "contract_type_id", limit: 4
+    t.string   "activities",       limit: 255
+    t.integer  "resume_id",        limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "fluencies", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "language_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -150,17 +192,24 @@ ActiveRecord::Schema.define(version: 20160906034658) do
   end
 
   create_table "language_codes", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "language_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "language_skills", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   create_table "languages", force: :cascade do |t|
-    t.string   "name",                   limit: 255
+    t.integer  "language_skill_id",      limit: 4
     t.integer  "proficiency_id",         limit: 4
     t.integer  "resume_id",              limit: 4
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "preferred_candidate_id", limit: 4
   end
 
@@ -217,14 +266,15 @@ ActiveRecord::Schema.define(version: 20160906034658) do
     t.string   "phone",                limit: 255
     t.integer  "location_id",          limit: 4
     t.integer  "user_id",              limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "cover_file_name",      limit: 255
     t.string   "cover_content_type",   limit: 255
     t.integer  "cover_file_size",      limit: 4
     t.datetime "cover_updated_at"
     t.date     "birth"
     t.integer  "employment_status_id", limit: 4
+    t.integer  "experience_count",     limit: 4,   default: 0
   end
 
   add_index "resumes", ["location_id"], name: "index_resumes_on_location_id", using: :btree
@@ -258,6 +308,13 @@ ActiveRecord::Schema.define(version: 20160906034658) do
     t.integer  "resume_id",       limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "resume_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "universities", force: :cascade do |t|

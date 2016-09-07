@@ -41,12 +41,13 @@ Proficiency.create([ { name: "Basic Knowledge" }, { name: "Conversational" }, { 
 
 EmploymentStatus.create([ { name: "Actively searching" }, { name: "Employed but open to opportunities" }, { name: "Employed, not open to opportunities" } ])
 
-puts "Importing language codes..."
+
+puts "Importing languages..."
 count = 1
 CSV.foreach(Rails.root.join("language_codes.csv"), headers: false) do |row|
-  LanguageCode.create! do |language_code|
-    language_code.id = count
-    language_code.name = row[2]
+  LanguageSkill.create! do |language_skill|
+    language_skill.id = count
+    language_skill.name = row[1]
   end
   count += 1
 end

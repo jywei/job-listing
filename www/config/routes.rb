@@ -21,10 +21,18 @@ Rails.application.routes.draw do
   get 'which_role' => 'pages#which_role'
   get 'select_jobs' => 'jobs#select_jobs', defaults: { format: 'json' }
   get 'resumes/education' => 'resumes#education'
+  get 'resumes/experience' => 'resumes#experience'
   get 'resumes/getEdu' => 'resumes#getEdu'
   get 'resumes/addSch' => 'resumes#addSch'
   get 'resumes/addLan' => 'resumes#addLan'
+  get 'resumes/addSki' => 'resumes#addSki'
   get 'resumes/deleEdu' => 'resumes#deleEdu'
+  get 'resumes/getExp' => 'resumes#getExp'
+  get 'resumes/addExp' => 'resumes#addExp'
+  get 'resumes/addDJS' => 'resumes#addDJS'
+  get 'resumes/addDJR' => 'resumes#addDJR'
+  get 'resumes/addDJI' => 'resumes#addDJI'
+  get 'resumes/deleExp' => 'resumes#deleExp'
 
   get 'companies/save_to_favorites' => 'companies#save_to_favorites', as: :save_to_favorites
   get 'companies/unlike' => 'companies#unlike', as: :unlike
