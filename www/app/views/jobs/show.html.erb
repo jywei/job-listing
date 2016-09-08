@@ -40,7 +40,7 @@
 <p><strong>Monthly Salary: </strong><%= @job.salary_range.range %></p>
 <hr>
 <h3>About The Company</h3>
-<p><%= @job.company.about %></p>
+<p><%= @job.company.about.html_safe %></p>
 <hr>
 <% if (user_signed_in?) && (current_user.id == @job.company.user_id) %>
   <h3>Preferred Candidate</h3>
