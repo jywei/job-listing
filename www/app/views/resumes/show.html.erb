@@ -1,2 +1,102 @@
-<h1>Resumes#show</h1>
-<p>Find me in app/views/resumes/show.html.erb</p>
+
+<%= image_tag @resume.cover.url(:preview),
+            class: "img-rounded text-center",
+            size: '230x100' %>
+
+<br>
+<br />
+<% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
+<% end %>
+<% if user_signed_in? %>
+  <%#= link_to 'Save company to favorites', "#", remote: true, 'data-id': @company.id, class: "btn btn-default like_button #{'hide' if current_user.favorite_companies.find_by(id: @company.id)}" %>
+  <%#= link_to 'Unfollow this Company', "#", remote: true, 'data-id': @company.id, class: "btn btn-default unlike_button #{'hide' unless current_user.favorite_companies.find_by(id: @company.id)}" %>
+<% end %>
+
+
+<h2><strong>Name: </strong><%= @resume.firstname + " " + @resume.lastname %></h2>
+<h4><%#= pluralize(@company.jobs.published.unexpired.count, 'available vacancy') %></h4>
+<p><strong>Phone: </strong><%= @resume.phone %></p>
+<p><strong>Current Location: </strong><%= @resume.location.name %></p>
+<p><strong>Age: </strong><%= calculate_age(@resume.birth) %></p>
+<p><strong>Employment Status: </strong><%= @resume.employment_status.name %></p>
+
+<ul class="nav nav-tabs">
+</ul>
+
+<br>
+
+<h3>Education</h3>
+
+<h4 class="inline">Schools/Universities</h4>
+
+<div class="sch-form">
+  <% @resume.schools.each do |school| %>
+    <div>
+      <p><%= "School Name : " + school.university.name %></p>
+      <p><%= school.start_day.to_s + " - " + school.end_day.to_s %></p>
+      <p><%= school.degree_level.name %></p>
+      <p><%= "Field of Study : " + school.field_of_study %></p>
+      <p><%= "Grade : " + school.grade %></p>
+    </div>
+  <% end %>
+</div>
+
+<h4 class="inline">Languages</h4>
+
+<div class="lan-form">
+  <% @resume.languages.each do |language| %>
+    <div>
+      <p><%= language.language_skill.name %></p>
+      <p><%= "Proficiency : " + language.proficiency.name %></p>
+    </div>
+  <% end %>
+</div>
+
+<h4 class="inline">Skills</h4>
+
+<div class="ski-form">
+  <% @resume.skills.each do |skill| %>
+    <div>
+      <p><%= skill.name %></p>
+    </div>
+  <% end %>
+</div>
+
+<h3>Your Work Experience</h3>
+
+<h4 class="inline">Company / Position</h4>
+
+<div class="exp-form">
+  <% @resume.experiences.each do |experience| %>
+    <p><%= experience.job_title %></p>
+    <p><%= "Company Name : " + experience.company_name %></p>
+    <p><%= experience.start_day.to_s + " - " + experience.end_day.to_s %></p>
+    <p><%= experience.country.name %></p>
+    <p><%= experience.industry.name %></p>
+    <p><%= experience.contract_type.name %></p>
+    <p><%= "Activities" + experience.activities %></p>
+  <% end %>
+</div>
+
+<h4 class="inline">Desired Job Salary</h4>
+
+<div class="djs-form">
+  <p><%= @resume.desired_jobs_salary.salary if @resume.desired_jobs_salary %></p>
+</div>
+
+<h4 class="inline">Desired Job Role</h4>
+
+<div class="djr-form">
+  <% @resume.desired_jobs_roles.each do |desired_jobs_role| %>
+    <p><%= desired_jobs_role.category.name %></p>
+  <% end %>
+</div>
+
+<h4 class="inline">Desired Job Industry</h4>
+
+<div class="dji-form">
+  <% @resume.desired_jobs_industries.each do |desired_job_industry| %>
+    <p><%= desired_job_industry.industry.name %></p>
+  <% end %>
+</div>
+

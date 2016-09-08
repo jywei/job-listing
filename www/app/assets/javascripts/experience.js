@@ -9,40 +9,40 @@ $.getJSON('/resumes/getExp', function(data){
     + '<li>' + data.experience[i][6] + '</li>'
     + '<li>' + data.experience[i][7] + '</li>'
     + '<a herf="#" class="deleExp btn btn-danger" data-remote="true" data-id="' + data.experience[i][8] + '">Delete</a></ul>').appendTo($('.exp-form'))
-    addDele('Exp')
+    addExpDele('Exp')
   }
   if(data.djs.length != 0){
     for(var i = 0; i < data.djs.length; i++){
       $('<ul><li>' + data.djs[i].salary + '</li>'
       + '<a herf="#" class="deleDjs btn btn-danger" data-remote="true" data-id="' + data.djs[i].id + '">Delete</a></ul>').appendTo($('.djs-form'))
-      addDele('Djs')
+      addExpDele('Djs')
       $('#djs_button').hide()
     }
   }
   for(var i = 0; i < data.djr.length; i++){
     $('<ul><li>' + data.djr[i][0] + '</li>'
     + '<a herf="#" class="deleDjr btn btn-danger" data-remote="true" data-id="' + data.djr[i][1] + '">Delete</a></ul>').appendTo($('.djr-form'))
-    addDele('Djr')
+    addExpDele('Djr')
   }
   for(var i = 0; i < data.dji.length; i++){
     $('<ul><li>' + data.dji[i][0] + '</li>'
     + '<a herf="#" class="deleDji btn btn-danger" data-remote="true" data-id="' + data.dji[i][1] + '">Delete</a></ul>').appendTo($('.dji-form'))
-    addDele('Dji')
+    addExpDele('Dji')
   }
 })
 
-$('.form').submit(function(){
+$('.exp_form').submit(function(){
   var ff = $(this)
   $.ajax({
     url: '/resumes/addExp',
-    data: { experience: { job_title: $('.form #job_title').val(),
-                          company_name: $('.form #company_name').val(),
-                          start_day: $('.form #start_day').val(),
-                          end_day: $('.form #end_day').val(),
-                          country_id: $('.form #country_id').val(),
-                          industry_id: $('.form #industry_id').val(),
-                          contract_type_id: $('.form #contract_type_id').val(),
-                          activities: $('.form #activities').val() } },
+    data: { experience: { job_title: $('.exp_form #job_title').val(),
+                          company_name: $('.exp_form #company_name').val(),
+                          start_day: $('.exp_form #start_day').val(),
+                          end_day: $('.exp_form #end_day').val(),
+                          country_id: $('.exp_form #country_id').val(),
+                          industry_id: $('.exp_form #industry_id').val(),
+                          contract_type_id: $('.exp_form #contract_type_id').val(),
+                          activities: $('.exp_form #activities').val() } },
     type: 'get',
     success: function(data) {
 
@@ -55,7 +55,7 @@ $('.form').submit(function(){
         + '<li>' + data.experience[6] + '</li>'
         + '<li>' + data.experience[7] + '</li>'
         + '<a herf="#" class="deleExp btn btn-danger" data-remote="true" data-id="' + data.experience[8] + '">Delete</a></ul>').appendTo($('.exp-form'))
-        addDele('Exp')
+        addExpDele('Exp')
         $('.modal').modal('hide')
       }
       else{
@@ -80,7 +80,7 @@ $('.djsform').submit(function(){
       if(data.error == undefined){
         $('<ul><li>' + data.djs.salary + '</li>'
         + '<a herf="#" class="deleDjs btn btn-danger" data-remote="true" data-id="' + data.djs.id + '">Delete</a></ul>').appendTo($('.djs-form'))
-        addDele('Djs')
+        addExpDele('Djs')
         $('.modal').modal('hide')
         $('#djs_button').hide()
       }
@@ -106,7 +106,7 @@ $('.djrform').submit(function(){
       if(data.error == undefined){
         $('<ul><li>' + data.djr[0] + '</li>'
         + '<a herf="#" class="deleDjr btn btn-danger" data-remote="true" data-id="' + data.djr[1] + '">Delete</a></ul>').appendTo($('.djr-form'))
-        addDele('Djr')
+        addExpDele('Djr')
         $('.modal').modal('hide')
       }
       else{
@@ -131,7 +131,7 @@ $('.djiform').submit(function(){
       if(data.error == undefined){
         $('<ul><li>' + data.dji[0] + '</li>'
         + '<a herf="#" class="deleDji btn btn-danger" data-remote="true" data-id="' + data.dji[1] + '">Delete</a></ul>').appendTo($('.dji-form'))
-        addDele('Dji')
+        addExpDele('Dji')
         $('.modal').modal('hide')
       }
       else{
@@ -146,7 +146,7 @@ $('.djiform').submit(function(){
   })
 })
 
-function addDele(name) {
+function addExpDele(name) {
   var ff
   $(".dele" + name).click(function(){
     ff = $(this)

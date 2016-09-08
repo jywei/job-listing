@@ -1,9 +1,288 @@
-<h2>New Resumes</h2>
+<h2>Edit Resumes</h2>
 
-<%= form_for @resume do |f| %>
-  <%= f.text_field :firstname %>
-  <%= f.text_field :lastname %>
-  <%= f.text_field :phone %>
-  <%= text_field :location_id %>
-  <%= f.submit :submit %>
+<%= form_for(@resume) do |f| %>
+  
+  <%= f.label :firstname %>
+  <%= f.text_field :firstname, class: "form-control" %>
+
+  <%= f.label :lastname %>
+  <%= f.text_field :lastname, class: "form-control" %>
+
+  <%= f.label :phone %>
+  <%= f.text_field :phone, class: "form-control" %>
+
+  <%= f.label :birth %>
+  <%= f.text_field :birth, class: "js-datepicker filterrific-periodically-observed form-control" %>
+
+  <%= f.label :location_id %>
+  <%= f.select :location_id, options_from_collection_for_select(Location.all, 'id', 'name', @resume.location_id), {}, { class: "form-control" } %>
+
+  <%= f.label :employment_status_id %>
+  <%= f.select :employment_status_id, options_from_collection_for_select(EmploymentStatus.all, 'id', 'name', @resume.employment_status_id), {}, { class: "form-control" } %>
+
+  <%= f.file_field :cover %>
+  <%= image_tag @resume.cover.url,
+    class: "img-rounded text-center",
+    size: '230x100' %>
+  <%= f.submit "Submit", class: "btn btn-success" %>
 <% end %>
+
+<hr>
+
+<h3>Education</h3>
+
+<div>
+  <h3 class="inline">Schools/Universities</h3>
+
+  <% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
+    <button type="button" class="btn btn-primary floatright" data-toggle="modal" data-target="#myModal">
+      ADD
+    </button>
+  <% end %>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "edu_form" do %>
+        <div class="modal-body">
+          <%= label_tag 'university_id' %>
+          <%= select_tag 'university_id', options_from_collection_for_select(University.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <div>
+            <%= label_tag 'start_day' %>
+            <%= text_field_tag :start_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
+            <%= label_tag 'end_day' %>
+            <%= text_field_tag :end_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
+          </div>
+          <%= label_tag 'degree_level_id' %>
+          <%= select_tag 'degree_level_id', options_from_collection_for_select(DegreeLevel.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <%= label_tag 'field_of_study' %>
+          <%= text_field_tag :field_of_study, '', class: 'form-control' %>
+          <%= label_tag 'grade' %>
+          <%= text_field_tag :grade, '', class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <div class='sch_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="sch-form">
+</div>
+
+<div>
+  <h3 class="inline">Languages</h3>
+
+  <% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
+    <button type="button" class="btn btn-primary floatright" data-toggle="modal" data-target="#myModal1">
+      ADD
+    </button>
+  <% end %>
+</div>
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "lanform" do %>
+        <div class="modal-body">
+          <%= label_tag 'Language' %>
+          <%= select_tag :language_skill_id, options_from_collection_for_select(LanguageSkill.all, 'id', 'name'), class: "form-control", id: "lan-name" %>
+          <%= label_tag 'Proficiency' %>
+          <%= select_tag :proficiency_id, options_from_collection_for_select(Proficiency.all, 'id', 'name'), class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <div class='lan_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="lan-form">
+</div>
+
+<div>
+  <h3 class="inline">Skills</h3>
+
+  <% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
+    <button type="button" class="btn btn-primary floatright" data-toggle="modal" data-target="#myModal2">
+      ADD
+    </button>
+  <% end %>
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "skiform" do %>
+        <div class="modal-body">
+          <%= label_tag 'Skill' %>
+          <%= text_field_tag :skill, '', class: "form-control", id: "ski-name" %>
+        </div>
+        <div class="modal-footer">
+          <div class='ski_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="ski-form">
+</div>
+
+<h3>Your Work Experience</h3>
+
+<div>
+  <h3 class="inline">Company / Position</h3>
+
+  <% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
+    <button type="button" class="btn btn-primary floatright" data-toggle="modal" data-target="#myModal3">
+      ADD
+    </button>
+  <% end %>
+</div>
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "exp_form" do %>
+        <div class="modal-body">
+          <%= label_tag 'job_title' %>
+          <%= text_field_tag :job_title, '', class: 'form-control' %>
+          <%= label_tag 'company_name' %>
+          <%= text_field_tag :company_name, '', class: 'form-control' %>
+          <div>
+            <%= label_tag 'start_day' %>
+            <%= text_field_tag :start_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
+            <%= label_tag 'end_day' %>
+            <%= text_field_tag :end_day, "", class: "js-datepicker filterrific-periodically-observed form-control", 'data-date-min-view-mode': 'months' %>
+          </div>
+          <%= label_tag 'country_id' %>
+          <%= select_tag 'country_id', options_from_collection_for_select(Country.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <%= label_tag 'industry_id' %>
+          <%= select_tag 'industry_id', options_from_collection_for_select(Industry.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <%= label_tag 'contract_type_id' %>
+          <%= select_tag 'contract_type_id', options_from_collection_for_select(ContractType.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>
+          <%= label_tag 'activities' %>
+          <%= text_field_tag :activities, '', class: 'form-control' %>
+        </div>
+        <div class="modal-footer">
+          <div class='exp_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="exp-form">
+</div>
+
+<div>
+  <h3 class="inline">Desired Job Salary</h3>
+
+  <% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
+    <button type="button" class="btn btn-primary floatright" id="djs_button" data-toggle="modal" data-target="#myModal4">
+      ADD
+    </button>
+  <% end %>
+</div>
+
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "djsform" do %>
+        <div class="modal-body">
+          <%= label_tag 'salary' %>
+          <%= text_field_tag :salary, '', class: 'form-control' %>
+        </div>
+        <div class="modal-footer">
+          <div class='djs_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="djs-form">
+</div>
+
+<div>
+  <h3 class="inline">Desired Job Role</h3>
+
+  <% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
+    <button type="button" class="btn btn-primary floatright" id="djr_button" data-toggle="modal" data-target="#myModal5">
+      ADD
+    </button>
+  <% end %>
+</div>
+
+<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "djrform" do %>
+        <div class="modal-body">
+          <%= label_tag 'Role Name' %>
+          <%= select_tag 'category_id', options_from_collection_for_select(Category.all, 'id', 'name'), class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <div class='djr_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="djr-form">
+</div>
+
+<div>
+  <h3 class="inline">Desired Job Industry</h3>
+
+  <% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
+    <button type="button" class="btn btn-primary floatright" id="dji_button" data-toggle="modal" data-target="#myModal6">
+      ADD
+    </button>
+  <% end %>
+</div>
+
+<div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag '#', method: :get, remote: true, class: "djiform" do %>
+        <div class="modal-body">
+          <%= label_tag 'Industry' %>
+          <%= select_tag 'industry_id', options_from_collection_for_select(Industry.all, 'id', 'name'), class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <div class='dji_error_zone center'></div>
+          <%= submit_tag :Save, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="dji-form">
+</div>
+
+<script>
+  $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
+  $('.js-datepicker').datepicker();
+</script>
+
+<%= javascript_include_tag '/assets/experience' %>
+<%= javascript_include_tag '/assets/education' %>
+
+
+<script>
+  $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
+  $('.js-datepicker').datepicker();
+</script>

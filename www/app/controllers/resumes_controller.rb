@@ -1,4 +1,5 @@
 class ResumesController < ApplicationController
+  before_action :set_resume, only: [:show, :edit, :update, :destroy]
 
   def index
     @filterrific = initialize_filterrific(
@@ -34,13 +35,25 @@ class ResumesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @resume.update(resume_params)
+      flash[:success] = "Update resume successfully"
+      render :edit
+    else
+      render :edit
+    end
+  end
+
   def education
   end
 
   def getEdu
-    @schools = School.all.includes(:university, :degree_level)
-    @languages = Language.all
-    @skills = Skill.all
+    @schools = School.where(resume_id: current_user.resume.id).includes(:university, :degree_level)
+    @languages = Language.where(resume_id: current_user.resume.id)
+    @skills = Skill.where(resume_id: current_user.resume.id)
 
     bigschool = Array.new
     @schools.each do |sc|
@@ -233,10 +246,11 @@ class ResumesController < ApplicationController
     end
   end
 
-  def update
-  end
-
   private
+
+    def set_resume
+      @resume = Resume.find(params[:id])
+    end
 
     def resume_params
       params.require(:resume).permit(:firstname,

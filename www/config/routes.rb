@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
+
   get 'pages/index'
   get 'which_role' => 'pages#which_role'
   get 'select_jobs' => 'jobs#select_jobs', defaults: { format: 'json' }
