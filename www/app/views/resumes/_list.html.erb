@@ -8,7 +8,12 @@
       <div class="job-list" style="border: 1px solid #111111; padding: 10px;">
         <tr>
           <td><%= image_tag resume.cover.url(:preview), class: "img-rounded text-center", size: '230x100' %></td><br />
-          <td><i class="fa fa-user"></i><p><%= resume.firstname + " " + resume.lastname %></p></td>
+          <td>
+            <i class="fa fa-user"></i>
+            <%= link_to resume_path(resume) do %>
+              <h3><%= resume.firstname + " " + resume.lastname %></h3>
+            <% end %>
+          </td>
           <td><i class="fa fa-phone"></i><p><%= resume.phone %></p></td>
           <td><i class="fa fa-child"></i><p><%= calculate_age(resume.birth) + " years old" %></p></td>
           <hr>

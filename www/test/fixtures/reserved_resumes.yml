@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tracking_company_id: 1
+  favorite_resume_id: 1
+
+two:
+  tracking_company_id: 1
+  favorite_resume_id: 1

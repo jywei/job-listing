@@ -22,16 +22,16 @@ $.getJSON('/resumes/getEdu', function(data){
   }
 })
 
-$('.form').submit(function(){
+$('.edu_form').submit(function(){
   var ff = $(this)
   $.ajax({
     url: '/resumes/addSch',
-    data: { school: { university_id: $('.form #university_id').val(),
-                      start_day: $('.form #start_day').val(),
-                      end_day: $('.form #end_day').val(),
-                      degree_level_id: $('.form #degree_level_id').val(),
-                      field_of_study: $('.form #field_of_study').val(),
-                      grade: $('.form #grade').val() } },
+    data: { school: { university_id: $('.edu_form #university_id').val(),
+                      start_day: $('.edu_form #start_day').val(),
+                      end_day: $('.edu_form #end_day').val(),
+                      degree_level_id: $('.edu_form #degree_level_id').val(),
+                      field_of_study: $('.edu_form #field_of_study').val(),
+                      grade: $('.edu_form #grade').val() } },
     type: 'get',
     success: function(data) {
       if(data.error == undefined){

@@ -13,7 +13,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <%= form_tag '#', method: :get, remote: true, class: "form" do %>
+      <%= form_tag '#', method: :get, remote: true, class: "edu_form" do %>
         <div class="modal-body">
           <%= label_tag 'university_id' %>
           <%= select_tag 'university_id', options_from_collection_for_select(University.all, 'id', 'name', default: "Select your Degree Level"), class: "form-control" %>

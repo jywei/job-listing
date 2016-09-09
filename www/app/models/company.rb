@@ -16,6 +16,9 @@ class Company < ActiveRecord::Base
   has_many :following_users, class_name: 'User', through: :reserved_companies
   has_many :reserved_companies, foreign_key: 'favorite_company_id'
 
+  has_many :favorite_resumes, class_name: 'Resume', through: :reserved_resumes
+  has_many :reserved_resumes, foreign_key: 'tracking_company_id'
+
   belongs_to :industry
   belongs_to :employee_range
   belongs_to :country
