@@ -3,6 +3,15 @@
             class: "img-rounded text-center",
             size: '230x100' %>
 
+<% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
+  <%= link_to "Edit Resume", edit_resume_path(@resume), class: "btn btn-default" %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to 'Save resume to favorites', "#", remote: true, 'data-id': @resume.id, class: "btn btn-default like_button #{'hide' if current_user.company.favorite_resumes.find_by(id: @resume.id)}" %>
+  <%= link_to 'Unfollow this resume', "#", remote: true, 'data-id': @resume.id, class: "btn btn-default unlike_button #{'hide' unless current_user.company.favorite_resumes.find_by(id: @resume.id)}" %>
+<% end %>
+
 <br>
 <br />
 <% if (user_signed_in?) && (current_user.id == @resume.user_id) %>
@@ -99,4 +108,32 @@
     <p><%= desired_job_industry.industry.name %></p>
   <% end %>
 </div>
+
+<script>
+  $('.like_button').click(function(){
+    $.getJSON('/resumes/favorite_resume?id=' + $(this).data('id'), function(data){
+      if(data){
+        alert('You are currently following this resume!')
+        $('.like_button').addClass('hide')
+        $('.unlike_button').removeClass('hide')
+      }
+      else{
+        alert('Failed to add this resume to your favorites, sorry!')
+      }
+    })
+  });
+
+  $('.unlike_button').click(function(){
+    $.getJSON('/resumes/unfollow_resume?id=' + $(this).data('id'), function(data){
+      if(data){
+        alert('You have successfully unfollowed this resume!')
+        $('.like_button').removeClass('hide')
+        $('.unlike_button').addClass('hide')
+      }
+      else{
+        alert('Failed to unfollow this resume, sorry!')
+      }
+    })
+  });
+</script>
 

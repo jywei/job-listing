@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906034658) do
+ActiveRecord::Schema.define(version: 20160909033639) do
 
   create_table "career_levels", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -244,6 +244,13 @@ ActiveRecord::Schema.define(version: 20160906034658) do
     t.integer  "favorite_job_id",  limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "reserved_resumes", force: :cascade do |t|
+    t.integer  "tracking_company_id", limit: 4
+    t.integer  "favorite_resume_id",  limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "resumes", force: :cascade do |t|

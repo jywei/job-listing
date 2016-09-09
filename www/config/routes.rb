@@ -41,6 +41,9 @@ Rails.application.routes.draw do
   get 'jobs/favorite_job' => 'jobs#favorite_job', as: :favorite_job
   get 'jobs/unfollow_job' => 'jobs#unfollow_job', as: :unfollow_job
 
+  get 'resumes/favorite_resume' => 'resumes#favorite_resume', as: :favorite_resume
+  get 'resumes/unfollow_resume' => 'resumes#unfollow_resume', as: :unfollow_resume
+
   resources :jobs
   resources :resumes
   resources :companies

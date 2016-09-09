@@ -54,14 +54,41 @@
   <div id="my_jobs" class="tab-pane fade in active">
     <%= render 'job_listing' %>
   </div>
+
   <div id="saved_cv" class="tab-pane fade">
-    <h3>Saved CV</h3>
-    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <h3>Saved Resume</h3>
+    <table class="table">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Location</th>
+        <th>Age</th>
+        <th>Employment Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @company.favorite_resumes.each do |favorite_resume| %>
+        <tr>
+          <td><%= image_tag favorite_resume.cover.url(style: :mediuem), size: '115x50' %></td>
+          <td><%= favorite_resume.firstname + " " + favorite_resume.lastname %></td>
+          <td><%= favorite_resume.phone %></td>
+          <td><%= favorite_resume.location.name %></td>
+          <td><%= calculate_age(favorite_resume.birth) %></td>
+          <td><%= favorite_resume.employment_status.name %></td>
+          <td><%= link_to 'Delete', "#", remote: true, 'data-id': favorite_resume.id, class: "unlike_button" %></td>
+          <td><%= link_to 'View', resume_path(favorite_resume) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <!-- <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
   </div>
+
   <div id="status" class="tab-pane fade">
     <h3>Account Status</h3>
     <%= render 'layouts/pricing_table' %>
   </div>
+
   <div id="settings" class="tab-pane fade">
     <h3>Account Settings</h3>
     <%= render 'form' %>
@@ -71,6 +98,18 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9EdOPfGfgc4jz6fUq6Yfn3tQRrtcHHzo&callback=initMap" async defer></script>
 
 <script>
+  $('.unlike_button').click(function(){
+    var current = $(this)
+    $.getJSON('/resumes/unfollow_resume?id=' + $(this).data('id'), function(data){
+      if(data){
+        current.parent().parent().remove();
+      }
+      else{
+        alert('Failed to delete this resume, sorry!')
+      }
+    })
+  });
+
   $(document).ready(function(){
     $(".nav-tabs a").click(function(){
       $(this).tab('show');

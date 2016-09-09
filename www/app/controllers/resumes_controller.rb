@@ -1,5 +1,6 @@
 class ResumesController < ApplicationController
   before_action :set_resume, only: [:show, :edit, :update, :destroy]
+  before_action :set_reserved_resumes, only: [:unfollow_job]
 
   def index
     @filterrific = initialize_filterrific(
@@ -246,10 +247,24 @@ class ResumesController < ApplicationController
     end
   end
 
+  def favorite_resume
+    @reserved_resume = ReservedResume.create(tracking_company_id: current_user.company.id, favorite_resume_id: params[:id])
+    render json: @reserved_resume
+  end
+
+  def unfollow_resume
+    @reserved_resume = current_user.company.reserved_resumes.find_by(favorite_resume_id: params[:id]).destroy
+    render json: @reserved_resume
+  end
+
   private
 
     def set_resume
       @resume = Resume.find(params[:id])
+    end
+
+    def set_reserved_resumes
+      @reserved_resumes = current_user.company.reserved_resumes
     end
 
     def resume_params

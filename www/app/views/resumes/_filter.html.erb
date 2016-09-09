@@ -3,7 +3,7 @@
     <div class="search">
       <h1 class="center">All Resumes</h1>
       <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-        <%= f.text_field(:search_query, class: 'search-bar') %>
+        <%= f.text_field(:search_query, class: 'search-bar form-control') %>
     </div>
     <h1>There are <%= @resumes.size %> resumes</h1>
   </div>

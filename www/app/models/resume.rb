@@ -11,6 +11,9 @@ class Resume < ActiveRecord::Base
   has_many :desired_jobs_roles
   has_many :desired_jobs_industries
   has_one :desired_jobs_salary
+
+  has_many :tracking_companies, class_name: 'Company', through: :reserved_resumes
+  has_many :reserved_resumes, foreign_key: 'favorite_resume_id'
  
   belongs_to :location
   belongs_to :user
