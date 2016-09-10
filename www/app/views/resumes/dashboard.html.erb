@@ -1,0 +1,141 @@
+<div>
+  <div>
+    <% if current_user.company %>
+      <%= image_tag current_user.company.cover.url,
+                  class: "img-rounded text-center",
+                  size: '230x100' %>
+    <% elsif current_user.resume %>
+      <%= image_tag current_user.resume.cover.url,
+                  class: "img-rounded text-center",
+                  size: '230x100' %>
+    <% end %>
+  </div>
+
+  <% if current_user.resume %>
+    <h3><%= current_user.resume.firstname + " " + current_user.resume.lastname %></h3>
+    <h4>Welcome to your personal workspace</h4>
+    <%= link_to "EDIT MY RESUME", edit_resume_path(current_user.resume), class: "btn btn-default" %>
+    <%= link_to "VIEW MY RESUME", resume_path(current_user.resume), class: "btn btn-default" %>
+    <p>Last active : <%= current_user.resume.updated_at.strftime("%Y-%m-%d") %></p>
+  <% end %>
+</div>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><%= link_to "My Applications", "#my_applications", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Saved Jobs", "#saved_jobs", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Saved Companies", "#saved_companies", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Seeker Profile", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>
+</ul>
+
+<div class="tab-content">
+  <div id="my_applications" class="tab-pane fade in active">
+    <h3>My Applications</h3>
+    <p>No applications yet. Post your CV now and find your dream job. We're always here to help.</p>
+    <%#= render 'job_listing' %>
+  </div>
+
+  <div id="saved_jobs" class="tab-pane fade">
+    <h3>Saved Jobs</h3>
+    <% if current_user.favorite_jobs.any? %>
+      <table class="table">
+        <tr>
+          <th>Job Title</th>
+          <th>Company</th>
+          <th>Industry</th>
+          <th>Location</th>
+          <th>Posted</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% current_user.favorite_jobs.each do |job| %>
+          <tr>
+            <td><%= job.title %></td>
+            <td><%= job.company.name %></td>
+            <td><%= job.industry.name %></td>
+            <td><%= job.location.name %></td>
+            <td><%= job.created_at.strftime("%Y-%m-%d") %></td>
+            <td><%= link_to 'Delete', "#", remote: true, 'data-id': job.id, class: "unlike_job_button #{'hide' unless current_user.favorite_jobs.find_by(id: job.id)}" %></td>
+            <td><%= link_to "VIEW", job_path(job), class: "btn btn-default" %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <p>You haven't favorited any jobs yet. Find your dream job now.</p>
+    <% end %>
+    <!-- <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+  </div>
+
+  <div id="saved_companies" class="tab-pane fade">
+    <h3>Saved Companies</h3>
+    <% if current_user.favorite_companies.any? %>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Location</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% current_user.favorite_companies.each do |company| %>
+          <tr>
+            <td><%= company.name %></td>
+            <td><%= company.industry.name %></td>
+            <td><%= company.location.name %></td>
+            <td><%= link_to 'Delete', "#", remote: true, 'data-id': company.id, class: "unlike_company_button #{'hide' unless current_user.favorite_companies.find_by(id: company.id)}" %></td>
+            <td><%= link_to "VIEW", company_path(company), class: "btn btn-default" %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <p>You haven't favorited any companies yet.</p>
+    <% end %>
+    <%#= render 'layouts/pricing_table' %>
+  </div>
+
+  <div id="settings" class="tab-pane fade">
+    <h3>Account Settings</h3>
+    <div>
+      <%= form_for @user, url: { action: "user_update" }, method: :patch do |f| %> 
+
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %>
+
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+
+        <%= f.submit :submit, class: "btn btn-success" %>
+      <% end %>
+    </div>
+    <%#= render 'form' %>
+  </div>
+</div>
+
+<script>
+  $('.unlike_job_button').click(function(){
+    var current = $(this)
+    $.getJSON('/jobs/unfollow_job?id=' + $(this).data('id'), function(data){
+      if(data){
+        current.parent().parent().remove()
+      }
+      else{
+        alert('Failed to unfollow this job, sorry!')
+      }
+    })
+  });
+
+  $('.unlike_company_button').click(function(){
+    var current = $(this)
+    $.getJSON('/companies/unlike?id=' + $(this).data('id'), function(data){
+      if(data){
+        current.parent().parent().remove()
+      }
+      else{
+        alert('Failed to unfollow this company, sorry!')
+      }
+    })
+  });
+</script>
+

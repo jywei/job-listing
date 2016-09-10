@@ -7,7 +7,7 @@
   <%= link_to "Edit Resume", edit_resume_path(@resume), class: "btn btn-default" %>
 <% end %>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.company %>
   <%= link_to 'Save resume to favorites', "#", remote: true, 'data-id': @resume.id, class: "btn btn-default like_button #{'hide' if current_user.company.favorite_resumes.find_by(id: @resume.id)}" %>
   <%= link_to 'Unfollow this resume', "#", remote: true, 'data-id': @resume.id, class: "btn btn-default unlike_button #{'hide' unless current_user.company.favorite_resumes.find_by(id: @resume.id)}" %>
 <% end %>

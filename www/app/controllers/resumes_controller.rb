@@ -48,6 +48,19 @@ class ResumesController < ApplicationController
     end
   end
 
+  def dashboard
+    @user = current_user
+  end
+
+  def user_update
+    @user = current_user
+    if current_user.update_attributes(user_params)
+      redirect_to dashboard_path, notice: 'Profile was successfully updated.'
+    else
+      render :dashboard
+    end
+  end
+
   def education
   end
 
@@ -258,6 +271,12 @@ class ResumesController < ApplicationController
   end
 
   private
+
+    def user_params
+      params.require(:user).permit(:email,
+                                   :password,
+                                   :password_confirmation)
+    end
 
     def set_resume
       @resume = Resume.find(params[:id])

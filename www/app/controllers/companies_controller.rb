@@ -37,7 +37,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @reserved_resumes = current_user.company.reserved_resumes
+    @reserved_resumes = Company.find(params[:id]).reserved_resumes
   end
 
   def new

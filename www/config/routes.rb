@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   get 'resumes/favorite_resume' => 'resumes#favorite_resume', as: :favorite_resume
   get 'resumes/unfollow_resume' => 'resumes#unfollow_resume', as: :unfollow_resume
 
+  get 'dashboard' => 'resumes#dashboard'
+
+  patch 'user_update' => 'resumes#user_update'
+
   resources :jobs
   resources :resumes
   resources :companies
