@@ -48,6 +48,11 @@ Rails.application.routes.draw do
 
   patch 'user_update' => 'resumes#user_update'
 
+  get 'new_cover_letter' => 'jobs#new_cover_letter'
+  post 'cover_letters' => 'jobs#cover_letter'
+
+  get 'show_cover_letter/:id' => 'jobs#show_cover_letter'
+
   resources :jobs
   resources :resumes
   resources :companies

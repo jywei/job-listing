@@ -76,6 +76,28 @@ class JobsController < ApplicationController
     redirect_to jobs_url, notice: 'Job was successfully destroyed.'
   end
 
+  def new_cover_letter
+    @user = current_user
+    @job = Job.find(params[:id])
+    @cover_letter = CoverLetter.new
+  end
+
+  def cover_letter
+    @user = current_user
+    @cover_letter = CoverLetter.new(cover_letter_params)
+    @cover_letter.resume_id = @user.resume.id
+    @cover_letter.job_id = params[:cover_letter][:id]
+    if @cover_letter.save
+      redirect_to dashboard_path, notice: "Cover letter successfully submit"
+    else
+      render :new_cover_letter
+    end
+  end
+
+  def show_cover_letter
+    @cover_letter = CoverLetter.find(params[:id])
+  end
+
   def select_jobs
     @jobs = Job.find_by(category_id: params[:category])
     # binding.pry
@@ -103,6 +125,10 @@ class JobsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_job
       @job = Job.find(params[:id])
+    end
+
+    def cover_letter_params
+      params.require(:cover_letter).permit(:description)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

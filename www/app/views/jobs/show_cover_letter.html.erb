@@ -1,0 +1,93 @@
+<h2><%= @cover_letter.job.title %></h2>
+<p><%= @cover_letter.job.salary_range.range %></p>
+<p><%= @cover_letter.created_at.strftime("%Y-%m-%d") %></p>
+<p><%= @cover_letter.description %></p>
+<p><%= @cover_letter.job.requirement.html_safe %></p>
+<p><%= @cover_letter.job.description.html_safe %></p>
+<p><%= @cover_letter.job.apply_instruction.html_safe %></p>
+
+<h2><strong>Name: </strong><%= @cover_letter.resume.firstname + " " + @cover_letter.resume.lastname %></h2>
+<p><strong>Phone: </strong><%= @cover_letter.resume.phone %></p>
+<p><strong>Current Location: </strong><%= @cover_letter.resume.location.name %></p>
+<p><strong>Age: </strong><%= calculate_age(@cover_letter.resume.birth) %></p>
+<p><strong>Employment Status: </strong><%= @cover_letter.resume.employment_status.name %></p>
+
+<ul class="nav nav-tabs">
+</ul>
+
+<br>
+
+<h3>Education</h3>
+
+<h4 class="inline">Schools/Universities</h4>
+
+<div class="sch-form">
+  <% @cover_letter.resume.schools.each do |school| %>
+    <div>
+      <p><%= "School Name : " + school.university.name %></p>
+      <p><%= school.start_day.to_s + " - " + school.end_day.to_s %></p>
+      <p><%= school.degree_level.name %></p>
+      <p><%= "Field of Study : " + school.field_of_study %></p>
+      <p><%= "Grade : " + school.grade %></p>
+    </div>
+  <% end %>
+</div>
+
+<h4 class="inline">Languages</h4>
+
+<div class="lan-form">
+  <% @cover_letter.resume.languages.each do |language| %>
+    <div>
+      <p><%= language.language_skill.name %></p>
+      <p><%= "Proficiency : " + language.proficiency.name %></p>
+    </div>
+  <% end %>
+</div>
+
+<h4 class="inline">Skills</h4>
+
+<div class="ski-form">
+  <% @cover_letter.resume.skills.each do |skill| %>
+    <div>
+      <p><%= skill.name %></p>
+    </div>
+  <% end %>
+</div>
+
+<h3>Your Work Experience</h3>
+
+<h4 class="inline">Company / Position</h4>
+
+<div class="exp-form">
+  <% @cover_letter.resume.experiences.each do |experience| %>
+    <p><%= experience.job_title %></p>
+    <p><%= "Company Name : " + experience.company_name %></p>
+    <p><%= experience.start_day.to_s + " - " + experience.end_day.to_s %></p>
+    <p><%= experience.country.name %></p>
+    <p><%= experience.industry.name %></p>
+    <p><%= experience.contract_type.name %></p>
+    <p><%= "Activities" + experience.activities %></p>
+  <% end %>
+</div>
+
+<h4 class="inline">Desired Job Salary</h4>
+
+<div class="djs-form">
+  <p><%= @cover_letter.resume.desired_jobs_salary.salary if @cover_letter.resume.desired_jobs_salary %></p>
+</div>
+
+<h4 class="inline">Desired Job Role</h4>
+
+<div class="djr-form">
+  <% @cover_letter.resume.desired_jobs_roles.each do |desired_jobs_role| %>
+    <p><%= desired_jobs_role.category.name %></p>
+  <% end %>
+</div>
+
+<h4 class="inline">Desired Job Industry</h4>
+
+<div class="dji-form">
+  <% @cover_letter.resume.desired_jobs_industries.each do |desired_job_industry| %>
+    <p><%= desired_job_industry.industry.name %></p>
+  <% end %>
+</div>

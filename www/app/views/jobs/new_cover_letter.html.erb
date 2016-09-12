@@ -1,0 +1,28 @@
+<%= link_to "Back to job listing", jobs_path %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Apply for this job</h4>
+        <h5>Job title: <%= @job.title %></h5>
+        <h5>Company name: <%= @job.company.name %></h5>
+      </div>
+      <div class="col-md-6">
+        <h4>Your contact information</h4>
+        <h5>Email address: <%= @user.email %></h5>
+        <h5>Phone: <%= @user.resume.phone %></h5>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <h4>Your cover letter</h4>
+    <%= form_for @cover_letter, method: :post do |f| %>
+
+      <%= f.hidden_field :id, value: @job.id %>
+      <%= f.text_area :description, class: "form-control" %>
+
+      <%= f.submit :submit, class: "btn btn-success"%>
+    <% end %>
+  </div>
+</div>
