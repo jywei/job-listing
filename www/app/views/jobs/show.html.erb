@@ -62,7 +62,12 @@
     <tbody>
       <% @job.cover_letters.each do |cover_letter| %>
         <tr>
-          <td><%= cover_letter.resume.firstname + " " + cover_letter.resume.lastname %></td>
+          <td>
+            <% if !cover_letter.is_read %>
+              <span class="badge">New</span>   
+            <% end %>
+            <%= cover_letter.resume.firstname + " " + cover_letter.resume.lastname %>
+          </td>
           <td><%= cover_letter.resume.phone %></td>
           <td><%= calculate_age(cover_letter.resume.birth) %></td>
           <td><%= link_to "VIEW", "/show_cover_letter/#{cover_letter.id}" %></td>

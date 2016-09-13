@@ -42,7 +42,12 @@
 <p><strong>Total Views: </strong><%= @company.impression_count %></p>
 
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><%= link_to "My Jobs", "#my_jobs", class: "btn btn-default", "data-toggle" => "tab" %></li>
+  <li role="presentation" class="active">
+    <%= link_to "#my_jobs", class: "btn btn-default", "data-toggle" => "tab" do %>
+      My Jobs 
+      <span class="badge"><%= company_unread_cover_letter_count(@company) if company_unread_cover_letter_count(@company) %></span>
+    <% end %>
+  </li>
   <li role="presentation"><%= link_to "Saved CV", "#saved_cv", class: "btn btn-default", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Account Status", "#status", class: "btn btn-default", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Company Profile", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>

@@ -10,7 +10,6 @@
 <p><strong>Phone: </strong><%= @cover_letter.resume.phone %></p>
 <p><strong>Current Location: </strong><%= @cover_letter.resume.location.name %></p>
 <p><strong>Age: </strong><%= calculate_age(@cover_letter.resume.birth) %></p>
-<p><strong>Employment Status: </strong><%= @cover_letter.resume.employment_status.name %></p>
 
 <ul class="nav nav-tabs">
 </ul>
@@ -54,7 +53,7 @@
   <% end %>
 </div>
 
-<h3>Your Work Experience</h3>
+<h3>Work Experience</h3>
 
 <h4 class="inline">Company / Position</h4>
 
@@ -70,24 +69,3 @@
   <% end %>
 </div>
 
-<h4 class="inline">Desired Job Salary</h4>
-
-<div class="djs-form">
-  <p><%= @cover_letter.resume.desired_jobs_salary.salary if @cover_letter.resume.desired_jobs_salary %></p>
-</div>
-
-<h4 class="inline">Desired Job Role</h4>
-
-<div class="djr-form">
-  <% @cover_letter.resume.desired_jobs_roles.each do |desired_jobs_role| %>
-    <p><%= desired_jobs_role.category.name %></p>
-  <% end %>
-</div>
-
-<h4 class="inline">Desired Job Industry</h4>
-
-<div class="dji-form">
-  <% @cover_letter.resume.desired_jobs_industries.each do |desired_job_industry| %>
-    <p><%= desired_job_industry.industry.name %></p>
-  <% end %>
-</div>

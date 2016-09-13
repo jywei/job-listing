@@ -12,6 +12,7 @@
           <th>City</th>
           <th>Vacancy Expiration Date</th>
           <th colspan="2">Application</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +25,12 @@
           <td><%= job.start_day %></td>
           <td><%= link_to "Edit", "/jobs/#{job.id}/edit?company_id=#{@company.id}" %></td>
           <td><%= link_to "Delete", job_path(job), method: :delete %></td>
+          <td>
+            <%= link_to job_path(job) do %>
+              <%= "#{job.cover_letters_count} APPLICATIONS" %>
+              <span class="badge"><%= job_unread_cover_letter_count(job) %></span>
+            <% end %>
+          </td>
         </tr>
       </tbody>
     </table>

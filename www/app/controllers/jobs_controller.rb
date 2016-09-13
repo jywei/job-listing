@@ -96,6 +96,7 @@ class JobsController < ApplicationController
 
   def show_cover_letter
     @cover_letter = CoverLetter.find(params[:id])
+    @cover_letter.update_attributes(is_read: true) if @cover_letter.job.company == current_user.company
   end
 
   def select_jobs
@@ -133,22 +134,10 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:title,
-                                  :description,
-                                  :requirement,
-                                  :apply_instruction,
-                                  :location,
-                                  :start_day,
-                                  :professional_skill,
-                                  :language_skills,
-                                  :is_published,
-                                  :category_id,
-                                  :industry_id,
-                                  :contract_type_id,
-                                  :location_id,
-                                  :salary_range_id,
-                                  :company_id,
-                                  :country_id)
+      params.require(:job).permit(:title, :description, :requirement, :apply_instruction, :location,
+                                  :start_day, :professional_skill, :language_skills, :is_published,
+                                  :category_id, :industry_id, :contract_type_id, :location_id,
+                                  :salary_range_id, :company_id, :country_id)
     end
 
     def log_impression
