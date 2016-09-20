@@ -1,0 +1,77 @@
+<div class="indexMap flexBanner">
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <!-- <div class="item active"> -->
+      <!--   <img src="assets/backg.png" alt="..."> -->
+      <!-- </div> -->
+      <!-- <div class="item"> -->
+      <!--   <img src="assets/backg.png" alt="..."> -->
+      <!-- </div> -->
+      <!-- <div class="item"> -->
+      <!--   <img src="assets/backg.png" alt="..."> -->
+      <!-- </div> -->
+    </div>
+  </div>
+  
+  <div class="searchCell">
+    <h1 class="text-center font-Oswald xsFz28">Global Talent, Global Job</h1>
+    <div class="">
+
+      <!-- <form role="search" id="search&#45;form" action="/jobs" accept&#45;charset="UTF&#45;8" method="get"><input name="utf8" type="hidden" value="✓"> -->
+      <%= form_tag "/jobs", method: :get do %>
+        <%= hidden_field_tag :is_from_root %>
+        <div class="search-box ">
+
+          <div class="search-field">
+            <!-- <input type="text" name="search" id="search" class="form&#45;control" placeholder="Job Title, Employer, or Keywords"> -->
+            <%= text_field_tag :keywords, "", class: "form-control", placeholder: "Job Title, Employer, or Keywords", name: "filterrific[search_query]" %>
+          </div>
+          <div class="search-field" id="prefetch">
+            <!-- <input type="text" name="c" id="c" class="typeahead form&#45;control tt&#45;input" placeholder="Location, City or Country" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical&#45;align: top; background&#45;color: transparent;"> -->
+            <%= select_tag 'location_id', "<option value="">Location</option>".html_safe + options_from_collection_for_select(Location.all, 'id', 'name'), class: "form-control" , name: "filterrific[with_location_id]"%>
+          </div>
+          <div class="search-field text-center">
+            <%= button_tag "", class: "btnSearch btn btn btn-info" do %>
+              <i class="glyphicon glyphicon-search"></i>
+            <% end %>
+            <!-- <button name="" type="submit" class="btnSearch btn btn&#45;info"> -->
+            <!--   <i class="glyphicon glyphicon&#45;search"></i> -->
+            <!--   <span class="sr&#45;only">Search</span> -->
+            <!-- </button> -->
+          </div>
+
+        </div>
+      <% end %>
+      <!-- </form> -->
+
+    </div>
+    <div class="keywords-box">
+      <div class="keywords-list">
+        <span>keywords</span>
+        <ul class="list-inline xsFz15 smFz15" data-no-turbolink="">
+          <li><a href="/jobs?search=Engineer">Engineer</a></li>
+          <li><a href="/jobs?search=Javascript">Javascript</a></li>
+          <li><a href="/jobs?search=Sales">Sales</a></li>
+          <li class="hidden-xs"><a href="/jobs?search=Business+Development">Business Development</a></li>
+          <li class="hidden-xs"><a href="/jobs?search=Ruby+on+Rails">Ruby on Rails</a></li>
+          <li class="hidden-xs"><a href="/jobs?search=Manager">Manager</a></li>
+        </ul>
+      </div>
+      <div class="keywords-list">
+        <span>countries</span>
+        <ul class="list-inline xsFz15 smFz15" data-no-turbolink="">
+          <li><a href="/jobs?c=Taiwan">Taiwan</a></li>
+          <li><a href="/jobs?c=Singapore">Singapore</a></li>
+          <li><a href="/jobs?c=China">China</a></li>
+          <li><a href="/jobs?c=Germany">Germany</a></li>
+          <li class="hidden-xs"><a href="/jobs?c=United+Kingdom">United Kingdom</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

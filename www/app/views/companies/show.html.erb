@@ -41,64 +41,70 @@
 <p><strong>android: </strong><%= link_to @company.android %></p>
 <p><strong>Total Views: </strong><%= @company.impression_count %></p>
 
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active">
-    <%= link_to "#my_jobs", class: "btn btn-default", "data-toggle" => "tab" do %>
-      My Jobs 
-      <span class="badge"><%= company_unread_cover_letter_count(@company) if company_unread_cover_letter_count(@company) %></span>
+<% if current_user %>
+  <% if current_user.has_company? %>
+    <% if current_user.company == @company %>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active">
+          <%= link_to "#my_jobs", class: "btn btn-default", "data-toggle" => "tab" do %>
+            My Jobs 
+            <span class="badge"><%= company_unread_cover_letter_count(@company) if company_unread_cover_letter_count(@company) %></span>
+          <% end %>
+        </li>
+        <li role="presentation"><%= link_to "Saved CV", "#saved_cv", class: "btn btn-default", "data-toggle" => "tab" %></li>
+        <li role="presentation"><%= link_to "Account Status", "#status", class: "btn btn-default", "data-toggle" => "tab" %></li>
+        <li role="presentation"><%= link_to "Company Profile", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>
+      </ul>
+
+      <br>
+
+      <div class="tab-content">
+        <div id="my_jobs" class="tab-pane fade in active">
+          <%= render 'job_listing' %>
+        </div>
+
+        <div id="saved_cv" class="tab-pane fade">
+          <h3>Saved Resume</h3>
+          <table class="table">
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Location</th>
+              <th>Age</th>
+              <th>Employment Status</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @company.favorite_resumes.each do |favorite_resume| %>
+              <tr>
+                <td><%= image_tag favorite_resume.cover.url(style: :mediuem), size: '115x50' %></td>
+                <td><%= favorite_resume.firstname + " " + favorite_resume.lastname %></td>
+                <td><%= favorite_resume.phone %></td>
+                <td><%= favorite_resume.location.name %></td>
+                <td><%= calculate_age(favorite_resume.birth) %></td>
+                <td><%= favorite_resume.employment_status.name %></td>
+                <td><%= link_to 'Delete', "#", remote: true, 'data-id': favorite_resume.id, class: "unlike_button" %></td>
+                <td><%= link_to 'View', resume_path(favorite_resume) %></td>
+              </tr>
+            <% end %>
+          </table>
+          <!-- <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+        </div>
+
+        <div id="status" class="tab-pane fade">
+          <h3>Account Status</h3>
+          <%= render 'layouts/pricing_table' %>
+        </div>
+
+        <div id="settings" class="tab-pane fade">
+          <h3>Account Settings</h3>
+          <%= render 'form' %>
+        </div>
+      </div>
     <% end %>
-  </li>
-  <li role="presentation"><%= link_to "Saved CV", "#saved_cv", class: "btn btn-default", "data-toggle" => "tab" %></li>
-  <li role="presentation"><%= link_to "Account Status", "#status", class: "btn btn-default", "data-toggle" => "tab" %></li>
-  <li role="presentation"><%= link_to "Company Profile", "#settings", class: "btn btn-default", "data-toggle" => "tab" %></li>
-</ul>
-
-<br>
-
-<div class="tab-content">
-  <div id="my_jobs" class="tab-pane fade in active">
-    <%= render 'job_listing' %>
-  </div>
-
-  <div id="saved_cv" class="tab-pane fade">
-    <h3>Saved Resume</h3>
-    <table class="table">
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Location</th>
-        <th>Age</th>
-        <th>Employment Status</th>
-        <th></th>
-        <th></th>
-      </tr>
-      <% @company.favorite_resumes.each do |favorite_resume| %>
-        <tr>
-          <td><%= image_tag favorite_resume.cover.url(style: :mediuem), size: '115x50' %></td>
-          <td><%= favorite_resume.firstname + " " + favorite_resume.lastname %></td>
-          <td><%= favorite_resume.phone %></td>
-          <td><%= favorite_resume.location.name %></td>
-          <td><%= calculate_age(favorite_resume.birth) %></td>
-          <td><%= favorite_resume.employment_status.name %></td>
-          <td><%= link_to 'Delete', "#", remote: true, 'data-id': favorite_resume.id, class: "unlike_button" %></td>
-          <td><%= link_to 'View', resume_path(favorite_resume) %></td>
-        </tr>
-      <% end %>
-    </table>
-    <!-- <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
-  </div>
-
-  <div id="status" class="tab-pane fade">
-    <h3>Account Status</h3>
-    <%= render 'layouts/pricing_table' %>
-  </div>
-
-  <div id="settings" class="tab-pane fade">
-    <h3>Account Settings</h3>
-    <%= render 'form' %>
-  </div>
-</div>
+  <% end %>
+<% end %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9EdOPfGfgc4jz6fUq6Yfn3tQRrtcHHzo&callback=initMap" async defer></script>
 

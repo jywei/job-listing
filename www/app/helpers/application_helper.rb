@@ -16,4 +16,12 @@ module ApplicationHelper
     end
     unread_count == 0 ? nil : unread_count
   end
+
+  def is_employer?
+    if current_user
+      current_user.has_role? :employer
+    else
+      current_user
+    end
+  end
 end

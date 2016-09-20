@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker/core
 //= require bootstrap/modal
+//= require bootstrap/carousel
 //= require filterrific/filterrific-jquery
 //= require chardinjs
 //= require cocoon

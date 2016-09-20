@@ -7,7 +7,7 @@ body {
 .na {
   background: #262626;
   width: 100%;
-  height: 80px;
+  // height: 80px;
   border-radius: 0 !important;
 
   /*.nav-holder {*/
@@ -17,7 +17,7 @@ body {
     .nav-title {
       color: #ffffff;
       font-size: 30px;
-      padding: 15px;
+      padding: 5px;
       float: left;
       display: inline;
       text-decoration: none;
@@ -146,7 +146,267 @@ body {
   }
 }
 
+.flexBanner {
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-flex;
+  display: flex;
+
+  .carousel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding-top: 30px;
+    overflow: hidden;
+
+    .item > img {
+      @media(min-width:601px){
+        min-width: 100%;
+        min-height: 600px;
+      }
+      @media(max-width:600px){
+        height: 600px;
+      }
+    }
+  }
+}
+
+.indexMap {
+  width: 100%;
+  height: 600px;
+  position: relative;
+}
+
+.searchCell {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 1em;
+  max-width: 767px;
+  margin: auto;
+  border: 5px solid #ffcc00;
+  z-index: 5;
+  position: relative;
+
+  .keywords-box {
+    padding: 20px;
+    margin: 5px 5%;
+
+    .keywords-list {
+      ul {
+        display: inline-block;
+      }
+    }
+  }
+
+  .search-field {
+    display: inline-block;
+
+    .form-control {
+      width: 300px;
+      padding: 8px 12px;
+      font-size: 17px;
+      height: 38px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .btnSearch {
+      background-color: #ffcc00;
+      border-color: #ffcc00;
+    }
+
+    @media screen and (max-width: 767px) {
+      display: block;
+
+      .form-control, .btnSearch {
+        width: 90%;
+        margin: 0px auto 5px auto;
+      }
+    }
+  }
+}
+
+.callToAction {
+  background-image: linear-gradient(90deg, #494949 50%, #ffcc00 50%);
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .row {
+    overflow: hidden;
+  }
+
+  .forUsers {
+    padding-left: 56px;
+    background: #494949 image-url("call-arrow-l.png") no-repeat left 40px;
+
+    h2 {
+      padding-left: 110px;
+    }
+
+    p {
+      padding-left: 110px;
+    }
+
+    p+.fa {
+      left: 56px;
+      font-size: 128px;
+      position: absolute;
+      top: 40px;
+    }
+  }
+  
+  .forEmployer {
+    padding-right: 56px;
+    background: #ffcc00 image-url("call-arrow-r.png") no-repeat right 40px;
+
+    h2 {
+      padding-right: 110px;
+    }
+
+    p {
+      padding-right: 110px;
+    }
+
+    p+.fa {
+      right: 48px;
+      font-size: 128px;
+      position: absolute;
+      top: 37px;
+    }
+  }
+
+  .forUsers, .forEmployer {
+    padding-top: 40px;
+    padding-bottom: 540px;
+    margin-bottom: -500px;
+
+    span {
+      margin-top: 25px;
+      background-color: #fff;
+      color: #494949;
+    }
+
+    .btn {
+      border-radius: 0;
+    }
+  }
+}
+
+.testimonial {
+  background-color: #fff;
+  padding-bottom: 40px;
+
+  h2 {
+    padding: 30px 0;
+  }
+
+  .carousel-control.left, .carousel-control.right {
+    margin-left: 15px;
+    background-image: none;
+  }
+
+  .thumbnail {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.howItWork {
+  background-color: HSL(0, 0%, 91%);
+  padding: 50px 0;
+  overflow: hidden;
+
+  h2 {
+    padding: 30px 0;
+  }
+}
+
+.featuredEmployer {
+  padding-bottom: 40px;
+  
+  h2 {
+    padding: 30px 0;
+  }
+  
+  .carousel-indicators li {
+    box-shadow: 0px 0px 0px 2px gray;
+  }
+
+  .carousel-indicators .active {
+    box-shadow: 0px 0px 2px 2px #ffcc00;
+  }
+
+  .thumbnail {
+    border: 7px solid #ddd;
+    border-radius: 0px;
+  }
+
+  .carousel-indicators {
+    bottom: 20px;
+    bottom: -40px;
+  }
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding-top: 40px;
+
+  .copyRight {
+    background-color: #000;
+    color: #9d9d9d;
+    font-size: 12px;
+    line-height: 46px;
+    height: 46px;
+  }
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: #ffcc00; 
+      text-decoration: none;
+    }
+  }
+
+  .copyRight p {
+    margin: 0;
+  }
+
+  .footerOurAdvantage .btn {
+    background-color: #ffcc00;
+    border-radius: 0;
+  }
+}
+
 /* general object */
+
+@media screen and (max-width: 767px) {
+  .xsFz28 {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .smFz34 {
+    font-size: 34px;
+  }
+}
+
+.smFz33 {
+  font-size: 30px;
+  letter-spacing: -2px;
+}
+
+.smFz48 {
+  font-size: 48px;
+}
 
 .center {
   text-align: center;

@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :favorite_jobs, class_name: 'Job', through: :reserved_jobs
   has_many :reserved_jobs, foreign_key: 'tracking_user_id'
+
+  def has_company?
+    company.present?
+  end
 end

@@ -1,29 +1,48 @@
-<nav class="na">
-  <!-- <div class="nav-holder"> -->
+<nav class="mainNav navbar navbar-inverse navbar-fixed-top na" role="navigation">
+  <div class="container-fluid" data-no-turbolink="">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".mainNavbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     <%= link_to "Jobs Board", root_url, class: "nav-title" %>
-    <div class="nav-button">
-      <ul>
-        <li><%= link_to "Find Jobs", jobs_path %></li>
+    </div>
+
+    <div class="collapse navbar-collapse mainNavbar">
+      <ul class="navbarList nav navbar-nav navbar-right">
+        <li>
+          <%= link_to "All Jobs", jobs_path %>
+        </li>
         <% if (user_signed_in?) && (current_user.has_role? :employer) %>
           <li><%= link_to "Post a Job", "/jobs/new?company_id=#{current_user.company.id}" %></li>
         <% end %>
         <li><%= link_to "All Companies", companies_path %></li>
-        <li><%= link_to "CV Search", resumes_path %></li>
+        <% if is_employer? %>
+          <li><%= link_to "CV Search", resumes_path %></li>
+        <% end %>
         <li><%= link_to "Dashboard", dashboard_path %></li>
-      </ul>
-      <ul class="floatright">
+        <li class="blog-link">
+          <a target="_blank" href="https://blog.mit.jobs/">Columns</a>
+        </li>
         <% if user_signed_in? %>
-          <li>
-            <div class="dropdown">
-              <button class="dropbtn"><%= current_user.email %></button>
-              <div class="dropdown-content">
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
                 <%= link_to "Personal Account Update", edit_user_registration_path, class: "dropdown-btn" %>
-                <% if current_user.has_role? :employer %>
+              </li>
+              <% if current_user.has_role? :employer %>
+                <li>
                   <%= link_to "Manage My Company", current_user.company, class: "dropdown-btn" %>
-                <% end %>
+                </li>
+              <% end %>
+              <li>
                 <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-btn" %>
-              </div>
-            </div>
+              </li>
+            </ul>
           </li>
         <% else %>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
@@ -32,9 +51,15 @@
         <% if (user_signed_in?) && (current_user.has_role? :employer) %>
           <li><%= current_user.company.name.titleize %></li>
         <% end %>
-        <li>EN</li>
-        <li>ျမန္မာ</li>
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">Language <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/?locale=en">English</a></li>
+            <li><a href="/?locale=zh-TW">正體中文</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
-  <!-- </div> -->
+    
+  </div>
 </nav>

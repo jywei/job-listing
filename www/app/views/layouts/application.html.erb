@@ -50,14 +50,12 @@
         ]
       });
     </script>
-    <%= render 'layouts/navbar' %>
-    <%= bootstrap_flash %>
-    <br>
-    <div class="container">
+    <div class="container-fluid">
+      <%= render 'layouts/navbar' %>
+      <%= bootstrap_flash %>
+      <br>
       <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-          <%= yield %>
-        </div>
+        <%= yield %>
 <!--         <div class="col-md-3">
           <div class="well sidebar-nav">
             <h3>Sidebar</h3>

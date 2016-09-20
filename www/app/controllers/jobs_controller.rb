@@ -8,6 +8,12 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
+    if params[:is_from_root]
+      location_id_array = Array.new
+      location_id_array.push(params[:filterrific][:with_location_id], "")
+      params[:filterrific][:with_location_id] = location_id_array
+    end
+
     @filterrific = initialize_filterrific(
       Job.unexpired.published,
       params[:filterrific],
@@ -88,6 +94,7 @@ class JobsController < ApplicationController
     @cover_letter.resume_id = @user.resume.id
     @cover_letter.job_id = params[:cover_letter][:id]
     if @cover_letter.save
+      Notifier.cover_letter_contact(@cover_letter).deliver_now
       redirect_to dashboard_path, notice: "Cover letter successfully submit"
     else
       render :new_cover_letter

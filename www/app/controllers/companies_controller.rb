@@ -3,6 +3,7 @@ class CompaniesController < ApplicationController
   before_action :set_reserved_companies, only: [:unlike]
   before_action :log_impression, only: [:show], unique: [:session_hash]
   before_action :expiration_check, only: [:show]
+  before_action :authorize_check, only: [:edit, :update]
 
   include ResumesHelper
 
@@ -83,6 +84,13 @@ class CompaniesController < ApplicationController
   end
 
   private
+
+    def authorize_check
+      unless @company == current_user.company
+        flash[:danger] = "Sorry, you are not authorized to access this area!"
+        redirect_to root_url
+      end
+    end
 
     def set_reserved_companies
       @reserved_companies = current_user.reserved_companies

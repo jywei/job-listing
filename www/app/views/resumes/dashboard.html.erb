@@ -50,7 +50,7 @@
               <td><%= cover_letter.job.industry.name %></td>
               <td><%= cover_letter.job.location.name %></td>
               <td><%= cover_letter.created_at.strftime("%Y-%m-%d") %></td>
-              <td></td>
+              <td><%= link_to "VIEW", "/show_cover_letter/#{cover_letter.id}" %></td>
             </tr>
           <% end %>
         </tbody>

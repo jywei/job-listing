@@ -1,6 +1,9 @@
 class ResumesController < ApplicationController
   before_action :set_resume, only: [:show, :edit, :update, :destroy]
   before_action :set_reserved_resumes, only: [:unfollow_job]
+  before_action :authorize_check, only: [:edit, :update]
+
+  authorize_resource :resume
 
   def index
     @filterrific = initialize_filterrific(
@@ -271,6 +274,13 @@ class ResumesController < ApplicationController
   end
 
   private
+
+    def authorize_check
+      unless @resume == current_user.resume
+        flash[:danger] = "Sorry, you are not authorized to access this area!"
+        redirect_to root_url
+      end
+    end
 
     def user_params
       params.require(:user).permit(:email,

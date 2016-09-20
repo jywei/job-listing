@@ -48,33 +48,35 @@
   <%= render 'preferred_candidates/form' %>
 <% end %>
 
-<% if (@job.company.user.has_role? :employer) && @job.company == current_user.company %>
-  <h2>Recruits</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Age</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @job.cover_letters.each do |cover_letter| %>
+<% if current_user %>
+  <% if (@job.company.user.has_role? :employer) && @job.company == current_user.company %>
+    <h2>Recruits</h2>
+    <table class="table table-hover">
+      <thead>
         <tr>
-          <td>
-            <% if !cover_letter.is_read %>
-              <span class="badge">New</span>   
-            <% end %>
-            <%= cover_letter.resume.firstname + " " + cover_letter.resume.lastname %>
-          </td>
-          <td><%= cover_letter.resume.phone %></td>
-          <td><%= calculate_age(cover_letter.resume.birth) %></td>
-          <td><%= link_to "VIEW", "/show_cover_letter/#{cover_letter.id}" %></td>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Age</th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @job.cover_letters.each do |cover_letter| %>
+          <tr>
+            <td>
+              <% if !cover_letter.is_read %>
+                <span class="badge">New</span>   
+              <% end %>
+              <%= cover_letter.resume.firstname + " " + cover_letter.resume.lastname %>
+            </td>
+            <td><%= cover_letter.resume.phone %></td>
+            <td><%= calculate_age(cover_letter.resume.birth) %></td>
+            <td><%= link_to "VIEW", "/show_cover_letter/#{cover_letter.id}" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 <% end %>
 
 <script>
