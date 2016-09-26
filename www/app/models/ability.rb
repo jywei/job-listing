@@ -6,47 +6,38 @@ class Ability
     #
     # user ||= User.new # guest user (not logged in)
     if user.blank?
-      can :index, Job
-      can :show,  Job
-      can :index, Company
-      can :show,  Company
-      cannot :manage, Admin::ApplicationController
+      can [:index, :show], Job
+      can [:index, :show], Company
+      # cannot :read, JobFilter
     else
+      unless user.has_any_role?
+        can [:new, :create], Resume
+        can [:new, :create], Company
+      end
       if user.has_role? :admin
         can :manage, :all
       end
       if user.has_role? :seeker
-        can :index,       Job
-        can :show,        Job
-        can :index,       Company
-        can :show,        Company
-        cannot :index,    Resume
-        can :show, Resume do |resume|
+        can [:index, :show, :new_cover_letter, :show_cover_letter, :favorite_job, :unfollow_job], Job
+        can [:index, :show, :save_to_favorites, :unlike],     Company
+        cannot :index,           Resume
+        can [:show, :edit, :update],    Resume do |resume|
           resume.user_id == user.id
         end
-        can :dashboard,   Resume
-        can :edit,        Resume
-        can :update,      Resume
-        can :user_update, Resume
-        can :getEdu,      Resume
-        can :addSch,      Resume
-        can :addLan,      Resume
-        can :addSki,      Resume
-        can :deleEdu,     Resume
-        can :getExp,      Resume
-        can :addExp,      Resume
-        can :addDJS,      Resume
-        can :addDJR,      Resume
-        can :addDJI,      Resume
-        can :deleExp,     Resume
+        can [:user_update, :getEdu, :addSch, :addLan, :addSki, :deleEdu,
+             :getExp, :addExp, :addDJS, :addDJR, :addDJI, :deleExp,
+             :dashboard, :education, :experience], Resume
       end
       if user.has_role? :employer
-        can :index,  Job
-        can :show,   Job
-        can :index,  Company
-        can :show,   Company
-        can :edit,   Company
-        can :update, Company
+        cannot :new_cover_letter, Job
+        can [:index, :show, :new, :create, :show_cover_letter], Job
+        can [:edit, :update, :destroy], Job do |job|
+          job.company == user.company
+        end
+        can [:index, :show],  Company
+        can [:edit, :update], Company do |company|
+          company == user.company
+        end
       end
     end
     #

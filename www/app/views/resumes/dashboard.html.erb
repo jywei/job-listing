@@ -104,6 +104,7 @@
           <tr>
             <th>Name</th>
             <th>Phone</th>
+            <th>Industry</th>
             <th>Location</th>
             <th></th>
             <th></th>
@@ -113,6 +114,7 @@
           <% @user.favorite_companies.each do |company| %>
             <tr>
               <td><%= company.name %></td>
+              <td><%= company.phone %></td>
               <td><%= company.industry.name %></td>
               <td><%= company.location.name %></td>
               <td><%= link_to 'Delete', "#", remote: true, 'data-id': company.id, class: "unlike_company_button #{'hide' unless @user.favorite_companies.find_by(id: company.id)}" %></td>

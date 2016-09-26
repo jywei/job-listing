@@ -1,44 +1,52 @@
-<div class="howItWork">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h2 class="font-Oswald text-center xsFz38 smFz48">Your Global Career Starts Here!</h2>
+<div class="hidden-xs">
+  <div class="find-jobs">
+    <div class="container top-jobs">
+      <div class="top-jobs__img"></div>
+
+      <div class="find-jobs__header smFz48">
+        Find jobs in Myanmar
       </div>
-      <div class="text-center">
-        <div class="howItWork-item col-xs-12 col-sm-4">
-          <div class="howItWork-img">
-            <img class="img-responsive" src="/assets/HowItWorks_Candidate_01-6f84edf39c8298296db015dfcbdfe83531caebe0ce2c7aab68165a1b63f2ad18.png" alt="Howitworks candidate 01 6f84edf39c8298296db015dfcbdfe83531caebe0ce2c7aab68165a1b63f2ad18">
-          </div>
-          <h3>1. Sign Up User</h3>
-          <ul>
-            <li>Facebook / LinkedIn / GitHub ID Sign In</li>
-            <li>LinkedIn resume synchronization</li>
-            <li>Transparent and comprehensive job information</li>
-          </ul>
-        </div>
-        <div class="howItWork-item col-xs-12 col-sm-4">
-          <div class="howItWork-img">
-            <img class="img-responsive" src="/assets/HowItWorks_Candidate_02-7318a0a8e3a0f34d30561e11665c0e707cfe8d3c232245e8eea97f22d8e00458.png" alt="Howitworks candidate 02 7318a0a8e3a0f34d30561e11665c0e707cfe8d3c232245e8eea97f22d8e00458">
-          </div>
-          <h3>2. Submit Application</h3>
-          <ul>
-            <li>Application DIRECTLY received by employers</li>
-            <li>Ask question anonymously before submission</li>
-            <li>Private question channel to protect your right</li>
-          </ul>
-        </div>
-        <div class="howItWork-item col-xs-12 col-sm-4">
-          <div class="howItWork-img">
-            <img class="img-responsive" src="/assets/HowItWorks_Candidate_03-f9c3f31381a59cbda880fb0e060663054c9c8979781478c99825f0baaa82a3ff.png" alt="Howitworks candidate 03 f9c3f31381a59cbda880fb0e060663054c9c8979781478c99825f0baaa82a3ff">
-          </div>
-          <h3>3. Get Hiring Bonus</h3>
-          <ul>
-            <li>Share your good news and get Hiring Bonus</li>
-            <li>Free counseling of overseas career and local life</li>
-            <li>Join mit.Jobs community to obtain more information</li>
-          </ul>
-        </div>
+      <div class="top-jobs__header">
+        Top Jobs
       </div>
+
+      <div id="carousel-example-generic1" class="carousel slide" data-ride="carousel">
+
+        <div class="carousel-inner" role="listbox">
+          <% 2.times do |i| %>
+            <div class="item <%= "#{'active' if i == 0 }" %>">
+
+              <div class="top-jobs__scroll">
+                <ul class="top-jobs__list">
+                  <% @jobs.each do |job| %>
+                    <li class="top-job top-job--top">
+                      <%= link_to job_path(job), class: "top-job__content js-top-job-btn" do %>
+                        <span class="top-job__title-wrap">
+                          <span class="top-job__title" title="Auditor"><%= job.title %></span>
+                          <div class="top-btn">Top</div>
+                        </span>
+                        <span class="top-job__company-name" title="DELTA DIAMOND INT'L CO.LTD"><%= job.company.name %></span>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+
+            </div>
+          <% end %>
+        </div>
+
+        <a class="left carousel-control" href="#carousel-example-generic1" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic1" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+      </div>
+
     </div>
   </div>
 </div>

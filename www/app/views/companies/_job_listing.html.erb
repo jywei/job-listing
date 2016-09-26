@@ -1,6 +1,5 @@
 <h2>Published Jobs</h2>
 <% if @company.jobs.published.present? && @company.jobs.unexpired.present? %>
-  <% @company.jobs.published.unexpired.each do |job| %>      <!-- not expried and published -->
     <br>
     <table class="table table-hover">
       <thead>
@@ -16,25 +15,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><%= link_to job.title, "/jobs/#{job.id}?company_id=#{@company.id}" %></td>
-          <td><%= job.contract_type.name %></td>
-          <td><%= job.salary_range.range %></td>
-          <td><%= job.country.name %></td>
-          <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
-          <td><%= job.start_day %></td>
-          <td><%= link_to "Edit", "/jobs/#{job.id}/edit?company_id=#{@company.id}" %></td>
-          <td><%= link_to "Delete", job_path(job), method: :delete %></td>
-          <td>
-            <%= link_to job_path(job) do %>
-              <%= "#{job.cover_letters_count} APPLICATIONS" %>
-              <span class="badge"><%= job_unread_cover_letter_count(job) %></span>
-            <% end %>
-          </td>
-        </tr>
+        <% @company.jobs.published.unexpired.each do |job| %>      <!-- not expried and published -->
+          <tr>
+            <td><%= link_to job.title, "/jobs/#{job.id}?company_id=#{@company.id}" %></td>
+            <td><%= job.contract_type.name %></td>
+            <td><%= job.salary_range.range %></td>
+            <td><%= job.country.name %></td>
+            <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
+            <td><%= job.start_day %></td>
+            <td><%= link_to "Edit", "/jobs/#{job.id}/edit?company_id=#{@company.id}" %></td>
+            <td><%= link_to "Delete", job_path(job), method: :delete %></td>
+            <td>
+              <%= link_to job_path(job) do %>
+                <%= "#{job.cover_letters_count} APPLICATIONS" %>
+                <span class="badge"><%= job_unread_cover_letter_count(job) %></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
-  <% end %>
 <% else %>
   <h4>Currently there are no published jobs.</h4>
 <% end %>
@@ -43,7 +43,6 @@
 
 <h2>Unpublished Jobs</h2>
 <% if @company.jobs.unpublished.present? && @company.jobs.unexpired.present? %>
-  <% @company.jobs.unpublished.unexpired.each do |job| %>     <!-- not published and not expired -->
     <br>
     <table class="table table-hover">
       <thead>
@@ -58,19 +57,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><%= link_to job.title, "/jobs/#{job.id}?company_id=#{@company.id}" %></td>
-          <td><%= job.contract_type.name %></td>
-          <td><%= job.salary_range.range %></td>
-          <td><%= job.country.name %></td>
-          <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
-          <td><%= job.start_day %></td>
-          <td><%= link_to "Edit", "/jobs/#{job.id}/edit?company_id=#{@company.id}" %></td>
-          <td><%= link_to "Delete", job_path(job), method: :delete %></td>
-        </tr>
+        <% @company.jobs.unpublished.unexpired.each do |job| %>     <!-- not published and not expired -->
+          <tr>
+            <td><%= link_to job.title, "/jobs/#{job.id}?company_id=#{@company.id}" %></td>
+            <td><%= job.contract_type.name %></td>
+            <td><%= job.salary_range.range %></td>
+            <td><%= job.country.name %></td>
+            <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
+            <td><%= job.start_day %></td>
+            <td><%= link_to "Edit", "/jobs/#{job.id}/edit?company_id=#{@company.id}" %></td>
+            <td><%= link_to "Delete", job_path(job), method: :delete %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
-  <% end %>
 <% else %>
   <h4>Currently there are no unpublished jobs.</h4>
 <% end %>
@@ -79,7 +79,6 @@
 
 <h2>Expired Jobs</h2>
 <% if @company.jobs.expired.present? %>
-  <% @company.jobs.expired.each do |job| %>     <!-- expired -->
     <br>
     <table class="table table-hover">
       <thead>
@@ -94,19 +93,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><%= link_to job.title, "/jobs/#{job.id}?company_id=#{@company.id}" %></td>
-          <td><%= job.contract_type.name %></td>
-          <td><%= job.salary_range.range %></td>
-          <td><%= job.country.name %></td>
-          <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
-          <td><%= job.start_day %></td>
-          <td><%= link_to "Edit", "/jobs/#{job.id}/edit?company_id=#{@company.id}" %></td>
-          <td><%= link_to "Delete", job_path(job), method: :delete %></td>
-        </tr>
+        <% @company.jobs.expired.each do |job| %>     <!-- expired -->
+          <tr>
+            <td><%= link_to job.title, "/jobs/#{job.id}?company_id=#{@company.id}" %></td>
+            <td><%= job.contract_type.name %></td>
+            <td><%= job.salary_range.range %></td>
+            <td><%= job.country.name %></td>
+            <td><%= if job.location.present?; job.location.name else "Not in Myanmar" end %></td>
+            <td><%= job.start_day %></td>
+            <td><%= link_to "Edit", "/jobs/#{job.id}/edit?company_id=#{@company.id}" %></td>
+            <td><%= link_to "Delete", job_path(job), method: :delete %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
-  <% end %>
 <% else %>
   <h4>Currently there are no expired jobs.</h4>
 <% end %>

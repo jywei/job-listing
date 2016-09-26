@@ -24,4 +24,12 @@ module ApplicationHelper
       current_user
     end
   end
+
+  def is_seeker?
+    if current_user
+      current_user.has_role? :seeker
+    else
+      current_user
+    end
+  end
 end

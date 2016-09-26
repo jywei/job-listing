@@ -1,7 +1,7 @@
 class ResumesController < ApplicationController
   before_action :set_resume, only: [:show, :edit, :update, :destroy]
   before_action :set_reserved_resumes, only: [:unfollow_job]
-  before_action :authorize_check, only: [:edit, :update]
+  # before_action :authorize_check, only: [:edit, :update]
 
   authorize_resource :resume
 

@@ -1,0 +1,2 @@
+module Admin::SeekerHelper
+end

@@ -1,0 +1,341 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/07541c5/
+Ability	app/models/ability.rb	/^class Ability$/;"	c
+ActiveRecord	config/initializers/will_paginate.rb	/^module ActiveRecord$/;"	m
+AddAddressToCompanies	db/migrate/20160818045512_add_address_to_companies.rb	/^class AddAddressToCompanies < ActiveRecord::Migration$/;"	c
+AddAttachmentImageToCompanies	db/migrate/20160809100457_add_attachment_image_to_companies.rb	/^class AddAttachmentImageToCompanies < ActiveRecord::Migration$/;"	c
+AddBirthToResume	db/migrate/20160903042931_add_birth_to_resume.rb	/^class AddBirthToResume < ActiveRecord::Migration$/;"	c
+AddCategoryIdToJobs	db/migrate/20160727152353_add_category_id_to_jobs.rb	/^class AddCategoryIdToJobs < ActiveRecord::Migration$/;"	c
+AddCompanyIdToJobs	db/migrate/20160810040518_add_company_id_to_jobs.rb	/^class AddCompanyIdToJobs < ActiveRecord::Migration$/;"	c
+AddCompanyIdToUsers	db/migrate/20160812035052_add_company_id_to_users.rb	/^class AddCompanyIdToUsers < ActiveRecord::Migration$/;"	c
+AddContractTypeIdToJobs	db/migrate/20160801075504_add_contract_type_id_to_jobs.rb	/^class AddContractTypeIdToJobs < ActiveRecord::Migration$/;"	c
+AddCountingsToCompanies	db/migrate/20160810033135_add_countings_to_companies.rb	/^class AddCountingsToCompanies < ActiveRecord::Migration$/;"	c
+AddCountryIdToCompanies	db/migrate/20160811042113_add_country_id_to_companies.rb	/^class AddCountryIdToCompanies < ActiveRecord::Migration$/;"	c
+AddCountryIdToJobs	db/migrate/20160811042635_add_country_id_to_jobs.rb	/^class AddCountryIdToJobs < ActiveRecord::Migration$/;"	c
+AddCoverLettersCountToJobs	db/migrate/20160913035135_add_cover_letters_count_to_jobs.rb	/^class AddCoverLettersCountToJobs < ActiveRecord::Migration$/;"	c
+AddCoverToResume	db/migrate/20160815051402_add_cover_to_resume.rb	/^class AddCoverToResume < ActiveRecord::Migration$/;"	c
+AddEmployeeRangeIdToCompanies	db/migrate/20160810080153_add_employee_range_id_to_companies.rb	/^class AddEmployeeRangeIdToCompanies < ActiveRecord::Migration$/;"	c
+AddEmploymentStatusIdToResumes	db/migrate/20160903044345_add_employment_status_id_to_resumes.rb	/^class AddEmploymentStatusIdToResumes < ActiveRecord::Migration$/;"	c
+AddInductryIdToJobs	db/migrate/20160728072643_add_inductry_id_to_jobs.rb	/^class AddInductryIdToJobs < ActiveRecord::Migration$/;"	c
+AddIndustryIdToCompanies	db/migrate/20160810074500_add_industry_id_to_companies.rb	/^class AddIndustryIdToCompanies < ActiveRecord::Migration$/;"	c
+AddIsReadToCoverLetter	db/migrate/20160912084956_add_is_read_to_cover_letter.rb	/^class AddIsReadToCoverLetter < ActiveRecord::Migration$/;"	c
+AddJobsCountToCategories	db/migrate/20160801032932_add_jobs_count_to_categories.rb	/^class AddJobsCountToCategories < ActiveRecord::Migration$/;"	c
+AddLanguageSkillsToJobs	db/migrate/20160819070804_add_language_skills_to_jobs.rb	/^class AddLanguageSkillsToJobs < ActiveRecord::Migration$/;"	c
+AddLocationIdToCompanies	db/migrate/20160811063714_add_location_id_to_companies.rb	/^class AddLocationIdToCompanies < ActiveRecord::Migration$/;"	c
+AddLocationIdToJob	db/migrate/20160804035446_add_location_id_to_job.rb	/^class AddLocationIdToJob < ActiveRecord::Migration$/;"	c
+AddPreferredCandidateIdToLanguages	db/migrate/20160825090945_add_preferred_candidate_id_to_languages.rb	/^class AddPreferredCandidateIdToLanguages < ActiveRecord::Migration$/;"	c
+AddSalaryRangeIdToJob	db/migrate/20160804081534_add_salary_range_id_to_job.rb	/^class AddSalaryRangeIdToJob < ActiveRecord::Migration$/;"	c
+AddUserIdToCompanies	db/migrate/20160812034320_add_user_id_to_companies.rb	/^class AddUserIdToCompanies < ActiveRecord::Migration$/;"	c
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	module:JobsBoard
+ApplicationController	app/controllers/admin/application_controller.rb	/^class Admin::ApplicationController < ActionController::Base$/;"	c	module:Admin
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+ApplicationMailer	app/mailers/application_mailer.rb	/^class ApplicationMailer < ActionMailer::Base$/;"	c
+CareerLevel	app/models/career_level.rb	/^class CareerLevel < ActiveRecord::Base$/;"	c
+CareerLevelTest	test/models/career_level_test.rb	/^class CareerLevelTest < ActiveSupport::TestCase$/;"	c
+CategoriesControllerTest	test/controllers/admin/categories_controller_test.rb	/^class Admin::CategoriesControllerTest < ActionController::TestCase$/;"	c	module:Admin
+CategoriesHelper	app/helpers/admin/categories_helper.rb	/^module Admin::CategoriesHelper$/;"	m	module:Admin
+Category	app/models/category.rb	/^class Category < ActiveRecord::Base$/;"	c
+CategoryTest	test/models/category_test.rb	/^class CategoryTest < ActiveSupport::TestCase$/;"	c
+ChangeColumnNameInPreferredCandidate	db/migrate/20160825092133_change_column_name_in_preferred_candidate.rb	/^class ChangeColumnNameInPreferredCandidate < ActiveRecord::Migration$/;"	c
+CompaniesController	app/controllers/admin/companies_controller.rb	/^class Admin::CompaniesController < Admin::ApplicationController$/;"	c	module:Admin
+CompaniesController	app/controllers/companies_controller.rb	/^class CompaniesController < ApplicationController$/;"	c
+CompaniesControllerTest	test/controllers/admin/companies_controller_test.rb	/^class Admin::CompaniesControllerTest < ActionController::TestCase$/;"	c	module:Admin
+CompaniesControllerTest	test/controllers/companies_controller_test.rb	/^class CompaniesControllerTest < ActionController::TestCase$/;"	c
+CompaniesHelper	app/helpers/admin/companies_helper.rb	/^module Admin::CompaniesHelper$/;"	m	module:Admin
+CompaniesHelper	app/helpers/companies_helper.rb	/^module CompaniesHelper$/;"	m
+Company	app/models/company.rb	/^class Company < ActiveRecord::Base$/;"	c
+CompanyTest	test/models/company_test.rb	/^class CompanyTest < ActiveSupport::TestCase$/;"	c
+ConfirmationsController	app/controllers/users/confirmations_controller.rb	/^class Users::ConfirmationsController < Devise::ConfirmationsController$/;"	c	module:Users
+ContractType	app/models/contract_type.rb	/^class ContractType < ActiveRecord::Base$/;"	c
+ContractTypeTest	test/models/contract_type_test.rb	/^class ContractTypeTest < ActiveSupport::TestCase$/;"	c
+Country	app/models/country.rb	/^class Country < ActiveRecord::Base$/;"	c
+CountryTest	test/models/country_test.rb	/^class CountryTest < ActiveSupport::TestCase$/;"	c
+CoverLetter	app/models/cover_letter.rb	/^class CoverLetter < ActiveRecord::Base$/;"	c
+CoverLetterTest	test/models/cover_letter_test.rb	/^class CoverLetterTest < ActiveSupport::TestCase$/;"	c
+CreateCareerLevels	db/migrate/20160829033445_create_career_levels.rb	/^class CreateCareerLevels < ActiveRecord::Migration$/;"	c
+CreateCategories	db/migrate/20160727152008_create_categories.rb	/^class CreateCategories < ActiveRecord::Migration$/;"	c
+CreateCompanies	db/migrate/20160809082945_create_companies.rb	/^class CreateCompanies < ActiveRecord::Migration$/;"	c
+CreateContractTypes	db/migrate/20160801075231_create_contract_types.rb	/^class CreateContractTypes < ActiveRecord::Migration$/;"	c
+CreateCountries	db/migrate/20160811041728_create_countries.rb	/^class CreateCountries < ActiveRecord::Migration$/;"	c
+CreateCoverLetters	db/migrate/20160910085903_create_cover_letters.rb	/^class CreateCoverLetters < ActiveRecord::Migration$/;"	c
+CreateDegreeLevels	db/migrate/20160815101925_create_degree_levels.rb	/^class CreateDegreeLevels < ActiveRecord::Migration$/;"	c
+CreateEmployeeRanges	db/migrate/20160810080028_create_employee_ranges.rb	/^class CreateEmployeeRanges < ActiveRecord::Migration$/;"	c
+CreateEmploymentStatuses	db/migrate/20160903044212_create_employment_statuses.rb	/^class CreateEmploymentStatuses < ActiveRecord::Migration$/;"	c
+CreateImpressionsTable	db/migrate/20160804071419_create_impressions_table.rb	/^class CreateImpressionsTable < ActiveRecord::Migration$/;"	c
+CreateIndustries	db/migrate/20160728072404_create_industries.rb	/^class CreateIndustries < ActiveRecord::Migration$/;"	c
+CreateJobs	db/migrate/20160727093031_create_jobs.rb	/^class CreateJobs < ActiveRecord::Migration$/;"	c
+CreateLanguages	db/migrate/20160822044622_create_languages.rb	/^class CreateLanguages < ActiveRecord::Migration$/;"	c
+CreateLocations	db/migrate/20160804035255_create_locations.rb	/^class CreateLocations < ActiveRecord::Migration$/;"	c
+CreatePreferredCandidates	db/migrate/20160825075100_create_preferred_candidates.rb	/^class CreatePreferredCandidates < ActiveRecord::Migration$/;"	c
+CreateProficiencies	db/migrate/20160822043757_create_proficiencies.rb	/^class CreateProficiencies < ActiveRecord::Migration$/;"	c
+CreateRelatedExperiences	db/migrate/20160825101547_create_related_experiences.rb	/^class CreateRelatedExperiences < ActiveRecord::Migration$/;"	c
+CreateReservedCompanies	db/migrate/20160818053611_create_reserved_companies.rb	/^class CreateReservedCompanies < ActiveRecord::Migration$/;"	c
+CreateReservedJobs	db/migrate/20160819052455_create_reserved_jobs.rb	/^class CreateReservedJobs < ActiveRecord::Migration$/;"	c
+CreateReservedResumes	db/migrate/20160909033639_create_reserved_resumes.rb	/^class CreateReservedResumes < ActiveRecord::Migration$/;"	c
+CreateResumes	db/migrate/20160812081106_create_resumes.rb	/^class CreateResumes < ActiveRecord::Migration$/;"	c
+CreateSalaryRanges	db/migrate/20160804081404_create_salary_ranges.rb	/^class CreateSalaryRanges < ActiveRecord::Migration$/;"	c
+CreateSchools	db/migrate/20160815104623_create_schools.rb	/^class CreateSchools < ActiveRecord::Migration$/;"	c
+CreateUniversities	db/migrate/20160817050640_create_universities.rb	/^class CreateUniversities < ActiveRecord::Migration$/;"	c
+DegreeLevel	app/models/degree_level.rb	/^class DegreeLevel < ActiveRecord::Base$/;"	c
+DegreeLevelTest	test/models/degree_level_test.rb	/^class DegreeLevelTest < ActiveSupport::TestCase$/;"	c
+DesiredJobSalary_size	app/helpers/resumes_helper.rb	/^  def DesiredJobSalary_size(value)$/;"	f	module:ResumesHelper
+DesiredJobsIndustry	app/models/desired_jobs_industry.rb	/^class DesiredJobsIndustry < ActiveRecord::Base$/;"	c
+DesiredJobsRole	app/models/desired_jobs_role.rb	/^class DesiredJobsRole < ActiveRecord::Base$/;"	c
+DesiredJobsSalary	app/models/desired_jobs_salary.rb	/^class DesiredJobsSalary < ActiveRecord::Base$/;"	c
+DeviseCreateUsers	db/migrate/20160809041137_devise_create_users.rb	/^class DeviseCreateUsers < ActiveRecord::Migration$/;"	c
+EmployeeRange	app/models/employee_range.rb	/^class EmployeeRange < ActiveRecord::Base$/;"	c
+EmployeeRangeTest	test/models/employee_range_test.rb	/^class EmployeeRangeTest < ActiveSupport::TestCase$/;"	c
+EmploymentStatus	app/models/employment_status.rb	/^class EmploymentStatus < ActiveRecord::Base$/;"	c
+EmploymentStatusTest	test/models/employment_status_test.rb	/^class EmploymentStatusTest < ActiveSupport::TestCase$/;"	c
+Experience	app/models/experience.rb	/^class Experience < ActiveRecord::Base$/;"	c
+HomeController	app/controllers/admin/home_controller.rb	/^class Admin::HomeController < Admin::ApplicationController$/;"	c	module:Admin
+HomeControllerTest	test/controllers/admin/home_controller_test.rb	/^class Admin::HomeControllerTest < ActionController::TestCase$/;"	c	module:Admin
+HomeHelper	app/helpers/admin/home_helper.rb	/^module Admin::HomeHelper$/;"	m	module:Admin
+IndustriesControllerTest	test/controllers/admin/industries_controller_test.rb	/^class Admin::IndustriesControllerTest < ActionController::TestCase$/;"	c	module:Admin
+IndustriesHelper	app/helpers/admin/industries_helper.rb	/^module Admin::IndustriesHelper$/;"	m	module:Admin
+Industry	app/models/industry.rb	/^class Industry < ActiveRecord::Base$/;"	c
+IndustryTest	test/models/industry_test.rb	/^class IndustryTest < ActiveSupport::TestCase$/;"	c
+Job	app/models/job.rb	/^class Job < ActiveRecord::Base$/;"	c
+JobFilterController	app/controllers/admin/job_filter_controller.rb	/^class Admin::JobFilterController < Admin::ApplicationController$/;"	c	module:Admin
+JobFilterControllerTest	test/controllers/admin/job_filter_controller_test.rb	/^class Admin::JobFilterControllerTest < ActionController::TestCase$/;"	c	module:Admin
+JobFilterHelper	app/helpers/admin/job_filter_helper.rb	/^module Admin::JobFilterHelper$/;"	m	module:Admin
+JobTest	test/models/job_test.rb	/^class JobTest < ActiveSupport::TestCase$/;"	c
+JobsBoard	config/application.rb	/^module JobsBoard$/;"	m
+JobsController	app/controllers/jobs_controller.rb	/^class JobsController < ApplicationController$/;"	c
+JobsControllerTest	test/controllers/jobs_controller_test.rb	/^class JobsControllerTest < ActionController::TestCase$/;"	c
+JobsHelper	app/helpers/jobs_helper.rb	/^module JobsHelper$/;"	m
+Language	app/models/language.rb	/^class Language < ActiveRecord::Base$/;"	c
+LanguageSkill	app/models/language_skill.rb	/^class LanguageSkill < ActiveRecord::Base$/;"	c
+LanguageTest	test/models/language_test.rb	/^class LanguageTest < ActiveSupport::TestCase$/;"	c
+Location	app/models/location.rb	/^class Location < ActiveRecord::Base$/;"	c
+LocationTest	test/models/location_test.rb	/^class LocationTest < ActiveSupport::TestCase$/;"	c
+ModelTest	test/models/model_test.rb	/^class ModelTest < ActiveSupport::TestCase$/;"	c
+Notifier	app/mailers/notifier.rb	/^class Notifier < ApplicationMailer$/;"	c
+NotifierPreview	test/mailers/previews/notifier_preview.rb	/^class NotifierPreview < ActionMailer::Preview$/;"	c
+NotifierTest	test/mailers/notifier_test.rb	/^class NotifierTest < ActionMailer::TestCase$/;"	c
+OmniauthCallbacksController	app/controllers/users/omniauth_callbacks_controller.rb	/^class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController$/;"	c	module:Users
+PagesController	app/controllers/pages_controller.rb	/^class PagesController < ApplicationController$/;"	c
+PagesControllerTest	test/controllers/pages_controller_test.rb	/^class PagesControllerTest < ActionController::TestCase$/;"	c
+PagesHelper	app/helpers/pages_helper.rb	/^module PagesHelper$/;"	m
+PasswordsController	app/controllers/users/passwords_controller.rb	/^class Users::PasswordsController < Devise::PasswordsController$/;"	c	module:Users
+PreferredCandidate	app/models/preferred_candidate.rb	/^class PreferredCandidate < ActiveRecord::Base$/;"	c
+PreferredCandidateTest	test/models/preferred_candidate_test.rb	/^class PreferredCandidateTest < ActiveSupport::TestCase$/;"	c
+PreferredCandidatesController	app/controllers/preferred_candidates_controller.rb	/^class PreferredCandidatesController < ApplicationController$/;"	c
+PreferredCandidatesControllerTest	test/controllers/preferred_candidates_controller_test.rb	/^class PreferredCandidatesControllerTest < ActionController::TestCase$/;"	c
+PreferredCandidatesHelper	app/helpers/preferred_candidates_helper.rb	/^module PreferredCandidatesHelper$/;"	m
+Proficiency	app/models/proficiency.rb	/^class Proficiency < ActiveRecord::Base$/;"	c
+ProficiencyTest	test/models/proficiency_test.rb	/^class ProficiencyTest < ActiveSupport::TestCase$/;"	c
+RegistrationsController	app/controllers/users/registrations_controller.rb	/^class Users::RegistrationsController < Devise::RegistrationsController$/;"	c	module:Users
+RelatedExperience	app/models/related_experience.rb	/^class RelatedExperience < ActiveRecord::Base$/;"	c
+RelatedExperienceTest	test/models/related_experience_test.rb	/^class RelatedExperienceTest < ActiveSupport::TestCase$/;"	c
+Relation	config/initializers/will_paginate.rb	/^  class Relation$/;"	c	module:ActiveRecord
+RemoveColumnFromJobs	db/migrate/20160729103509_remove_column_from_jobs.rb	/^class RemoveColumnFromJobs < ActiveRecord::Migration$/;"	c
+ReservedCompany	app/models/reserved_company.rb	/^class ReservedCompany < ActiveRecord::Base$/;"	c
+ReservedCompanyTest	test/models/reserved_company_test.rb	/^class ReservedCompanyTest < ActiveSupport::TestCase$/;"	c
+ReservedJob	app/models/reserved_job.rb	/^class ReservedJob < ActiveRecord::Base$/;"	c
+ReservedJobTest	test/models/reserved_job_test.rb	/^class ReservedJobTest < ActiveSupport::TestCase$/;"	c
+ReservedResume	app/models/reserved_resume.rb	/^class ReservedResume < ActiveRecord::Base$/;"	c
+ReservedResumeTest	test/models/reserved_resume_test.rb	/^class ReservedResumeTest < ActiveSupport::TestCase$/;"	c
+Resume	app/models/resume.rb	/^class Resume < ActiveRecord::Base$/;"	c
+ResumeTest	test/models/resume_test.rb	/^class ResumeTest < ActiveSupport::TestCase$/;"	c
+ResumesController	app/controllers/resumes_controller.rb	/^class ResumesController < ApplicationController$/;"	c
+ResumesControllerTest	test/controllers/resumes_controller_test.rb	/^class ResumesControllerTest < ActionController::TestCase$/;"	c
+ResumesHelper	app/helpers/resumes_helper.rb	/^module ResumesHelper$/;"	m
+Role	app/models/role.rb	/^class Role < ActiveRecord::Base$/;"	c
+RoleTest	test/models/role_test.rb	/^class RoleTest < ActiveSupport::TestCase$/;"	c
+RolifyCreateRoles	db/migrate/20160809042416_rolify_create_roles.rb	/^class RolifyCreateRoles < ActiveRecord::Migration$/;"	c
+SalaryRange	app/models/salary_range.rb	/^class SalaryRange < ActiveRecord::Base$/;"	c
+SalaryRangeTest	test/models/salary_range_test.rb	/^class SalaryRangeTest < ActiveSupport::TestCase$/;"	c
+School	app/models/school.rb	/^class School < ActiveRecord::Base$/;"	c
+SchoolTest	test/models/school_test.rb	/^class SchoolTest < ActiveSupport::TestCase$/;"	c
+SessionsController	app/controllers/users/sessions_controller.rb	/^class Users::SessionsController < Devise::SessionsController$/;"	c	module:Users
+Skill	app/models/skill.rb	/^class Skill < ActiveRecord::Base$/;"	c
+TestCase	test/test_helper.rb	/^class ActiveSupport::TestCase$/;"	c	module:ActiveSupport
+The change you wanted was rejected.	public/422.html	/^      <h1>The change you wanted was rejected.<\/h1>$/;"	h
+The page you were looking for doesn't exist.	public/404.html	/^      <h1>The page you were looking for doesn't exist.<\/h1>$/;"	h
+University	app/models/university.rb	/^class University < ActiveRecord::Base$/;"	c
+UniversityTest	test/models/university_test.rb	/^class UniversityTest < ActiveSupport::TestCase$/;"	c
+UnlocksController	app/controllers/users/unlocks_controller.rb	/^class Users::UnlocksController < Devise::UnlocksController$/;"	c	module:Users
+User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
+UserTest	test/models/user_test.rb	/^class UserTest < ActiveSupport::TestCase$/;"	c
+We're sorry, but something went wrong.	public/500.html	/^      <h1>We're sorry, but something went wrong.<\/h1>$/;"	h
+addDJI	app/controllers/resumes_controller.rb	/^  def addDJI$/;"	f	class:ResumesController
+addDJR	app/controllers/resumes_controller.rb	/^  def addDJR$/;"	f	class:ResumesController
+addDJS	app/controllers/resumes_controller.rb	/^  def addDJS$/;"	f	class:ResumesController
+addExp	app/controllers/resumes_controller.rb	/^  def addExp$/;"	f	class:ResumesController
+addFilter	app/controllers/admin/job_filter_controller.rb	/^  def addFilter$/;"	f	class:JobFilterController
+addLan	app/controllers/resumes_controller.rb	/^  def addLan$/;"	f	class:ResumesController
+addSch	app/controllers/resumes_controller.rb	/^  def addSch$/;"	f	class:ResumesController
+addSki	app/controllers/resumes_controller.rb	/^  def addSki$/;"	f	class:ResumesController
+age	app/models/resume.rb	/^  def age$/;"	f	class:Resume
+authorize_check	app/controllers/companies_controller.rb	/^    def authorize_check$/;"	f	class:CompaniesController
+authorize_check	app/controllers/resumes_controller.rb	/^    def authorize_check$/;"	f	class:ResumesController
+calculate_age	app/helpers/resumes_helper.rb	/^  def calculate_age(date)$/;"	f	module:ResumesHelper
+change	db/migrate/20160727093031_create_jobs.rb	/^  def change$/;"	f	class:CreateJobs
+change	db/migrate/20160727152008_create_categories.rb	/^  def change$/;"	f	class:CreateCategories
+change	db/migrate/20160727152353_add_category_id_to_jobs.rb	/^  def change$/;"	f	class:AddCategoryIdToJobs
+change	db/migrate/20160728072404_create_industries.rb	/^  def change$/;"	f	class:CreateIndustries
+change	db/migrate/20160728072643_add_inductry_id_to_jobs.rb	/^  def change$/;"	f	class:AddInductryIdToJobs
+change	db/migrate/20160729103509_remove_column_from_jobs.rb	/^  def change$/;"	f	class:RemoveColumnFromJobs
+change	db/migrate/20160801032932_add_jobs_count_to_categories.rb	/^  def change$/;"	f	class:AddJobsCountToCategories
+change	db/migrate/20160801075231_create_contract_types.rb	/^  def change$/;"	f	class:CreateContractTypes
+change	db/migrate/20160801075504_add_contract_type_id_to_jobs.rb	/^  def change$/;"	f	class:AddContractTypeIdToJobs
+change	db/migrate/20160804035255_create_locations.rb	/^  def change$/;"	f	class:CreateLocations
+change	db/migrate/20160804035446_add_location_id_to_job.rb	/^  def change$/;"	f	class:AddLocationIdToJob
+change	db/migrate/20160804081404_create_salary_ranges.rb	/^  def change$/;"	f	class:CreateSalaryRanges
+change	db/migrate/20160804081534_add_salary_range_id_to_job.rb	/^  def change$/;"	f	class:AddSalaryRangeIdToJob
+change	db/migrate/20160809041137_devise_create_users.rb	/^  def change$/;"	f	class:DeviseCreateUsers
+change	db/migrate/20160809042416_rolify_create_roles.rb	/^  def change$/;"	f	class:RolifyCreateRoles
+change	db/migrate/20160809082945_create_companies.rb	/^  def change$/;"	f	class:CreateCompanies
+change	db/migrate/20160810033135_add_countings_to_companies.rb	/^  def change$/;"	f	class:AddCountingsToCompanies
+change	db/migrate/20160810040518_add_company_id_to_jobs.rb	/^  def change$/;"	f	class:AddCompanyIdToJobs
+change	db/migrate/20160810074500_add_industry_id_to_companies.rb	/^  def change$/;"	f	class:AddIndustryIdToCompanies
+change	db/migrate/20160810080028_create_employee_ranges.rb	/^  def change$/;"	f	class:CreateEmployeeRanges
+change	db/migrate/20160810080153_add_employee_range_id_to_companies.rb	/^  def change$/;"	f	class:AddEmployeeRangeIdToCompanies
+change	db/migrate/20160811041728_create_countries.rb	/^  def change$/;"	f	class:CreateCountries
+change	db/migrate/20160811042113_add_country_id_to_companies.rb	/^  def change$/;"	f	class:AddCountryIdToCompanies
+change	db/migrate/20160811042635_add_country_id_to_jobs.rb	/^  def change$/;"	f	class:AddCountryIdToJobs
+change	db/migrate/20160811063714_add_location_id_to_companies.rb	/^  def change$/;"	f	class:AddLocationIdToCompanies
+change	db/migrate/20160812034320_add_user_id_to_companies.rb	/^  def change$/;"	f	class:AddUserIdToCompanies
+change	db/migrate/20160812035052_add_company_id_to_users.rb	/^  def change$/;"	f	class:AddCompanyIdToUsers
+change	db/migrate/20160812081106_create_resumes.rb	/^  def change$/;"	f	class:CreateResumes
+change	db/migrate/20160815051402_add_cover_to_resume.rb	/^  def change$/;"	f	class:AddCoverToResume
+change	db/migrate/20160815101925_create_degree_levels.rb	/^  def change$/;"	f	class:CreateDegreeLevels
+change	db/migrate/20160815104623_create_schools.rb	/^  def change$/;"	f	class:CreateSchools
+change	db/migrate/20160817050640_create_universities.rb	/^  def change$/;"	f	class:CreateUniversities
+change	db/migrate/20160818045512_add_address_to_companies.rb	/^  def change$/;"	f	class:AddAddressToCompanies
+change	db/migrate/20160818053611_create_reserved_companies.rb	/^  def change$/;"	f	class:CreateReservedCompanies
+change	db/migrate/20160819052455_create_reserved_jobs.rb	/^  def change$/;"	f	class:CreateReservedJobs
+change	db/migrate/20160819070804_add_language_skills_to_jobs.rb	/^  def change$/;"	f	class:AddLanguageSkillsToJobs
+change	db/migrate/20160822043757_create_proficiencies.rb	/^  def change$/;"	f	class:CreateProficiencies
+change	db/migrate/20160822044622_create_languages.rb	/^  def change$/;"	f	class:CreateLanguages
+change	db/migrate/20160825075100_create_preferred_candidates.rb	/^  def change$/;"	f	class:CreatePreferredCandidates
+change	db/migrate/20160825090945_add_preferred_candidate_id_to_languages.rb	/^  def change$/;"	f	class:AddPreferredCandidateIdToLanguages
+change	db/migrate/20160825092133_change_column_name_in_preferred_candidate.rb	/^  def change$/;"	f	class:ChangeColumnNameInPreferredCandidate
+change	db/migrate/20160825101547_create_related_experiences.rb	/^  def change$/;"	f	class:CreateRelatedExperiences
+change	db/migrate/20160829033445_create_career_levels.rb	/^  def change$/;"	f	class:CreateCareerLevels
+change	db/migrate/20160903042931_add_birth_to_resume.rb	/^  def change$/;"	f	class:AddBirthToResume
+change	db/migrate/20160903044212_create_employment_statuses.rb	/^  def change$/;"	f	class:CreateEmploymentStatuses
+change	db/migrate/20160903044345_add_employment_status_id_to_resumes.rb	/^  def change$/;"	f	class:AddEmploymentStatusIdToResumes
+change	db/migrate/20160909033639_create_reserved_resumes.rb	/^  def change$/;"	f	class:CreateReservedResumes
+change	db/migrate/20160910085903_create_cover_letters.rb	/^  def change$/;"	f	class:CreateCoverLetters
+change	db/migrate/20160912084956_add_is_read_to_cover_letter.rb	/^  def change$/;"	f	class:AddIsReadToCoverLetter
+change	db/migrate/20160913035135_add_cover_letters_count_to_jobs.rb	/^  def change$/;"	f	class:AddCoverLettersCountToJobs
+check_cover_letter_is_available	app/controllers/jobs_controller.rb	/^    def check_cover_letter_is_available$/;"	f	class:JobsController
+company_params	app/controllers/companies_controller.rb	/^    def company_params$/;"	f	class:CompaniesController
+company_size	app/helpers/companies_helper.rb	/^  def company_size(key, value)$/;"	f	module:CompaniesHelper
+company_unread_cover_letter_count	app/helpers/application_helper.rb	/^  def company_unread_cover_letter_count(company)$/;"	f	module:ApplicationHelper
+cover_letter	app/controllers/jobs_controller.rb	/^  def cover_letter$/;"	f	class:JobsController
+cover_letter_contact	app/mailers/notifier.rb	/^  def cover_letter_contact(cover_letter)$/;"	f	class:Notifier
+cover_letter_params	app/controllers/jobs_controller.rb	/^    def cover_letter_params$/;"	f	class:JobsController
+create	app/controllers/companies_controller.rb	/^  def create$/;"	f	class:CompaniesController
+create	app/controllers/jobs_controller.rb	/^  def create$/;"	f	class:JobsController
+create	app/controllers/preferred_candidates_controller.rb	/^  def create$/;"	f	class:PreferredCandidatesController
+create	app/controllers/resumes_controller.rb	/^  def create$/;"	f	class:ResumesController
+create	app/controllers/users/registrations_controller.rb	/^  def create$/;"	f	class:RegistrationsController
+create	app/controllers/users/sessions_controller.rb	/^  def create$/;"	f	class:SessionsController
+dashboard	app/controllers/resumes_controller.rb	/^  def dashboard$/;"	f	class:ResumesController
+decorated_created_at	app/models/job.rb	/^  def decorated_created_at$/;"	f	class:Job
+decorated_start_day	app/models/job.rb	/^  def decorated_start_day$/;"	f	class:Job
+deleEdu	app/controllers/resumes_controller.rb	/^  def deleEdu$/;"	f	class:ResumesController
+deleExp	app/controllers/resumes_controller.rb	/^  def deleExp$/;"	f	class:ResumesController
+deleFilter	app/controllers/admin/job_filter_controller.rb	/^  def deleFilter$/;"	f	class:JobFilterController
+destroy	app/controllers/companies_controller.rb	/^  def destroy$/;"	f	class:CompaniesController
+destroy	app/controllers/jobs_controller.rb	/^  def destroy$/;"	f	class:JobsController
+destroy	app/controllers/preferred_candidates_controller.rb	/^  def destroy$/;"	f	class:PreferredCandidatesController
+dji_params	app/controllers/resumes_controller.rb	/^    def dji_params$/;"	f	class:ResumesController
+djr_params	app/controllers/resumes_controller.rb	/^    def djr_params$/;"	f	class:ResumesController
+djs_params	app/controllers/resumes_controller.rb	/^    def djs_params$/;"	f	class:ResumesController
+down	db/migrate/20160804071419_create_impressions_table.rb	/^  def self.down$/;"	F	class:CreateImpressionsTable
+down	db/migrate/20160809100457_add_attachment_image_to_companies.rb	/^  def self.down$/;"	F	class:AddAttachmentImageToCompanies
+edit	app/controllers/companies_controller.rb	/^  def edit$/;"	f	class:CompaniesController
+edit	app/controllers/jobs_controller.rb	/^  def edit$/;"	f	class:JobsController
+edit	app/controllers/preferred_candidates_controller.rb	/^  def edit$/;"	f	class:PreferredCandidatesController
+edit	app/controllers/resumes_controller.rb	/^  def edit$/;"	f	class:ResumesController
+education	app/controllers/resumes_controller.rb	/^  def education$/;"	f	class:ResumesController
+experience_params	app/controllers/resumes_controller.rb	/^    def experience_params$/;"	f	class:ResumesController
+expiration_check	app/controllers/companies_controller.rb	/^    def expiration_check$/;"	f	class:CompaniesController
+expiration_check	app/controllers/jobs_controller.rb	/^    def expiration_check$/;"	f	class:JobsController
+favorite_job	app/controllers/jobs_controller.rb	/^  def favorite_job$/;"	f	class:JobsController
+favorite_resume	app/controllers/resumes_controller.rb	/^  def favorite_resume$/;"	f	class:ResumesController
+getCompany	app/controllers/admin/companies_controller.rb	/^  def getCompany$/;"	f	class:CompaniesController
+getData	app/controllers/admin/job_filter_controller.rb	/^  def getData$/;"	f	class:JobFilterController
+getEdu	app/controllers/resumes_controller.rb	/^  def getEdu$/;"	f	class:ResumesController
+getExp	app/controllers/resumes_controller.rb	/^  def getExp$/;"	f	class:ResumesController
+has_company?	app/models/user.rb	/^  def has_company?$/;"	f	class:User
+has_role_check	app/controllers/pages_controller.rb	/^    def has_role_check$/;"	f	class:PagesController
+impression_count	app/models/company.rb	/^  def impression_count$/;"	f	class:Company
+impression_count	app/models/job.rb	/^  def impression_count$/;"	f	class:Job
+index	app/controllers/admin/companies_controller.rb	/^  def index$/;"	f	class:CompaniesController
+index	app/controllers/admin/home_controller.rb	/^  def index$/;"	f	class:HomeController
+index	app/controllers/admin/job_filter_controller.rb	/^  def index$/;"	f	class:JobFilterController
+index	app/controllers/companies_controller.rb	/^  def index$/;"	f	class:CompaniesController
+index	app/controllers/jobs_controller.rb	/^  def index$/;"	f	class:JobsController
+index	app/controllers/pages_controller.rb	/^  def index$/;"	f	class:PagesController
+index	app/controllers/preferred_candidates_controller.rb	/^  def index$/;"	f	class:PreferredCandidatesController
+index	app/controllers/resumes_controller.rb	/^  def index$/;"	f	class:ResumesController
+initialize	app/models/ability.rb	/^  def initialize(user)$/;"	f	class:Ability
+is_employer?	app/helpers/application_helper.rb	/^  def is_employer?$/;"	f	module:ApplicationHelper
+is_seeker?	app/helpers/application_helper.rb	/^  def is_seeker?$/;"	f	module:ApplicationHelper
+job_params	app/controllers/jobs_controller.rb	/^    def job_params$/;"	f	class:JobsController
+job_size	app/helpers/jobs_helper.rb	/^  def job_size(key, value)$/;"	f	module:JobsHelper
+job_unread_cover_letter_count	app/helpers/application_helper.rb	/^  def job_unread_cover_letter_count(job)$/;"	f	module:ApplicationHelper
+language_params	app/controllers/resumes_controller.rb	/^    def language_params$/;"	f	class:ResumesController
+log_impression	app/controllers/companies_controller.rb	/^    def log_impression$/;"	f	class:CompaniesController
+log_impression	app/controllers/jobs_controller.rb	/^    def log_impression$/;"	f	class:JobsController
+new	app/controllers/companies_controller.rb	/^  def new$/;"	f	class:CompaniesController
+new	app/controllers/jobs_controller.rb	/^  def new$/;"	f	class:JobsController
+new	app/controllers/preferred_candidates_controller.rb	/^  def new$/;"	f	class:PreferredCandidatesController
+new	app/controllers/resumes_controller.rb	/^  def new$/;"	f	class:ResumesController
+new	app/controllers/users/sessions_controller.rb	/^  def new$/;"	f	class:SessionsController
+new_cover_letter	app/controllers/jobs_controller.rb	/^  def new_cover_letter$/;"	f	class:JobsController
+not_myanmar	app/models/job.rb	/^  def not_myanmar$/;"	f	class:Job
+options_for_select	app/models/category.rb	/^  def self.options_for_select$/;"	F	class:Category
+options_for_select	app/models/company.rb	/^  def self.options_for_select$/;"	F	class:Company
+options_for_select	app/models/contract_type.rb	/^  def self.options_for_select$/;"	F	class:ContractType
+options_for_select	app/models/employee_range.rb	/^  def self.options_for_select$/;"	F	class:EmployeeRange
+options_for_select	app/models/industry.rb	/^  def self.options_for_select$/;"	F	class:Industry
+options_for_select	app/models/location.rb	/^  def self.options_for_select$/;"	F	class:Location
+options_for_select	app/models/resume.rb	/^  def self.options_for_select$/;"	F	class:Resume
+options_for_select	app/models/salary_range.rb	/^  def self.options_for_select$/;"	F	class:SalaryRange
+options_for_sorted_by	app/models/company.rb	/^  def self.options_for_sorted_by$/;"	F	class:Company
+options_for_sorted_by	app/models/job.rb	/^  def self.options_for_sorted_by$/;"	F	class:Job
+options_for_sorted_by	app/models/resume.rb	/^  def self.options_for_sorted_by$/;"	F	class:Resume
+preferred_candidate_params	app/controllers/preferred_candidates_controller.rb	/^    def preferred_candidate_params$/;"	f	class:PreferredCandidatesController
+resume_params	app/controllers/resumes_controller.rb	/^    def resume_params$/;"	f	class:ResumesController
+resume_size	app/helpers/resumes_helper.rb	/^  def resume_size(key, value)$/;"	f	module:ResumesHelper
+save_to_favorites	app/controllers/companies_controller.rb	/^  def save_to_favorites$/;"	f	class:CompaniesController
+school_params	app/controllers/resumes_controller.rb	/^    def school_params$/;"	f	class:ResumesController
+select_jobs	app/controllers/jobs_controller.rb	/^  def select_jobs$/;"	f	class:JobsController
+set_company	app/controllers/companies_controller.rb	/^    def set_company$/;"	f	class:CompaniesController
+set_job	app/controllers/jobs_controller.rb	/^    def set_job$/;"	f	class:JobsController
+set_preferred_candidate	app/controllers/preferred_candidates_controller.rb	/^    def set_preferred_candidate$/;"	f	class:PreferredCandidatesController
+set_reserved_companies	app/controllers/companies_controller.rb	/^    def set_reserved_companies$/;"	f	class:CompaniesController
+set_reserved_jobs	app/controllers/jobs_controller.rb	/^    def set_reserved_jobs$/;"	f	class:JobsController
+set_reserved_resumes	app/controllers/resumes_controller.rb	/^    def set_reserved_resumes$/;"	f	class:ResumesController
+set_resume	app/controllers/resumes_controller.rb	/^    def set_resume$/;"	f	class:ResumesController
+show	app/controllers/companies_controller.rb	/^  def show$/;"	f	class:CompaniesController
+show	app/controllers/jobs_controller.rb	/^  def show$/;"	f	class:JobsController
+show	app/controllers/preferred_candidates_controller.rb	/^  def show$/;"	f	class:PreferredCandidatesController
+show	app/controllers/resumes_controller.rb	/^  def show$/;"	f	class:ResumesController
+show_cover_letter	app/controllers/jobs_controller.rb	/^  def show_cover_letter$/;"	f	class:JobsController
+skill_params	app/controllers/resumes_controller.rb	/^    def skill_params$/;"	f	class:ResumesController
+unfollow_job	app/controllers/jobs_controller.rb	/^  def unfollow_job$/;"	f	class:JobsController
+unfollow_resume	app/controllers/resumes_controller.rb	/^  def unfollow_resume$/;"	f	class:ResumesController
+unlike	app/controllers/companies_controller.rb	/^  def unlike$/;"	f	class:CompaniesController
+up	db/migrate/20160804071419_create_impressions_table.rb	/^  def self.up$/;"	F	class:CreateImpressionsTable
+up	db/migrate/20160809100457_add_attachment_image_to_companies.rb	/^  def self.up$/;"	F	class:AddAttachmentImageToCompanies
+update	app/controllers/companies_controller.rb	/^  def update$/;"	f	class:CompaniesController
+update	app/controllers/jobs_controller.rb	/^  def update$/;"	f	class:JobsController
+update	app/controllers/preferred_candidates_controller.rb	/^  def update$/;"	f	class:PreferredCandidatesController
+update	app/controllers/resumes_controller.rb	/^  def update$/;"	f	class:ResumesController
+update	app/controllers/users/registrations_controller.rb	/^  def update$/;"	f	class:RegistrationsController
+user_params	app/controllers/resumes_controller.rb	/^    def user_params$/;"	f	class:ResumesController
+user_update	app/controllers/resumes_controller.rb	/^  def user_update$/;"	f	class:ResumesController
+verify_admin	app/controllers/admin/application_controller.rb	/^  def verify_admin$/;"	f	class:ApplicationController
+which_role	app/controllers/pages_controller.rb	/^  def which_role$/;"	f	class:PagesController

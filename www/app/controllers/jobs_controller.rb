@@ -1,10 +1,11 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   before_action :set_reserved_jobs, only: [:unfollow_job]
-  before_action :log_impression, only: [:show], unique: [:session_hash]
-  before_action :expiration_check, only: [:index]
+  # before_action :log_impression, only: [:show], unique: [:session_hash]
+  before_action :expiration_check, only: [:index, :update]
+  before_action :check_cover_letter_is_available, only: [:new_cover_letter, :cover_letter]
 
-  authorize_resource
+  authorize_resource :job
 
   # GET /jobs
   def index
@@ -44,7 +45,8 @@ class JobsController < ApplicationController
 
   # GET /jobs/1
   def show
-    # @company = @job.company
+    new_views_count = @job.views_count + 1
+    @job.update_attributes(views_count: new_views_count)
     @preferred_candidate = PreferredCandidate.new
   end
 
@@ -60,6 +62,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     #@job.company_id = Company.find_by(id: params[:company_id])
+    @job.company_id = current_user.company.id
     if @job.save
       redirect_to @job, notice: 'Job was successfully created.'
     else
@@ -69,6 +72,7 @@ class JobsController < ApplicationController
 
   def update
     # @job.company_id = Company.find(params[:company_id])
+    @job.company_id = current_user.company.id
     @job.not_myanmar
     if @job.update(job_params)
       redirect_to @job, notice: 'Job was successfully updated.'
@@ -103,7 +107,17 @@ class JobsController < ApplicationController
 
   def show_cover_letter
     @cover_letter = CoverLetter.find(params[:id])
-    @cover_letter.update_attributes(is_read: true) if @cover_letter.job.company == current_user.company
+    if current_user
+      if current_user.company == @cover_letter.job.company || current_user.resume == @cover_letter.resume
+        @cover_letter.update_attributes(is_read: true) if @cover_letter.job.company == current_user.company
+      else
+        flash[:danger] = "Sorry, you are not authorized to access this area!"
+        redirect_to root_url
+      end
+    else
+      flash[:danger] = "Sorry, you are not authorized to access this area!"
+      redirect_to root_url
+    end
   end
 
   def select_jobs
@@ -127,6 +141,20 @@ class JobsController < ApplicationController
 
   private
 
+    def check_cover_letter_is_available
+      if params[:cover_letter]
+        if !Job.find(params[:cover_letter][:id]).is_published || !(Job.find(params[:cover_letter][:id]).start_day >= Date.today)
+          redirect_to root_path
+          flash[:alert] = "Sorry, you are not authorized to access this area!"
+        end
+      else
+        if !Job.find(params[:id]).is_published || !(Job.find(params[:id]).start_day >= Date.today)
+          redirect_to root_path
+          flash[:alert] = "Sorry, you are not authorized to access this area!"
+        end
+      end
+    end
+
     def set_reserved_jobs
       @reserved_jobs = current_user.reserved_jobs
     end
@@ -144,7 +172,7 @@ class JobsController < ApplicationController
       params.require(:job).permit(:title, :description, :requirement, :apply_instruction, :location,
                                   :start_day, :professional_skill, :language_skills, :is_published,
                                   :category_id, :industry_id, :contract_type_id, :location_id,
-                                  :salary_range_id, :company_id, :country_id)
+                                  :salary_range_id, :country_id)
     end
 
     def log_impression
@@ -154,6 +182,7 @@ class JobsController < ApplicationController
 
     def expiration_check
       Job.where("start_day < ?", Date.today).update_all(status: 'expired')
+      Job.where("start_day >= ?", Date.today).update_all(status: nil )
     end
 
 end

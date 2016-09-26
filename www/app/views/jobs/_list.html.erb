@@ -11,7 +11,7 @@
               <td><h2><%= link_to job.title.titleize, job %></h2></td>
               <td><h3>Vacancy Created At: <%= job.decorated_created_at %></h3></td>
               <td><p>(<%= job.contract_type.name %>)</p></td>
-              <td><i class="fa fa-eye"></i><p><%= "#{ job.impressionist_count } views" %></p></td>
+              <td><i class="fa fa-eye"></i><p><%= "#{ job.views_count } views" %></p></td>
               <hr>
               <td><i class="fa fa-dot-circle-o"></i><p><%= link_to job.company.name, job.company %></p></td>
               <td><i class="fa fa-building"></i><p><%= job.industry.name %></p></td>

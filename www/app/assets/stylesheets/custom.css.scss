@@ -5,7 +5,8 @@ body {
 }
 
 .na {
-  background: #262626;
+  background: rgba(38, 38, 38, .8);
+  border: none;
   width: 100%;
   // height: 80px;
   border-radius: 0 !important;
@@ -17,10 +18,22 @@ body {
     .nav-title {
       color: #ffffff;
       font-size: 30px;
-      padding: 5px;
       float: left;
       display: inline;
       text-decoration: none;
+
+      img {
+        width: 60px;
+      }
+    }
+
+    .navbarList {
+      > li {
+        > a {
+          color: #fff;
+          font-weight: 300;
+        }
+      }
     }
 
     .nav-button {
@@ -37,7 +50,7 @@ body {
           color: #ffffff;
 
           a {
-            color: #ffffff;
+            color: #ffffff !important;
             text-decoration: none;
           }
         }
@@ -178,10 +191,41 @@ body {
   width: 100%;
   height: 600px;
   position: relative;
+  padding-top: 33px;
+
+  .item {
+    width: 100vw;
+    height: 600px;
+  }
+
+  .bg1 {
+    background: image-url('NO.1.png') no-repeat 50% 50%;
+    background-size: cover;
+  }
+
+  .bg2 {
+    background: image-url('NO.2.png') no-repeat 50% 50%;
+    background-size: cover;
+  }
+
+  .bg3 {
+    background: image-url('NO.3.png') no-repeat 50% 50%;
+    background-size: cover;
+  }
+
+  .bg4 {
+    background: image-url('NO.4.png') no-repeat 50% 50%;
+    background-size: cover;
+  }
+
+  .bg5 {
+    background: image-url('NO.5.png') no-repeat 50% 50%;
+    background-size: cover;
+  }
 }
 
 .searchCell {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 1em;
   max-width: 767px;
   margin: auto;
@@ -196,6 +240,17 @@ body {
     .keywords-list {
       ul {
         display: inline-block;
+
+        li {
+          padding: 0;
+        }
+
+        .quick_link_button {
+          background: transparent;
+          color: #337ab7;
+          border: none;
+          outline: none;
+        }
       }
     }
   }
@@ -223,6 +278,76 @@ body {
       .form-control, .btnSearch {
         width: 90%;
         margin: 0px auto 5px auto;
+      }
+    }
+  }
+}
+
+.find-jobs {
+  padding: 80px 0 !important;
+  background-color: #f9f9f9;
+
+  .top-jobs {
+    box-shadow: 0px 0px 1px black;
+    background: white;
+
+    .find-jobs__header {
+      margin: 0 0 30px;
+      text-align: center;
+      color: #333333;
+      font-weight: 500;
+      padding: 30px 0;
+    }
+  }
+
+  .carousel-control {
+    width: 5%;
+  }
+  
+  #carousel-example-generic1 {
+    margin: 30px 0;
+    padding: 20px 0;
+
+    .carousel-control {
+      background: none;
+
+      .glyphicon {
+        text-shadow: 1px 1px 7px black;
+      }
+    }
+  }
+
+  .top-jobs__scroll {
+    .top-jobs__list {
+      list-style: none;
+
+      .top-job__content {
+        text-decoration: none;
+        color: #444;
+      }
+
+      .top-job {
+        width: 23%;
+        float: left;
+        border-bottom: solid 1px #ccc;
+        margin: 5px;
+        padding: 5px 0;
+
+        .top-job__title-wrap {
+          .top-btn {
+            display: inline;
+            float: right;
+            background: #ffcc00;
+            width: 15%;
+            text-align: center;
+            color: white;
+            font-weight: 900;
+          }
+        }
+
+        .top-job__company-name {
+          display: block;
+        }
       }
     }
   }
@@ -396,6 +521,15 @@ footer {
 @media screen and (min-width: 768px) {
   .smFz34 {
     font-size: 34px;
+  }
+}
+
+.alert-danger {
+  margin-top: 70px;
+  position: absolute;
+
+  .close {
+    z-index: 1;
   }
 }
 

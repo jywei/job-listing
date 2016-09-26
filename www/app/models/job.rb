@@ -21,6 +21,7 @@ class Job < ActiveRecord::Base
   validates :start_day,           presence: true
 
   has_many :impressions, as: :impressionable
+  is_impressionable :counter_cache => true, :column_name => :impressions_count
 
   has_many :tracking_users, class_name: 'User', through: :reserved_jobs
   has_many :reserved_jobs, foreign_key: 'favorite_job_id'
