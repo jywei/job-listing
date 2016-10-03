@@ -1,0 +1,26 @@
+<div class="col-md-8 col-md-offset-2">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.name %></td>
+          <td><%= contact.phone %></td>
+          <td><%= contact.email %></td>
+          <td><%= contact.message %></td>
+          <td><%= button_tag :Delete, class: "btn btn-danger delete_contact", data: { id: contact.id } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= javascript_include_tag "admin_contact" %>

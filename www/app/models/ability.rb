@@ -38,6 +38,7 @@ class Ability
         can [:edit, :update], Company do |company|
           company == user.company
         end
+        can [:index, :show, :favorite_resume, :unfollow_resume], Resume
       end
     end
     #

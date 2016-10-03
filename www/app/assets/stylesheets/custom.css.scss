@@ -1,3 +1,5 @@
+$main_color1: #ec971f;
+
 body {
   height: 100%;
   margin: 0;
@@ -11,6 +13,10 @@ body {
   // height: 80px;
   border-radius: 0 !important;
 
+  .limit-width {
+    max-width: 1100px;
+  }
+
   /*.nav-holder {*/
     /*max-width: 1000px;*/
     /*margin: 0 auto;*/
@@ -23,7 +29,7 @@ body {
       text-decoration: none;
 
       img {
-        width: 60px;
+        width: 120px;
       }
     }
 
@@ -168,12 +174,16 @@ body {
 
   .carousel {
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
     padding-top: 30px;
     overflow: hidden;
+    width: 100%;
+    height: 50vw;
+    @media(max-width:760px){
+      height: 380px;
+    }
+    // filter: blur(3px);
 
     .item > img {
       @media(min-width:601px){
@@ -188,14 +198,20 @@ body {
 }
 
 .indexMap {
-  width: 100%;
-  height: 600px;
   position: relative;
   padding-top: 33px;
+  width: 100%;
+  height: 50vw;
+  @media(max-width:760px){
+    height: 380px;
+  }
 
   .item {
     width: 100vw;
-    height: 600px;
+    height: 50vw;
+    @media(max-width:760px){
+      height: 380px;
+    }
   }
 
   .bg1 {
@@ -229,7 +245,7 @@ body {
   padding: 1em;
   max-width: 767px;
   margin: auto;
-  border: 5px solid #ffcc00;
+  border: 5px solid $main_color1;
   z-index: 5;
   position: relative;
 
@@ -268,8 +284,8 @@ body {
     }
 
     .btnSearch {
-      background-color: #ffcc00;
-      border-color: #ffcc00;
+      background-color: $main_color1;
+      border-color: $main_color1;
     }
 
     @media screen and (max-width: 767px) {
@@ -292,11 +308,27 @@ body {
     background: white;
 
     .find-jobs__header {
-      margin: 0 0 30px;
       text-align: center;
       color: #333333;
       font-weight: 500;
-      padding: 30px 0;
+      padding-top: 30px;
+    }
+
+    .find-jobs-rocket {
+      font-size: 25px;
+      margin-left: -35px;
+      background: $main_color1;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      padding-top: 8px;
+      border-radius: 50%;
+      color: white;
+    }
+
+    .top-jobs__header {
+      font-size: 20px;
+      color: #494949;
     }
   }
 
@@ -305,7 +337,7 @@ body {
   }
   
   #carousel-example-generic1 {
-    margin: 30px 0;
+    margin-bottom: 30px;
     padding: 20px 0;
 
     .carousel-control {
@@ -337,7 +369,7 @@ body {
           .top-btn {
             display: inline;
             float: right;
-            background: #ffcc00;
+            background: $main_color1;
             width: 15%;
             text-align: center;
             color: white;
@@ -354,7 +386,7 @@ body {
 }
 
 .callToAction {
-  background-image: linear-gradient(90deg, #494949 50%, #ffcc00 50%);
+  background-image: linear-gradient(90deg, $main_color1 50%, #494949 50%);
 
   a {
     color: #fff;
@@ -367,7 +399,7 @@ body {
 
   .forUsers {
     padding-left: 56px;
-    background: #494949 image-url("call-arrow-l.png") no-repeat left 40px;
+    background: $main_color1 image-url("call-arrow-l.png") no-repeat left 40px;
 
     h2 {
       padding-left: 110px;
@@ -379,7 +411,7 @@ body {
 
     p+.fa {
       left: 56px;
-      font-size: 128px;
+      font-size: 100px;
       position: absolute;
       top: 40px;
     }
@@ -387,7 +419,7 @@ body {
   
   .forEmployer {
     padding-right: 56px;
-    background: #ffcc00 image-url("call-arrow-r.png") no-repeat right 40px;
+    background: #494949 image-url("call-arrow-r.png") no-repeat right 40px;
 
     h2 {
       padding-right: 110px;
@@ -399,9 +431,9 @@ body {
 
     p+.fa {
       right: 48px;
-      font-size: 128px;
+      font-size: 110px;
       position: absolute;
-      top: 37px;
+      top: 47px;
     }
   }
 
@@ -458,18 +490,32 @@ body {
   h2 {
     padding: 30px 0;
   }
+
+  .item {
+    .row {
+      max-width: 90%;
+      margin: 0 auto;
+
+      .thumbnail_size {
+        width: 20%;
+        float: left;
+      }
+    }
+  }
   
   .carousel-indicators li {
     box-shadow: 0px 0px 0px 2px gray;
   }
 
   .carousel-indicators .active {
-    box-shadow: 0px 0px 2px 2px #ffcc00;
+    box-shadow: 0px 0px 2px 2px $main_color1;
   }
 
   .thumbnail {
     border: 7px solid #ddd;
     border-radius: 0px;
+    width: 180px;
+    height: 180px;
   }
 
   .carousel-indicators {
@@ -495,7 +541,7 @@ footer {
     color: #fff;
 
     &:hover {
-      color: #ffcc00; 
+      color: $main_color1; 
       text-decoration: none;
     }
   }
@@ -505,12 +551,40 @@ footer {
   }
 
   .footerOurAdvantage .btn {
-    background-color: #ffcc00;
+    background-color: $main_color1;
     border-radius: 0;
   }
 }
 
 /* general object */
+
+.mail-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: $main_color1;
+  width: 60px;
+  height: 60px;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 35px;
+  padding-top: 2px;
+  border: none;
+  outline: none;
+}
+
+.error_zone {
+  text-align: center;
+  color: red;
+}   
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 15% auto;
+  }
+}
 
 @media screen and (max-width: 767px) {
   .xsFz28 {

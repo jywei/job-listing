@@ -139,5 +139,9 @@ class Resume < ActiveRecord::Base
   def age
     (Date.today.year - birth.year).to_s
   end
+
+  def fullname
+    firstname + " " + lastname
+  end
 end
 

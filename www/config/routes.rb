@@ -6,8 +6,12 @@ Rails.application.routes.draw do
     root 'home#index'
     # get 'categories' => 'categories#index'
     get 'companies' => 'companies#index'
-    get 'getCompany' => 'companies#getCompany'
     get 'job_filter' => 'job_filter#index'
+    get 'contact' => 'contact#index'
+    get 'delete_contact' => 'contact#delete_contact'
+    get 'seeker' => 'seeker#index'
+    get 'edit_seeker/:id' => 'seeker#edit'
+    get 'getCompany' => 'companies#getCompany'
     get 'getData' => 'job_filter#getData'
     get 'addFilter' => 'job_filter#addFilter'
     get 'deleFilter' => 'job_filter#deleFilter'
@@ -19,6 +23,7 @@ Rails.application.routes.draw do
 
 
   get 'pages/index'
+  get 'pages/contact_us' => 'pages#contact_us'
   get 'which_role' => 'pages#which_role'
   get 'select_jobs' => 'jobs#select_jobs', defaults: { format: 'json' }
   get 'resumes/education' => 'resumes#education'

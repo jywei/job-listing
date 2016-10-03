@@ -6,6 +6,7 @@
       <div class="find-jobs__header smFz48">
         Find jobs in Myanmar
       </div>
+      <i class="fa fa-rocket find-jobs-rocket"></i>
       <div class="top-jobs__header">
         Top Jobs
       </div>
@@ -18,16 +19,18 @@
 
               <div class="top-jobs__scroll">
                 <ul class="top-jobs__list">
-                  <% @jobs.each do |job| %>
-                    <li class="top-job top-job--top">
-                      <%= link_to job_path(job), class: "top-job__content js-top-job-btn" do %>
-                        <span class="top-job__title-wrap">
-                          <span class="top-job__title" title="Auditor"><%= job.title %></span>
-                          <div class="top-btn">Top</div>
-                        </span>
-                        <span class="top-job__company-name" title="DELTA DIAMOND INT'L CO.LTD"><%= job.company.name %></span>
-                      <% end %>
-                    </li>
+                  <% 3.times do %>
+                    <% @jobs.each do |job| %>
+                      <li class="top-job top-job--top">
+                        <%= link_to job_path(job), class: "top-job__content js-top-job-btn" do %>
+                          <span class="top-job__title-wrap">
+                            <span class="top-job__title" title="Auditor"><%= job.title %></span>
+                            <div class="top-btn">Top</div>
+                          </span>
+                          <span class="top-job__company-name" title="DELTA DIAMOND INT'L CO.LTD"><%= job.company.name %></span>
+                        <% end %>
+                      </li>
+                    <% end %>
                   <% end %>
                 </ul>
               </div>

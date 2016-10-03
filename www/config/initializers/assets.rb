@@ -11,3 +11,5 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 #
 Rails.application.config.assets.precompile += %w( filterrific/filterrific-spinner.gif jobs.js )
+Rails.application.config.assets.precompile += %w( contact_us.js )
+Rails.application.config.assets.precompile += %w( admin_contact.js )

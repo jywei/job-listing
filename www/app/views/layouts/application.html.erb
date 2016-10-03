@@ -73,6 +73,40 @@
     </div> <!-- /container -->
     <%= render 'layouts/footer' %>
 
+    <%= button_tag "", class: "fa fa-envelope mail-button", data: { toggle: "modal", target: "#contact_us_form" } %>
+
+    <div class="modal fade" id="contact_us_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Contact Us</h4>
+          </div>
+          <%= form_tag "#", method: :get, remote: true do %>
+            <div class="modal-body">
+              <%= label_tag :name %>
+              <%= text_field_tag :name, "", class: "form-control", id: "name" %>
+
+              <%= label_tag :phone %>
+              <%= text_field_tag :phone, "", class: "form-control", id: "phone" %>
+
+              <%= label_tag :email %>
+              <%= text_field_tag :email, "", class: "form-control", id: "email" %>
+
+              <%= label_tag :message %>
+              <%= text_area_tag :message, "", class: "form-control", id: "message" %>
+            </div>
+            <div class="modal-footer">
+              <div class="error_zone"></div>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= submit_tag :Submit, class: "btn btn-warning submit-contact-us" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= javascript_include_tag "contact_us" %>
+
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9EdOPfGfgc4jz6fUq6Yfn3tQRrtcHHzo&callback=initMap" async defer></script> -->
   </body>
 </html>

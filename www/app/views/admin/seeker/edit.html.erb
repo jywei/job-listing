@@ -1,0 +1,48 @@
+<div class="col-md-4 col-md-offset-4">
+  <%= form_tag("/admin/edit_seeker/#{@resume.id}") do %>
+    <div class="form-group">
+      <%= label_tag :firstname %>
+      <%= text_field_tag :firstname, @resume.firstname, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :lastname %>
+      <%= text_field_tag :lastname, @resume.lastname, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :phone %>
+      <%= text_field_tag :phone, @resume.phone, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :birth %>
+      <%= text_field_tag :birth, @resume.birth.strftime("%Y/%m/%d"), class: "js-datepicker filterrific-periodically-observed form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :location_id %>
+      <%= select_tag :location_id, options_from_collection_for_select(Location.all, 'id', 'name', @resume.location_id), class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :employment_status_id %>
+      <%= select_tag :employment_status_id, options_from_collection_for_select(EmploymentStatus.all, 'id', 'name', @resume.employment_status_id), class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= file_field_tag :cover %>
+      <%= image_tag @resume.cover.url,
+        class: "img-rounded text-center",
+        size: '230x100' %>
+    </div>
+
+    <%= submit_tag :Edit, class: "btn btn-success" %>
+  <% end %>
+</div>
+
+<script>
+  $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
+  $('.js-datepicker').datepicker();
+</script>
+

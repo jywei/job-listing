@@ -1,0 +1,26 @@
+<div>
+  <h2>Seeker</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @resumes.each do |resume| %>
+        <tr>
+          <% binding.pry %>
+          <td><%= link_to (image_tag resume.cover.url, size: "30x30"), resume.cover.url %></td>
+          <td><%= resume.fullname %></td>
+          <td><%= resume.user.email %></td>
+          <td><%= resume.phone %></td>
+          <td><%= resume.age %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

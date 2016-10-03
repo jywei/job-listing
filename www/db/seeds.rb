@@ -9,6 +9,10 @@
 require 'csv'
 
 
+6.times { RecommendedJob.create! }
+
+24.times { FeaturedEmployer.create! }
+
 Category.create([{ name: 'Accounting / Finance' }, { name: 'Sales' }, { name: 'Marketing' }])
 
 Industry.create([{ name: 'Telecommunications Services' }, { name: 'Construction' }, { name: 'Distribution / Logistics' }])

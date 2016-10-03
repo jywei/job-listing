@@ -8,151 +8,68 @@
       <div class="carousel slide" data-ride="carousel" data-type="multi" id="myCarousel2">
         <ol class="carousel-indicators">
           <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel2" data-slide-to="1"></li>
-          <li data-target="#myCarousel2" data-slide-to="2"></li>
+          <% if @featured_employers[10] %>
+            <li data-target="#myCarousel2" data-slide-to="1"></li>
+          <% end %>
+          <% if @featured_employers[20] %>
+            <li data-target="#myCarousel2" data-slide-to="2"></li>
+          <% end %>
         </ol>
         <div class="carousel-inner">
 
           <div class="item active">
             <div class="row">
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
+              <% 10.times do |i| %>
+                <div class="thumbnail_size">
+                  <% if @featured_employers[i] %>
+                    <div class="thumbnail">
+                      <%= link_to company_path(@featured_employers[i]), target: "blank" do %>
+                        <div style="background:url(<%="#{ @featured_employers[i].image.url == "nia.png" ? "assets" + @featured_employers[i].image.url : @featured_employers[i].image.url }"%>) no-repeat; background-size: contain; width: 160px; height: 160px; margin: 0 auto;"></div>
+                      <% end %>
+                    </div>
+                  <% end %>
                 </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
+              <% end %>
             </div>
           </div>
 
-          <div class="item">
-            <div class="row">
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
+          <% if @featured_employers[10] %>
+            <div class="item">
+              <div class="row">
+                <% 10.times do |i| %>
+                  <div class="thumbnail_size">
+                    <% i += 10 %>
+                    <% if @featured_employers[i] %>
+                      <div class="thumbnail">
+                        <%= link_to company_path(@featured_employers[i]), target: "blank" do %>
+                        <div style="background:url(<%="#{ @featured_employers[i].image.url == "nia.png" ? "assets" + @featured_employers[i].image.url : @featured_employers[i].image.url }"%>) no-repeat; background-size: contain; width: 160px; height: 160px; margin: 0 auto;"></div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
               </div>
             </div>
-            <div class="row">
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-            </div>
-          </div>
+          <% end %>
 
-          <div class="item">
-            <div class="row">
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
+          <% if @featured_employers[20] %>
+            <div class="item">
+              <div class="row">
+                <% 10.times do |i| %>
+                  <div class="thumbnail_size">
+                    <% i += 20 %>
+                    <div class="thumbnail">
+                    <% if @featured_employers[i] %>
+                        <%= link_to company_path(@featured_employers[i]), target: "blank" do %>
+                        <div style="background:url(<%="#{ @featured_employers[i].image.url == "nia.png" ? "assets" + @featured_employers[i].image.url : @featured_employers[i].image.url }"%>) no-repeat; background-size: contain; width: 160px; height: 160px; margin: 0 auto;"></div>
+                        <% end %>
+                    <% end %>
+                      </div>
+                  </div>
+                <% end %>
               </div>
             </div>
-            <div class="row">
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="thumbnail">
-                  <%= image_tag "nia.png" %>
-                </div>
-              </div>
-            </div>
-          </div>
+          <% end %>
 
         </div>
       </div>
