@@ -1,7 +1,7 @@
 <%= form_for_filterrific @filterrific do |f| %>
   <div class="col-md-12">
     <div class="search">
-      <h1 class="center">All Resumes</h1>
+      <h1 class="center">Search Resumes</h1>
       <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
         <%= f.text_field(:search_query, class: 'search-bar form-control') %>
     </div>
@@ -9,7 +9,7 @@
   </div>
   <div class="col-md-4">
     <div>
-      <%= link_to('Reset filters', reset_filterrific_url) %>
+      <%= link_to('Reset filters', reset_filterrific_url, class: "btn btn-default") %>
     </div>
     <br>
     <div class="panel-group max-width" id="" role="tablist" aria-multiselectable="true">

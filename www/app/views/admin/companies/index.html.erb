@@ -1,27 +1,54 @@
 <h2>Company</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Tagline</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>About</th>
-      <th>Story</th>
-      <th>Welfare</th>
-      <th>Demand</th>
-      <th>Website</th>
-      <th>ios</th>
-      <th>Android</th>
-      <th>Facebook</th>
-      <th>Twitter</th>
-      <th>Idea</th>
-      <th>Jobs Count</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+<div class="scroll">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Tagline</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>About</th>
+        <th>Story</th>
+        <th>Welfare</th>
+        <th>Demand</th>
+        <th>Website</th>
+        <th>ios</th>
+        <th>Android</th>
+        <th>Facebook</th>
+        <th>Twitter</th>
+        <th>Idea</th>
+        <th>Jobs Count</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @companies.each do |company| %>
+        <tr>
+          <td><%= link_to (image_tag company.cover.url, size: "30x30"), asset_path(company.cover), target: "blank" %></td>
+          <td><%= link_to (image_tag company.image.url, size: "30x30"), asset_path(company.image), target: "blank" %></td>
+          <td><%= company.name %></td>
+          <td><%= company.tagline %></td>
+          <td><%= company.phone %></td>
+          <td><%= company.email %></td>
+          <td><%= company.about %></td>
+          <td><%= company.story %></td>
+          <td><%= company.welfare %></td>
+          <td><%= company.demand %></td>
+          <td><%= company.website %></td>
+          <td><%= company.ios %></td>
+          <td><%= company.android %></td>
+          <td><%= company.facebook %></td>
+          <td><%= company.twitter %></td>
+          <td><%= company.idea %></td>
+          <td><%= company.jobs_count %></td>
+          <td><%= link_to "Edit", "/admin/edit_company/#{company.id}", class: "btn btn-success" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= javascript_include_tag '/assets/admin/company' %>
+<%#= javascript_include_tag '/assets/admin/company' %>

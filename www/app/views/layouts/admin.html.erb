@@ -5,6 +5,18 @@
   <%= stylesheet_link_tag  'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+  <script>
+    tinymce.init({
+      selector: '.editor',
+      height: 300,
+      theme: 'modern',
+      content_css: [
+        'https://fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+        'https://www.tinymce.com/css/codepen.min.css'
+      ]
+    });
+  </script>
 </head>
 <body>
 
@@ -17,8 +29,13 @@
         <ul class="nav navbar-nav">
           <li><%= link_to "Seeker", admin_seeker_path %></li>
           <li><%= link_to "Company", admin_companies_path %></li>
-          <li><%= link_to "Contact", admin_contact_path %></li>
+          <li>
+            <%= link_to admin_contact_path do %>
+              Contact <span class="badge"><%= @unread_contact_count %></span>
+            <% end %>
+          </li>
           <li><%= link_to "JobFilter", admin_job_filter_path %></li>
+          <li><%= link_to "Blog", admin_article_path %></li>
         </ul>
       </div>
     </div>

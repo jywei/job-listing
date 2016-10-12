@@ -1,0 +1,104 @@
+// Place all the styles related to the blog controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.intro-header {
+  background-color: gray;
+  background: no-repeat center center;
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  margin-bottom: 50px;
+  margin-top: 30px;
+
+  .site-heading {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .intro-header .site-heading h1, .intro-header .page-heading h1 {
+    font-size: 80px;
+  }
+}
+
+.intro-header .site-heading, .intro-header .post-heading, .intro-header .page-heading {
+  padding: 100px 0 50px;
+  color: #fff;
+}
+
+@media only screen and (min-width: 768px) {
+  .intro-header .site-heading, .intro-header .post-heading, .intro-header .page-heading {
+    padding: 150px 0;
+  }
+}
+
+.intro-header .site-heading .subheading, .intro-header .page-heading .subheading {
+  font-size: 24px;
+  line-height: 1.1;
+  display: block;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  margin: 10px 0 0;
+}
+
+.site-heading, .post-heading, .subheading {
+  text-shadow: 3px 3px 5px #000;
+}
+
+.post-preview {
+  > a {
+    color: #404040;
+    text-decoration: none;
+
+    > .post-title {
+      font-size: 30px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+  }
+
+  > .post-meta {
+    color: gray;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .post-preview > a > .post-title {
+    font-size: 36px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .intro-header .post-heading h1 {
+    font-size: 55px;
+  }
+
+  .intro-header .post-heading .subheading {
+    font-size: 30px;
+  }
+}
+
+.intro-header {
+  .post-heading {
+    .subheading {
+      font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+      font-size: 24px;
+      margin: 10px 0 30px;
+      font-weight: 600;
+    }
+
+    .meta {
+      font-family: Lora,'Times New Roman',serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 20px;
+    }
+  }
+}
+

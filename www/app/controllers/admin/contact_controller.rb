@@ -2,6 +2,7 @@ class Admin::ContactController < Admin::ApplicationController
 
   def index
     @contacts = Contact.all
+    Contact.update_all(is_read: true)
   end
 
   def delete_contact

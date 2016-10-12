@@ -1,0 +1,129 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2>Edit Company</h2>
+  <%= form_for @company, url: "/admin/edit_company/#{@company.id}", html: { multipart: true } do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :tagline %>
+      <%= f.text_field :tagline, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"Company Industry" %>
+      <%= f.select :industry_id, options_from_collection_for_select(Industry.all, 'id', 'name', @company.industry_id), {}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"Company's Address" %>
+      <%= f.text_field :address1, class: "form-control" %>
+      <br>
+      <%= f.text_field :address2, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :about %>
+      <%= f.text_area :about, class: 'editor' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :story %>
+      <%= f.text_area :story, class: "editor" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :welfare %>
+      <%= f.text_area :welfare, class: "editor" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :demand %>
+      <%= f.text_area :demand, class: "editor" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :idea %>
+      <%= f.text_area :idea, class: "editor" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :idea %>
+      <%= f.text_area :idea, class: "editor" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"Company's Country" %>
+      <%= f.select :country_id, options_from_collection_for_select(Country.all, 'id', 'name', @company.country_id), {}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"Company's Location" %>
+      <%= f.select :location_id, options_from_collection_for_select(Location.all, 'id', 'name', @company.location_id), {}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"Employee Amount Range" %>
+      <%= f.select :employee_range_id, options_from_collection_for_select(EmployeeRange.all, 'id', 'range', @company.employee_range_id), {}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :website %>
+      <%= f.text_field :website, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :facebook %>
+      <%= f.text_field :facebook, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :twitter %>
+      <%= f.text_field :twitter, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :ios %>
+      <%= f.text_field :ios, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :android %>
+      <%= f.text_field :android, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"is hiring" %>
+      <%= f.check_box :is_hiring, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"Comany Background Image (230x100)" %>
+      <%= f.file_field :cover %>
+      <%= image_tag @company.cover.url(:preview),
+          class: "img-rounded text-center",
+          size: '230x100' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"Comany Logo Image (100x100)" %>
+      <%= f.file_field :image %>
+      <%= image_tag @company.image.url(:thumb),
+          class: "img-rounded text-center",
+          size: '100x100' %>
+    </div>
+
+    <%= f.submit :Edit, class: "btn btn-success" %>
+  <% end %>
+</div>

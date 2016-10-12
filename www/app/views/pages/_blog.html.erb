@@ -1,0 +1,41 @@
+<div class="m-subcont">
+  <div class="m-subcont__inner">
+    <div data-id="1465546255568-00000860-24912476">
+      <h2 class="m-heading2">
+        <span class="m-title-backyard smFz48">Blog</span>
+      </h2>
+      <p class="m-lead-h2">
+        Documents published in streams other than the IETF Stream are not
+        <br>
+        generally reviewed by the IETF for such things as security,
+        <br>
+        congestion control, or inappropriate interaction with deployed protocols.
+      </p>
+    </div>
+    <div class="m-btnarea" data-id="1465546336519-00000910-05030173">
+      <%= link_to "/blogs", class: "m-btn" do %>
+        <span>MORE ARTICLE...</span>
+      <% end %>
+    </div>
+    <ol class="m-backyard-rank">
+      <% i = 0 %>
+      <% @articles.each do |article| %>
+        <li>
+          <%= link_to "/blogs/#{article.id}", class: "m-link-area" do %>
+            <div class="m-backyard-rank__imgs">
+              <div class="m-backyard-rank__num"><%= i += 1 %></div>
+              <div class="m-backyard-rank__img"><%= image_tag article.cover %></div>
+            </div>
+            <div class="m-backyard-rank__text">
+              <p class="m-link-fake"><%= article.title %></p>
+              <div class="m-backyard__author">
+                <div class="m-backyard__author-img"><img src="https://www.imjp.co.jp/backyard/static/authors/default02.png" alt=""></div>
+                <div class="m-backyard__author-inner"><p class="m-backyard__author-name"><%= article.author %></p> </div>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>

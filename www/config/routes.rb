@@ -5,16 +5,21 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'home#index'
     # get 'categories' => 'categories#index'
-    get 'companies' => 'companies#index'
-    get 'job_filter' => 'job_filter#index'
-    get 'contact' => 'contact#index'
-    get 'delete_contact' => 'contact#delete_contact'
-    get 'seeker' => 'seeker#index'
-    get 'edit_seeker/:id' => 'seeker#edit'
-    get 'getCompany' => 'companies#getCompany'
-    get 'getData' => 'job_filter#getData'
-    get 'addFilter' => 'job_filter#addFilter'
-    get 'deleFilter' => 'job_filter#deleFilter'
+    get   'companies' => 'companies#index'
+    get   'edit_company/:id' => 'companies#edit'
+    patch 'edit_company/:id' => 'companies#update'
+    get   'article' =>          'article#index'
+    post  'create_article' =>   'article#create_article'
+    get   'job_filter' =>       'job_filter#index'
+    get   'contact' =>          'contact#index'
+    get   'delete_contact' =>   'contact#delete_contact'
+    get   'seeker' =>           'seeker#index'
+    get   'edit_seeker/:id' =>  'seeker#edit'
+    patch 'edit_seeker/:id' =>  'seeker#update'
+    get   'getCompany' =>       'companies#getCompany'
+    get   'getData' =>          'job_filter#getData'
+    get   'addFilter' =>        'job_filter#addFilter'
+    get   'deleFilter' =>       'job_filter#deleFilter'
     resources :categories
     resources :industries
   end
@@ -57,6 +62,9 @@ Rails.application.routes.draw do
   post 'cover_letters' => 'jobs#cover_letter'
 
   get 'show_cover_letter/:id' => 'jobs#show_cover_letter'
+
+  get 'blogs'     => 'blog#index'
+  get 'blogs/:id' => 'blog#show'
 
   resources :jobs
   resources :resumes

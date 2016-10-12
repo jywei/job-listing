@@ -23,7 +23,7 @@
           <li><%= link_to "Dashboard", dashboard_path %></li>
         <% end %>
         <li class="blog-link">
-          <a target="_blank" href="https://blog.mit.jobs/">Columns</a>
+          <%= link_to "Columns", "/blogs" %>
         </li>
         <% if user_signed_in? %>
           <li class="dropdown">

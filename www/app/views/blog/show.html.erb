@@ -1,0 +1,28 @@
+<header class="intro-header" style="background-image: url('<%= @article.cover.url %>'); background-size: 100%;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1><%= @article.title %></h1>
+          <h2 class="subheading"><%= @article.subtitle %></h2>
+          <span class="meta">
+            Author：<%= @article.author %>
+            <br>
+            <%= @article.created_at.strftime("%B %d, %Y") %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <%= @article.text.html_safe %>
+        <hr>
+      </div>
+    </div>
+  </div>
+</article>

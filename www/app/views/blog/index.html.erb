@@ -1,0 +1,40 @@
+<header id="header" class="intro-header" style="background-image: url('assets/landscape-1.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1>Global Overview</h1>
+          <hr class="middle">
+          <span class="subheading">News and Observation of Global Talents</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <% @articles.each do |article| %>
+        <div class="post-preview">
+          <!-- <a target="_blank" href="post&#45;000&#45;firstpost.html"> -->
+          <%= link_to "/blogs/#{article.id}", target: "blank" do %>
+            <h2 class="post-title">
+              <%= article.title %>
+            </h2>
+          <% end %>
+          <!-- </a> -->
+          <h3 class="post-subtitle">
+            <%= article.subtitle %>
+          </h3>
+          <p class="post-meta">
+            Author：<%= article.author %>
+            <br>
+            <%= article.created_at.strftime("%B %d, %Y") %>
+          </p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>

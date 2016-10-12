@@ -54,11 +54,11 @@
                             unchecked_value: false %>
     <%= f.input :cover, as: :file, label: "Comany Background Image (230x100)" %>
     <%= image_tag @company.cover.url(:preview),
-        class: "img-rounded text-center",
+        class: "img-rounded text-center cover_display_zone",
         size: '230x100' %>
     <%= f.input :image, as: :file, label: "Comany Logo Image (100x100)" %>
     <%= image_tag @company.image.url(:thumb),
-        class: "img-rounded text-center",
+        class: "img-rounded text-center image_display_zone",
         size: '100x100' %>
     <div class="form-actions" style="margin: 20px 0;">
       <%= f.button :submit %>

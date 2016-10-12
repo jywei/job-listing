@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   def index
     @jobs = Job.includes(:company).order(:views_count).reverse
     @companies = Company.joins(:jobs).group('companies.id').order('RAND()').limit(6)
+    @articles = Article.all.order("id DESC").limit(3)
     @featured_employers = Company.order('RAND()').limit(30)
   end
 

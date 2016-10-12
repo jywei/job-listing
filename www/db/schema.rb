@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003080951) do
+ActiveRecord::Schema.define(version: 20161006100230) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title",              limit: 255
+    t.string   "subtitle",           limit: 255
+    t.text     "text",               limit: 65535
+    t.string   "author",             limit: 255
+    t.string   "cover_file_name",    limit: 255
+    t.string   "cover_content_type", limit: 255
+    t.integer  "cover_file_size",    limit: 4
+    t.datetime "cover_updated_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
 
   create_table "career_levels", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -68,8 +81,9 @@ ActiveRecord::Schema.define(version: 20161003080951) do
     t.string   "phone",      limit: 255
     t.string   "email",      limit: 255
     t.string   "message",    limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.boolean  "is_read",                default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "contract_types", force: :cascade do |t|

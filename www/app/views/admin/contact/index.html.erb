@@ -6,16 +6,23 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Message</th>
+        <th>Send Time</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <% @contacts.each do |contact| %>
         <tr>
-          <td><%= contact.name %></td>
+          <td>
+            <% unless contact.is_read %>
+              <span class="badge">New</span>
+            <% end %>
+            <%= contact.name %>
+          </td>
           <td><%= contact.phone %></td>
           <td><%= contact.email %></td>
           <td><%= contact.message %></td>
+          <td><%= contact.created_at %></td>
           <td><%= button_tag :Delete, class: "btn btn-danger delete_contact", data: { id: contact.id } %></td>
         </tr>
       <% end %>
