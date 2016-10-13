@@ -32,4 +32,21 @@ module ApplicationHelper
       current_user
     end
   end
+
+  def check_carousel_number(i)
+    if i == 0 || i == 2 || i == 4 || i == 5 || i == 7 || i == 9 || i == 10 || i == 12 || i == 14 || i == 15 || i == 17 || i == 19 
+      return true
+    else
+      return false
+    end
+  end
+
+  def check_carousel_number2(i)
+    if i == 3 || i == 8 
+      return true
+    else
+      return false
+    end
+  end
 end
+

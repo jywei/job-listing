@@ -74,7 +74,7 @@
 
     <%= button_tag "", class: "fa fa-envelope mail-button", data: { toggle: "modal", target: "#contact_us_form" } %>
 
-    <div class="modal fade" id="contact_us_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade mail_form" id="contact_us_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -84,22 +84,19 @@
           <%= form_tag "#", method: :get, remote: true do %>
             <div class="modal-body">
               <%= label_tag :name %>
-              <%= text_field_tag :name, "", class: "form-control", id: "name" %>
+              <%= text_field_tag :name, "", class: "", id: "name" %>
 
               <%= label_tag :phone %>
-              <%= text_field_tag :phone, "", class: "form-control", id: "phone" %>
+              <%= text_field_tag :phone, "", class: "", id: "phone" %>
 
               <%= label_tag :email %>
-              <%= text_field_tag :email, "", class: "form-control", id: "email" %>
+              <%= text_field_tag :email, "", class: "", id: "email" %>
 
               <%= label_tag :message %>
-              <%= text_area_tag :message, "", class: "form-control", id: "message" %>
+              <%= text_area_tag :message, "", class: "", id: "message" %>
             </div>
-            <div class="modal-footer">
-              <div class="error_zone"></div>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <%= submit_tag :Submit, class: "btn btn-warning submit-contact-us" %>
-            </div>
+            <div class="error_zone"></div>
+            <%= submit_tag :Submit, class: "submit-contact-us" %>
           <% end %>
         </div>
       </div>

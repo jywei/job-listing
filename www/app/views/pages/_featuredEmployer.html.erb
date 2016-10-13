@@ -20,7 +20,7 @@
           <div class="item active">
             <div class="row">
               <% 10.times do |i| %>
-                <div class="thumbnail_size">
+                <div class="thumbnail_size <%= "hidden_picture" if check_carousel_number(i) %> <%= "hidden_picture-600px" if check_carousel_number2(i) %>">
                   <% if @featured_employers[i] %>
                     <div class="thumbnail">
                       <%= link_to company_path(@featured_employers[i]), target: "blank" do %>
@@ -37,7 +37,7 @@
             <div class="item">
               <div class="row">
                 <% 10.times do |i| %>
-                  <div class="thumbnail_size">
+                  <div class="thumbnail_size <%= "hidden_picture" if check_carousel_number(i) %> <%= "hidden_picture-600px" if check_carousel_number2(i) %>">
                     <% i += 10 %>
                     <% if @featured_employers[i] %>
                       <div class="thumbnail">
@@ -56,7 +56,7 @@
             <div class="item">
               <div class="row">
                 <% 10.times do |i| %>
-                  <div class="thumbnail_size">
+                  <div class="thumbnail_size <%= "hidden_picture" if check_carousel_number(i) %> <%= "hidden_picture-600px" if check_carousel_number2(i) %>">
                     <% i += 20 %>
                     <div class="thumbnail">
                     <% if @featured_employers[i] %>

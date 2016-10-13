@@ -17,6 +17,12 @@ class Admin::ArticleController < Admin::ApplicationController
     end
   end
 
+  def delete
+    Article.find(params[:id]).delete
+    flash[:success] = "Delete article successfully"
+    redirect_to admin_article_path
+  end
+
   private
 
     def article_params

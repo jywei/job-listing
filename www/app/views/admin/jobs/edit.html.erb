@@ -1,0 +1,50 @@
+<div class="col-md-6 col-md-offset-3">
+  <%= form_for @job, url: "/admin/edit_job/#{@job.id}" do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "editor" %>
+
+    <%= f.label :requirement %>
+    <%= f.text_field :requirement, class: "editor" %>
+
+    <%= f.label :category %>
+    <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name', @job.category_id), {}, class: "form-control" %>
+
+    <%= f.label :industry %>
+    <%= f.select :industry_id, options_from_collection_for_select(Industry.all, 'id', 'name', @job.industry_id), {}, class: "form-control" %>
+
+    <%= f.label :contract_type %>
+    <%= f.select :contract_type_id, options_from_collection_for_select(ContractType.all, 'id', 'name', @job.contract_type_id), {}, class: "form-control" %>
+
+    <%= f.label :salary_range %>
+    <%= f.select :salary_range_id, options_from_collection_for_select(SalaryRange.all, 'id', 'range', @job.salary_range_id), {}, class: "form-control" %>
+
+    <%= f.label :country %>
+    <%= f.select :country_id, options_from_collection_for_select(Country.all, 'id', 'name', @job.country_id), {}, class: "form-control" %>
+
+    <%= f.label :location %>
+    <%= f.select :location_id, options_from_collection_for_select(Location.all, 'id', 'name', @job.location_id), {}, class: "form-control" %>
+
+    <%= f.label :apply_instruction %>
+    <%= f.text_field :apply_instruction, class: "editor" %>
+
+    <%= f.label :Vacancy_Expiration_Date %>
+    <%= f.date_select :start_day, {}, class: "form-control" %>
+
+    <%= f.label :professional_skill %>
+    <%= f.text_field :professional_skill, class: "editor" %>
+
+    <%= f.label :language_skills %>
+    <%= f.text_field :language_skills, class: "editor" %>
+
+    <%= f.label :is_published %>
+    <%= f.check_box :is_published %>
+
+    <br>
+
+    <%= f.submit :edit, class: "btn btn-success" %>
+  <% end %>
+</div>
+

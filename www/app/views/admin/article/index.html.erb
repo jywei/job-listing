@@ -49,6 +49,7 @@
         <th>Text</th>
         <th>Author</th>
         <th>Cover</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -56,9 +57,10 @@
         <tr>
           <td><%= article.title %></td>
           <td><%= article.subtitle %></td>
-          <td><%= article.text %></td>
+          <td><div class="text-overflow"><%= article.text %></div></td>
           <td><%= article.author %></td>
           <td><%= link_to (image_tag article.cover.url, size: "30x30"), article.cover.url, target: "blank" %></td>
+          <td><%= link_to "Delete", "delete_article/#{article.id}", class: "btn btn-danger", method: :delete %></td>
         </tr>
       <% end %>
     </tbody>

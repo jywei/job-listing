@@ -1,0 +1,53 @@
+<div class="overflow-x">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th>Requirement</th>
+        <th>Apply Instruction</th>
+        <th>Start Day</th>
+        <th>View Count</th>
+        <th>Applied Count</th>
+        <th>Professional Skill</th>
+        <th>Posted Date</th>
+        <th>Category</th>
+        <th>Industry</th>
+        <th>Contract Type</th>
+        <th>Location</th>
+        <th>Salary Range</th>
+        <th>Company</th>
+        <th>Country</th>
+        <th>Language Skill</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= job.title %></td>
+          <td><%= job.status %></td>
+          <td><%= job.description.html_safe %></td>
+          <td><%= job.requirement.html_safe %></td>
+          <td><%= job.apply_instruction.html_safe %></td>
+          <td><%= job.start_day %></td>
+          <td><%= job.views_count %></td>
+          <td><%= job.applied_count %></td>
+          <td><%= job.professional_skill.html_safe %></td>
+          <td><%= job.created_at %></td>
+          <td><%= job.category.name %></td>
+          <td><%= job.industry.name %></td>
+          <td><%= job.contract_type.name %></td>
+          <td><%= job.location.name %></td>
+          <td><%= job.salary_range.range %></td>
+          <td><%= job.company.name %></td>
+          <td><%= job.country.name %></td>
+          <td><%= job.language_skills.html_safe %></td>
+          <td><%= link_to "Edit", "/admin/edit_job/#{job.id}", class: "btn btn-success" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
